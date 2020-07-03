@@ -51,8 +51,8 @@ def dump_output(output_file_name, output):
 
 
 class JSONFileValidator(validators.AbstractValidator):
-    """ Does extract response body and compare with given my_file_name.pat.json.
-        If comparison failed response is save into my_file_name.out.json file.
+    """ Does extract response body and compare with given my_file_name.json.pat.
+        If comparison failed response is save into my_file_name.json.out file.
     """
 
     name = 'ComparatorValidator'
