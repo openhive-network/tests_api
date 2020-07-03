@@ -14,11 +14,11 @@ def contain(response, pattern):
    if type(response) != type(pattern):
       return False
 
-   if type(response) == 'dict':
+   if isinstance(response, dict):
       return dict_contain(response, pattern)
-   if type(response) == 'list':
+   if isinstance(response, list):
       return list_contain(response, pattern)
-   if type(response) == 'str':
+   if isinstance(response, str):
       return pattern in response
    # all other types
    return pattern == response
