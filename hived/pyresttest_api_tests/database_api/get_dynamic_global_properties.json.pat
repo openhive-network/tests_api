@@ -1,10 +1,17 @@
 {
-    "confidential_hbd_supply": "0.000 TBD",
-    "confidential_supply": "0.000 TESTS",
+    "confidential_supply": {
+        "amount": "0",
+        "nai": "@@000000021",
+        "precision": 3
+    },
     "current_aslot": 0,
     "init_hbd_supply": "0.000 TBD",
     "current_hbd_supply": "0.000 TBD",
-    "current_supply": "0.000 TESTS",
+    "current_supply": {
+        "amount": "0",
+        "nai": "@@000000021",
+        "precision": 3
+    },
     "current_witness": "initminer",
     "head_block_id": "0000000000000000000000000000000000000000",
     "head_block_number": 0,
