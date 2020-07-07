@@ -22,12 +22,12 @@
     - extract_test: {jsonpath_mini: "result.current_aslot", test: "exists"}
     - extract_test: {jsonpath_mini: "result.current_hbd_supply", test: "exists"}
     - extract_test: {jsonpath_mini: "result.current_hbd_supply.amount", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.current_hbd_supply.nai", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.current_hbd_supply.precision", test: "exists"}
+    - compare: {jsonpath_mini: "result.current_hbd_supply.nai", comparator: "str_eq", expected: "@@000000013"}
+    - compare: {jsonpath_mini: "result.current_hbd_supply.precision", comparator: "eq", expected: 3}
     - extract_test: {jsonpath_mini: "result.current_supply", test: "exists"}
     - extract_test: {jsonpath_mini: "result.current_supply.amount", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.current_supply.nai", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.current_supply.precision", test: "exists"}
+    - compare: {jsonpath_mini: "result.current_supply.nai", comparator: "str_eq", expected: "@@000000021"}
+    - compare: {jsonpath_mini: "result.current_supply.precision", comparator: "eq", expected: 3}
     - extract_test: {jsonpath_mini: "result.current_witness", test: "exists"}
     - extract_test: {jsonpath_mini: "result.delegation_return_period", test: "exists"}
     - extract_test: {jsonpath_mini: "result.downvote_pool_percent", test: "exists"}
@@ -40,8 +40,8 @@
     - extract_test: {jsonpath_mini: "result.id", test: "exists"}
     - extract_test: {jsonpath_mini: "result.init_hbd_supply", test: "exists"}
     - extract_test: {jsonpath_mini: "result.init_hbd_supply.amount", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.init_hbd_supply.nai", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.init_hbd_supply.precision", test: "exists"}
+    - compare: {jsonpath_mini: "result.init_hbd_supply.nai", comparator: "str_eq", expected: "@@000000013"}
+    - compare: {jsonpath_mini: "result.init_hbd_supply.precision", comparator: "eq", expected: 3}
     - extract_test: {jsonpath_mini: "result.last_budget_time", test: "exists"}
     - extract_test: {jsonpath_mini: "result.last_irreversible_block_num", test: "exists"}
     - extract_test: {jsonpath_mini: "result.maximum_block_size", test: "exists"}
@@ -50,40 +50,40 @@
     - extract_test: {jsonpath_mini: "result.participation_count", test: "exists"}
     - extract_test: {jsonpath_mini: "result.pending_rewarded_vesting_hive", test: "exists"}
     - extract_test: {jsonpath_mini: "result.pending_rewarded_vesting_hive.amount", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.pending_rewarded_vesting_hive.nai", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.pending_rewarded_vesting_hive.precision", test: "exists"}
+    - compare: {jsonpath_mini: "result.pending_rewarded_vesting_hive.nai", comparator: "str_eq", expected: "@@000000021"}
+    - compare: {jsonpath_mini: "result.pending_rewarded_vesting_hive.precision", comparator: "eq", expected: 3}
     - extract_test: {jsonpath_mini: "result.pending_rewarded_vesting_shares", test: "exists"}
     - extract_test: {jsonpath_mini: "result.pending_rewarded_vesting_shares.amount", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.pending_rewarded_vesting_shares.nai", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.pending_rewarded_vesting_shares.precision", test: "exists"}
+    - compare: {jsonpath_mini: "result.pending_rewarded_vesting_shares.nai", comparator: "str_eq", expected: "@@000000037"}
+    - compare: {jsonpath_mini: "result.pending_rewarded_vesting_shares.precision", comparator: "eq", expected: 6}
     - extract_test: {jsonpath_mini: "result.recent_slots_filled", test: "exists"}
     - extract_test: {jsonpath_mini: "result.required_actions_partition_percent", test: "exists"}
     - extract_test: {jsonpath_mini: "result.reverse_auction_seconds", test: "exists"}
     - extract_test: {jsonpath_mini: "result.sps_fund_percent", test: "exists"}
     - extract_test: {jsonpath_mini: "result.sps_interval_ledger", test: "exists"}
     - extract_test: {jsonpath_mini: "result.sps_interval_ledger.amount", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.sps_interval_ledger.nai", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.sps_interval_ledger.precision", test: "exists"}
+    - compare: {jsonpath_mini: "result.sps_interval_ledger.nai", comparator: "str_eq", expected: "@@000000013"}
+    - compare: {jsonpath_mini: "result.sps_interval_ledger.precision", comparator: "eq", expected: 3}
     - extract_test: {jsonpath_mini: "result.time", test: "exists"}
     - extract_test: {jsonpath_mini: "result.total_pow", test: "exists"}
     - extract_test: {jsonpath_mini: "result.total_reward_fund_hive", test: "exists"}
     - extract_test: {jsonpath_mini: "result.total_reward_fund_hive.amount", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.total_reward_fund_hive.nai", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.total_reward_fund_hive.precision", test: "exists"}
+    - compare: {jsonpath_mini: "result.total_reward_fund_hive.nai", comparator: "str_eq", expected: "@@000000021"}
+    - compare: {jsonpath_mini: "result.total_reward_fund_hive.precision", comparator: "eq", expected: 3}
     - extract_test: {jsonpath_mini: "result.total_reward_shares2", test: "exists"}
     - extract_test: {jsonpath_mini: "result.total_vesting_fund_hive", test: "exists"}
     - extract_test: {jsonpath_mini: "result.total_vesting_fund_hive.amount", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.total_vesting_fund_hive.nai", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.total_vesting_fund_hive.precision", test: "exists"}
+    - compare: {jsonpath_mini: "result.total_vesting_fund_hive.nai", comparator: "str_eq", expected: "@@000000021"}
+    - compare: {jsonpath_mini: "result.total_vesting_fund_hive.precision", comparator: "eq", expected: 3}
     - extract_test: {jsonpath_mini: "result.total_vesting_shares", test: "exists"}
     - extract_test: {jsonpath_mini: "result.total_vesting_shares.amount", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.total_vesting_shares.nai", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.total_vesting_shares.precision", test: "exists"}
+    - compare: {jsonpath_mini: "result.total_vesting_shares.nai", comparator: "str_eq", expected: "@@000000037"}
+    - compare: {jsonpath_mini: "result.total_vesting_shares.precision", comparator: "eq", expected: 6}
     - extract_test: {jsonpath_mini: "result.vesting_reward_percent", test: "exists"}
     - extract_test: {jsonpath_mini: "result.virtual_supply", test: "exists"}
     - extract_test: {jsonpath_mini: "result.virtual_supply.amount", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.virtual_supply.nai", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.virtual_supply.precision", test: "exists"}
+    - compare: {jsonpath_mini: "result.virtual_supply.nai", comparator: "str_eq", expected: "@@000000021"}
+    - compare: {jsonpath_mini: "result.virtual_supply.precision", comparator: "eq", expected: 3}
     - extract_test: {jsonpath_mini: "result.vote_power_reserve_rate", test: "exists"}
     - compare: {jsonpath_mini: "id", comparator: "str_eq", expected: {template: $test_id}}
 
