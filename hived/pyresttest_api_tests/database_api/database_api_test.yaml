@@ -130,6 +130,9 @@
     - method: "get_hardfork_properties"
     - args: {}
   - <<: *base_test
+  - validators:
+    - <<: *validator_base
+    - <<: *validator_result_json
 
 - test:
   - name: "get_reward_funds"
