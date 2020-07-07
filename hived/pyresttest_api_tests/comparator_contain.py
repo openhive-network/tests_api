@@ -1,6 +1,6 @@
 def dict_contain(response, pattern):
    for key in pattern.keys():
-      if (not key in response) or (pattern[key] != response[key]):
+      if (not key in response) or not contain(response[key], pattern[key]):
          return False
    return True
 
