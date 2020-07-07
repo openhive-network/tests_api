@@ -116,6 +116,13 @@
     - method: "get_witness_schedule"
     - args: {}
   - <<: *base_test
+  - validators:
+    - <<: *validator_base
+    - <<: *validator_result_json
+    - extract_test: {jsonpath_mini: "result.account_subsidy_witness_rd.min_decay", test: "exists"}
+    - extract_test: {jsonpath_mini: "result.current_shuffled_witnesses", test: "exists"}
+    - extract_test: {jsonpath_mini: "result.current_virtual_time", test: "exists"}
+    - extract_test: {jsonpath_mini: "result.next_shuffle_block_num", test: "exists"}
 
 - test:
   - name: "get_hardfork_properties"
