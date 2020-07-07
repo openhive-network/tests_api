@@ -106,6 +106,9 @@
     - method: "get_config"
     - args: {}
   - <<: *base_test
+  - validators:
+    - <<: *validator_base
+    - <<: *validator_result_json
 
 - test:
   - name: "get_witness_schedule"
