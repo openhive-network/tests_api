@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "jsonrpc": {
+      "type": "string"
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "funds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "pattern": "[0-9]*"
+              },
+              "name": {
+                "type": "string"
+              },
+              "reward_balance": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "string",
+                    "pattern": "[1-9][0-9]*"
+                  },
+                  "precision": {
+                    "type": "integer",
+                    "pattern": "^3$"
+                  },
+                  "nai": {
+                    "type": "string",
+                    "pattern": "^@@000000021$"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              },
+              "recent_claims": {
+                "type": "string",
+                "pattern": "[1-9][0-9]*"
+              },
+              "last_update": {
+                "type": "string",
+                "format": "email"
+              },
+              "content_constant": {
+                "type": "string",
+                "pattern": "[1-9][0-9]*"
+              },
+              "percent_curation_rewards": {
+                "type": "integer",
+                "pattern": "[1-9][0-9]*"
+              },
+              "percent_content_rewards": {
+                "type": "integer",
+                "pattern": "[1-9][0-9]*"
+              },
+              "author_reward_curve": {
+                "type": "string"
+              },
+              "curation_reward_curve": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "author_reward_curve",
+              "content_constant",
+              "curation_reward_curve",
+              "id",
+              "last_update",
+              "name",
+              "percent_content_rewards",
+              "percent_curation_rewards",
+              "recent_claims",
+              "reward_balance"
+            ]
+          }
+        }
+      },
+      "required": [
+        "funds"
+      ]
+    },
+    "id": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "jsonrpc",
+    "result"
+  ]
+}

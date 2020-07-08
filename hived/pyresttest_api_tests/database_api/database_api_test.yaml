@@ -23,6 +23,9 @@
 - validator_result_json: &validator_result_json
   - json_file_validator: {jsonpath_mini: "result", comparator: "json_compare", expected: {template: '$api/$method'}}
 
+- validator_schema_json: &validator_schema_json
+  - json_schema: {schema: {file: {template: '$method.json.schema'}}}
+
 - test:
   - name: "get_dynamic_global_properties"
   - variable_binds:
@@ -140,6 +143,9 @@
     - method: "get_reward_funds"
     - args: {}
   - <<: *base_test
+  - validators:
+    - <<: *validator_base
+    - <<: *validator_schema_json
 
 - test:
   - name: "get_current_price_feed"
