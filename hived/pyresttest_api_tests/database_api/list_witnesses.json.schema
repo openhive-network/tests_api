@@ -1,0 +1,214 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "jsonrpc": {
+      "type": "string"
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "witnesses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "owner": {
+                "type": "string"
+              },
+              "created": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "votes": {
+                "type": "integer"
+              },
+              "virtual_last_update": {
+                "type": "string"
+              },
+              "virtual_position": {
+                "type": "string"
+              },
+              "virtual_scheduled_time": {
+                "type": "string"
+              },
+              "total_missed": {
+                "type": "integer"
+              },
+              "last_aslot": {
+                "type": "integer",
+                "pattern": "[1-9][0-9]*"
+              },
+              "last_confirmed_block_num": {
+                "type": "integer",
+                "pattern": "[1-9][0-9]*"
+              },
+              "pow_worker": {
+                "type": "integer"
+              },
+              "signing_key": {
+                "type": "string"
+              },
+              "props": {
+                "type": "object",
+                "properties": {
+                  "account_creation_fee": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "string",
+                        "pattern": "[1-9][0-9]*"
+                      },
+                      "precision": {
+                        "type": "integer",
+                        "pattern": "^3$"
+                      },
+                      "nai": {
+                        "type": "string",
+                        "pattern": "^@@000000021$"
+                      }
+                    },
+                    "required": [
+                      "amount",
+                      "nai",
+                      "precision"
+                    ]
+                  },
+                  "maximum_block_size": {
+                    "type": "integer"
+                  },
+                  "hbd_interest_rate": {
+                    "type": "integer"
+                  },
+                  "account_subsidy_budget": {
+                    "type": "integer"
+                  },
+                  "account_subsidy_decay": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "account_creation_fee",
+                  "account_subsidy_budget",
+                  "account_subsidy_decay",
+                  "hbd_interest_rate",
+                  "maximum_block_size"
+                ]
+              },
+              "hbd_exchange_rate": {
+                "type": "object",
+                "properties": {
+                  "base": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "string",
+                        "pattern": "[0-9]+"
+                      },
+                      "precision": {
+                        "type": "integer",
+                        "pattern": "^3$"
+                      },
+                      "nai": {
+                        "type": "string",
+                        "pattern": "^@@000000021$"
+                      }
+                    },
+                    "required": [
+                      "amount",
+                      "nai",
+                      "precision"
+                    ]
+                  },
+                  "quote": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "string",
+                        "pattern": "[0-9]+"
+                      },
+                      "precision": {
+                        "type": "integer",
+                        "pattern": "^3$"
+                      },
+                      "nai": {
+                        "type": "string",
+                        "pattern": "^@@000000021$"
+                      }
+                    },
+                    "required": [
+                      "amount",
+                      "nai",
+                      "precision"
+                    ]
+                  }
+                },
+                "required": [
+                  "base",
+                  "quote"
+                ]
+              },
+              "last_hbd_exchange_update": {
+                "type": "string"
+              },
+              "last_work": {
+                "type": "string"
+              },
+              "running_version": {
+                "type": "string"
+              },
+              "hardfork_version_vote": {
+                "type": "string"
+              },
+              "hardfork_time_vote": {
+                "type": "string"
+              },
+              "available_witness_account_subsidies": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "available_witness_account_subsidies",
+              "created",
+              "hardfork_time_vote",
+              "hardfork_version_vote",
+              "hbd_exchange_rate",
+              "id",
+              "last_aslot",
+              "last_confirmed_block_num",
+              "last_hbd_exchange_update",
+              "last_work",
+              "owner",
+              "pow_worker",
+              "props",
+              "running_version",
+              "signing_key",
+              "total_missed",
+              "url",
+              "virtual_last_update",
+              "virtual_position",
+              "virtual_scheduled_time",
+              "votes"
+            ]
+          }
+        }
+      },
+      "required": [
+        "witnesses"
+      ]
+    },
+    "id": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "jsonrpc",
+    "result"
+  ]
+}

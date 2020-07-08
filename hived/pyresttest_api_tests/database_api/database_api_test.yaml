@@ -170,6 +170,9 @@
 - test:
   - name: "list_witnesses"
   - variable_binds:
-    - method: "get_feed_history"
+    - method: "list_witnesses"
     - args: '{ "start": 0, "limit": 1, "order": "by_name" }'
   - <<: *base_test
+  - validators:
+    - <<: *validator_base
+    - <<: *validator_schema_json
