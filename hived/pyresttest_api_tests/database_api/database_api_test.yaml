@@ -7,14 +7,6 @@
   - generators:
     - test_id: {type: 'number_sequence', start: 1}
 
-- base_test: &base_test
-  - generator_binds:
-    - test_id: test_id
-  - group: *api
-  - url: "/rpc"
-  - method: "POST"
-  - body: {template: {file: "request_template.json"}}
-
 - validator_base: &validator_base
   - extract_test: {jsonpath_mini: "error", test: "not_exists"}
   - extract_test: {jsonpath_mini: "result", test: "exists"}
@@ -26,15 +18,23 @@
 - validator_schema_json: &validator_schema_json
   - json_schema: {schema: {file: {template: '$method.json.schema'}}}
 
+- base_test: &base_test
+  - generator_binds:
+    - test_id: test_id
+  - group: *api
+  - url: "/rpc"
+  - method: "POST"
+  - body: {template: {file: "request_template.json"}}
+  - validators:
+    - <<: *validator_base
+    - <<: *validator_schema_json
+
 - test:
   - name: "get_dynamic_global_properties"
   - variable_binds:
     - method: "get_dynamic_global_properties"
     - args: {}
   - <<: *base_test
-  - validators:
-    - <<: *validator_base
-    - <<: *validator_schema_json
 
 - test:
   - name: "get_config"
@@ -42,9 +42,6 @@
     - method: "get_config"
     - args: {}
   - <<: *base_test
-  - validators:
-    - <<: *validator_base
-    - <<: *validator_schema_json
 
 - test:
   - name: "get_witness_schedule"
@@ -52,9 +49,6 @@
     - method: "get_witness_schedule"
     - args: {}
   - <<: *base_test
-  - validators:
-    - <<: *validator_base
-    - <<: *validator_schema_json
 
 - test:
   - name: "get_hardfork_properties"
@@ -62,9 +56,6 @@
     - method: "get_hardfork_properties"
     - args: {}
   - <<: *base_test
-  - validators:
-    - <<: *validator_base
-    - <<: *validator_schema_json
 
 - test:
   - name: "get_reward_funds"
@@ -72,9 +63,6 @@
     - method: "get_reward_funds"
     - args: {}
   - <<: *base_test
-  - validators:
-    - <<: *validator_base
-    - <<: *validator_schema_json
 
 - test:
   - name: "get_current_price_feed"
@@ -82,9 +70,6 @@
     - method: "get_current_price_feed"
     - args: {}
   - <<: *base_test
-  - validators:
-    - <<: *validator_base
-    - <<: *validator_schema_json
 
 - test:
   - name: "get_feed_history"
@@ -92,9 +77,6 @@
     - method: "get_feed_history"
     - args: {}
   - <<: *base_test
-  - validators:
-    - <<: *validator_base
-    - <<: *validator_schema_json
 
 - test:
   - name: "list_witnesses"
@@ -102,6 +84,3 @@
     - method: "list_witnesses"
     - args: '{ "start": 0, "limit": 1, "order": "by_name" }'
   - <<: *base_test
-  - validators:
-    - <<: *validator_base
-    - <<: *validator_schema_json
