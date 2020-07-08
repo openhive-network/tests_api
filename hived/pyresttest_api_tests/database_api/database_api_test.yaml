@@ -153,6 +153,9 @@
     - method: "get_current_price_feed"
     - args: {}
   - <<: *base_test
+  - validators:
+    - <<: *validator_base
+    - <<: *validator_schema_json
 
 - test:
   - name: "get_feed_history"
@@ -160,6 +163,9 @@
     - method: "get_feed_history"
     - args: {}
   - <<: *base_test
+  - validators:
+    - <<: *validator_base
+    - <<: *validator_schema_json
 
 - test:
   - name: "list_witnesses"

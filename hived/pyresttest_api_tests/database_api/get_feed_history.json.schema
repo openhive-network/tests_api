@@ -1,0 +1,139 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "jsonrpc": {
+      "type": "string"
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "current_median_history": {
+          "type": "object",
+          "properties": {
+            "base": {
+              "type": "object",
+              "properties": {
+                "amount": {
+                  "type": "string",
+                  "pattern": "[1-9][0-9]*"
+                },
+                "precision": {
+                  "type": "integer",
+                  "pattern": "^3$"
+                },
+                "nai": {
+                  "type": "string",
+                  "pattern": "^@@000000013$"
+                }
+              },
+              "required": [
+                "amount",
+                "nai",
+                "precision"
+              ]
+            },
+            "quote": {
+              "type": "object",
+              "properties": {
+                "amount": {
+                  "type": "string",
+                  "pattern": "[1-9][0-9]*"
+                },
+                "precision": {
+                  "type": "integer",
+                  "pattern": "^3$"
+                },
+                "nai": {
+                  "type": "string",
+                  "pattern": "^@@000000021$"
+                }
+              },
+              "required": [
+                "amount",
+                "nai",
+                "precision"
+              ]
+            }
+          },
+          "required": [
+            "base",
+            "quote"
+          ]
+        },
+        "price_history": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "base": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "string",
+                    "pattern": "[1-9][0-9]*"
+                  },
+                  "precision": {
+                    "type": "integer",
+                    "pattern": "^3$"
+                  },
+                  "nai": {
+                    "type": "string",
+                    "pattern": "^@@000000013$"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              },
+              "quote": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "string",
+                    "pattern": "[1-9][0-9]*"
+                  },
+                  "precision": {
+                    "type": "integer",
+                    "pattern": "^3$"
+                  },
+                  "nai": {
+                    "type": "string",
+                    "pattern": "^@@000000021$"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              }
+            },
+            "required": [
+              "base",
+              "quote"
+            ]
+          }
+        }
+      },
+      "required": [
+        "current_median_history",
+        "id",
+        "price_history"
+      ]
+    },
+    "id": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "jsonrpc",
+    "result"
+  ]
+}
