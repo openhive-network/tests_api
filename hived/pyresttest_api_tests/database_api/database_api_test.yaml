@@ -111,7 +111,7 @@
   - <<: *base_test
   - validators:
     - <<: *validator_base
-    - <<: *validator_result_json
+    - <<: *validator_schema_json
 
 - test:
   - name: "get_witness_schedule"
@@ -121,11 +121,7 @@
   - <<: *base_test
   - validators:
     - <<: *validator_base
-    - <<: *validator_result_json
-    - extract_test: {jsonpath_mini: "result.account_subsidy_witness_rd.min_decay", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.current_shuffled_witnesses", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.current_virtual_time", test: "exists"}
-    - extract_test: {jsonpath_mini: "result.next_shuffle_block_num", test: "exists"}
+    - <<: *validator_schema_json
 
 - test:
   - name: "get_hardfork_properties"
@@ -135,7 +131,7 @@
   - <<: *base_test
   - validators:
     - <<: *validator_base
-    - <<: *validator_result_json
+    - <<: *validator_schema_json
 
 - test:
   - name: "get_reward_funds"

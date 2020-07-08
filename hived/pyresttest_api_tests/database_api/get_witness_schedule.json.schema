@@ -1,0 +1,227 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "jsonrpc": {
+      "type": "string"
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "current_virtual_time": {
+          "type": "string",
+          "pattern": "[1-9][0-9]*"
+        },
+        "next_shuffle_block_num": {
+          "type": "integer"
+        },
+        "current_shuffled_witnesses": {
+          "type": "array",
+          "minItems": 21,
+          "maxItems": 21,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "num_scheduled_witnesses": {
+          "type": "integer"
+        },
+        "elected_weight": {
+          "type": "integer"
+        },
+        "timeshare_weight": {
+          "type": "integer"
+        },
+        "miner_weight": {
+          "type": "integer"
+        },
+        "witness_pay_normalization_factor": {
+          "type": "integer"
+        },
+        "median_props": {
+          "type": "object",
+          "properties": {
+            "account_creation_fee": {
+              "type": "object",
+              "properties": {
+                "amount": {
+                  "type": "string",
+                  "pattern": "[1-9][0-9]*"
+                },
+                "precision": {
+                  "type": "integer",
+                  "pattern": "^3$"
+                },
+                "nai": {
+                  "type": "string",
+                  "pattern": "^@@000000021$"
+                }
+              },
+              "required": [
+                "amount",
+                "nai",
+                "precision"
+              ]
+            },
+            "maximum_block_size": {
+              "type": "integer"
+            },
+            "hbd_interest_rate": {
+              "type": "integer"
+            },
+            "account_subsidy_budget": {
+              "type": "integer"
+            },
+            "account_subsidy_decay": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "account_creation_fee",
+            "account_subsidy_budget",
+            "account_subsidy_decay",
+            "hbd_interest_rate",
+            "maximum_block_size"
+          ]
+        },
+        "majority_version": {
+          "type": "string",
+          "pattern": "[0-9]+(\\.[0-9]+){2}"
+        },
+        "max_voted_witnesses": {
+          "type": "integer"
+        },
+        "max_miner_witnesses": {
+          "type": "integer"
+        },
+        "max_runner_witnesses": {
+          "type": "integer"
+        },
+        "hardfork_required_witnesses": {
+          "type": "integer"
+        },
+        "account_subsidy_rd": {
+          "type": "object",
+          "properties": {
+            "resource_unit": {
+              "type": "integer"
+            },
+            "budget_per_time_unit": {
+              "type": "integer"
+            },
+            "pool_eq": {
+              "type": "integer"
+            },
+            "max_pool_size": {
+              "type": "integer"
+            },
+            "decay_params": {
+              "type": "object",
+              "properties": {
+                "decay_per_time_unit": {
+                  "type": "integer"
+                },
+                "decay_per_time_unit_denom_shift": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "decay_per_time_unit",
+                "decay_per_time_unit_denom_shift"
+              ]
+            },
+            "min_decay": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "budget_per_time_unit",
+            "decay_params",
+            "max_pool_size",
+            "min_decay",
+            "pool_eq",
+            "resource_unit"
+          ]
+        },
+        "account_subsidy_witness_rd": {
+          "type": "object",
+          "properties": {
+            "resource_unit": {
+              "type": "integer"
+            },
+            "budget_per_time_unit": {
+              "type": "integer"
+            },
+            "pool_eq": {
+              "type": "integer"
+            },
+            "max_pool_size": {
+              "type": "integer"
+            },
+            "decay_params": {
+              "type": "object",
+              "properties": {
+                "decay_per_time_unit": {
+                  "type": "integer"
+                },
+                "decay_per_time_unit_denom_shift": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "decay_per_time_unit",
+                "decay_per_time_unit_denom_shift"
+              ]
+            },
+            "min_decay": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "budget_per_time_unit",
+            "decay_params",
+            "max_pool_size",
+            "min_decay",
+            "pool_eq",
+            "resource_unit"
+          ]
+        },
+        "min_witness_account_subsidy_decay": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "account_subsidy_rd",
+        "account_subsidy_witness_rd",
+        "current_shuffled_witnesses",
+        "current_virtual_time",
+        "elected_weight",
+        "hardfork_required_witnesses",
+        "id",
+        "majority_version",
+        "max_miner_witnesses",
+        "max_runner_witnesses",
+        "max_voted_witnesses",
+        "median_props",
+        "min_witness_account_subsidy_decay",
+        "miner_weight",
+        "next_shuffle_block_num",
+        "num_scheduled_witnesses",
+        "timeshare_weight",
+        "witness_pay_normalization_factor"
+      ]
+    },
+    "id": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "jsonrpc",
+    "result"
+  ]
+}

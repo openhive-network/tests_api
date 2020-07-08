@@ -1,0 +1,1052 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "jsonrpc": {
+      "type": "string"
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "IS_TEST_NET": {
+          "type": "boolean"
+        },
+        "HIVE_ENABLE_SMT": {
+          "type": "boolean"
+        },
+        "HBD_SYMBOL": {
+          "type": "object",
+          "properties": {
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000013$"
+            },
+            "decimals": {
+              "type": "integer",
+              "pattern": "^3$"
+            }
+          },
+          "required": [
+            "decimals",
+            "nai"
+          ]
+        },
+        "HIVE_INITIAL_VOTE_POWER_RATE": {
+          "type": "integer"
+        },
+        "HIVE_REDUCED_VOTE_POWER_RATE": {
+          "type": "integer"
+        },
+        "HIVE_100_PERCENT": {
+          "type": "integer"
+        },
+        "HIVE_1_PERCENT": {
+          "type": "integer"
+        },
+        "HIVE_ACCOUNT_RECOVERY_REQUEST_EXPIRATION_PERIOD": {
+          "type": "string"
+        },
+        "HIVE_ACTIVE_CHALLENGE_COOLDOWN": {
+          "type": "string"
+        },
+        "HIVE_ACTIVE_CHALLENGE_FEE": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "string"
+            },
+            "precision": {
+              "type": "integer",
+              "pattern": "^3$"
+            },
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000021$"
+            }
+          },
+          "required": [
+            "amount",
+            "nai",
+            "precision"
+          ]
+        },
+        "HIVE_ADDRESS_PREFIX": {
+          "type": "string"
+        },
+        "HIVE_APR_PERCENT_MULTIPLY_PER_BLOCK": {
+          "type": "string"
+        },
+        "HIVE_APR_PERCENT_MULTIPLY_PER_HOUR": {
+          "type": "string"
+        },
+        "HIVE_APR_PERCENT_MULTIPLY_PER_ROUND": {
+          "type": "string"
+        },
+        "HIVE_APR_PERCENT_SHIFT_PER_BLOCK": {
+          "type": "integer"
+        },
+        "HIVE_APR_PERCENT_SHIFT_PER_HOUR": {
+          "type": "integer"
+        },
+        "HIVE_APR_PERCENT_SHIFT_PER_ROUND": {
+          "type": "integer"
+        },
+        "HIVE_BANDWIDTH_AVERAGE_WINDOW_SECONDS": {
+          "type": "integer"
+        },
+        "HIVE_BANDWIDTH_PRECISION": {
+          "type": "integer"
+        },
+        "HIVE_BENEFICIARY_LIMIT": {
+          "type": "integer"
+        },
+        "HIVE_BLOCKCHAIN_PRECISION": {
+          "type": "integer"
+        },
+        "HIVE_BLOCKCHAIN_PRECISION_DIGITS": {
+          "type": "integer"
+        },
+        "HIVE_BLOCKCHAIN_HARDFORK_VERSION": {
+          "type": "string"
+        },
+        "HIVE_BLOCKCHAIN_VERSION": {
+          "type": "string"
+        },
+        "HIVE_BLOCK_INTERVAL": {
+          "type": "integer"
+        },
+        "HIVE_BLOCKS_PER_DAY": {
+          "type": "integer"
+        },
+        "HIVE_BLOCKS_PER_HOUR": {
+          "type": "integer"
+        },
+        "HIVE_BLOCKS_PER_YEAR": {
+          "type": "integer"
+        },
+        "HIVE_CASHOUT_WINDOW_SECONDS": {
+          "type": "integer"
+        },
+        "HIVE_CASHOUT_WINDOW_SECONDS_PRE_HF12": {
+          "type": "integer"
+        },
+        "HIVE_CASHOUT_WINDOW_SECONDS_PRE_HF17": {
+          "type": "integer"
+        },
+        "HIVE_CHAIN_ID": {
+          "type": "string"
+        },
+        "HIVE_COMMENT_REWARD_FUND_NAME": {
+          "type": "string"
+        },
+        "HIVE_COMMENT_TITLE_LIMIT": {
+          "type": "integer"
+        },
+        "HIVE_CONTENT_APR_PERCENT": {
+          "type": "integer"
+        },
+        "HIVE_CONTENT_CONSTANT_HF0": {
+          "type": "string"
+        },
+        "HIVE_CONTENT_CONSTANT_HF21": {
+          "type": "string"
+        },
+        "HIVE_CONTENT_REWARD_PERCENT_HF16": {
+          "type": "integer"
+        },
+        "HIVE_CONTENT_REWARD_PERCENT_HF21": {
+          "type": "integer"
+        },
+        "HIVE_CONVERSION_DELAY": {
+          "type": "string"
+        },
+        "HIVE_CONVERSION_DELAY_PRE_HF_16": {
+          "type": "string"
+        },
+        "HIVE_CREATE_ACCOUNT_DELEGATION_RATIO": {
+          "type": "integer"
+        },
+        "HIVE_CREATE_ACCOUNT_DELEGATION_TIME": {
+          "type": "string"
+        },
+        "HIVE_CREATE_ACCOUNT_WITH_HIVE_MODIFIER": {
+          "type": "integer"
+        },
+        "HIVE_CURATE_APR_PERCENT": {
+          "type": "integer"
+        },
+        "HIVE_CUSTOM_OP_DATA_MAX_LENGTH": {
+          "type": "integer"
+        },
+        "HIVE_CUSTOM_OP_ID_MAX_LENGTH": {
+          "type": "integer"
+        },
+        "HIVE_DEFAULT_HBD_INTEREST_RATE": {
+          "type": "integer"
+        },
+        "HIVE_DOWNVOTE_POOL_PERCENT_HF21": {
+          "type": "integer"
+        },
+        "HIVE_EQUIHASH_K": {
+          "type": "integer"
+        },
+        "HIVE_EQUIHASH_N": {
+          "type": "integer"
+        },
+        "HIVE_FEED_HISTORY_WINDOW": {
+          "type": "integer"
+        },
+        "HIVE_FEED_HISTORY_WINDOW_PRE_HF_16": {
+          "type": "integer"
+        },
+        "HIVE_FEED_INTERVAL_BLOCKS": {
+          "type": "integer"
+        },
+        "HIVE_GENESIS_TIME": {
+          "type": "string"
+        },
+        "HIVE_HARDFORK_REQUIRED_WITNESSES": {
+          "type": "integer"
+        },
+        "HIVE_HF21_CONVERGENT_LINEAR_RECENT_CLAIMS": {
+          "type": "string"
+        },
+        "HIVE_INFLATION_NARROWING_PERIOD": {
+          "type": "integer"
+        },
+        "HIVE_INFLATION_RATE_START_PERCENT": {
+          "type": "integer"
+        },
+        "HIVE_INFLATION_RATE_STOP_PERCENT": {
+          "type": "integer"
+        },
+        "HIVE_INIT_MINER_NAME": {
+          "type": "string"
+        },
+        "HIVE_INIT_PUBLIC_KEY_STR": {
+          "type": "string"
+        },
+        "HIVE_INIT_SUPPLY": {
+          "type": "integer"
+        },
+        "HIVE_HBD_INIT_SUPPLY": {
+          "type": "integer"
+        },
+        "HIVE_INIT_TIME": {
+          "type": "string"
+        },
+        "HIVE_IRREVERSIBLE_THRESHOLD": {
+          "type": "integer"
+        },
+        "HIVE_LIQUIDITY_APR_PERCENT": {
+          "type": "integer"
+        },
+        "HIVE_LIQUIDITY_REWARD_BLOCKS": {
+          "type": "integer"
+        },
+        "HIVE_LIQUIDITY_REWARD_PERIOD_SEC": {
+          "type": "integer"
+        },
+        "HIVE_LIQUIDITY_TIMEOUT_SEC": {
+          "type": "string"
+        },
+        "HIVE_MAX_ACCOUNT_CREATION_FEE": {
+          "type": "integer"
+        },
+        "HIVE_MAX_ACCOUNT_NAME_LENGTH": {
+          "type": "integer"
+        },
+        "HIVE_MAX_ACCOUNT_WITNESS_VOTES": {
+          "type": "integer"
+        },
+        "HIVE_MAX_ASSET_WHITELIST_AUTHORITIES": {
+          "type": "integer"
+        },
+        "HIVE_MAX_AUTHORITY_MEMBERSHIP": {
+          "type": "integer"
+        },
+        "HIVE_MAX_BLOCK_SIZE": {
+          "type": "integer"
+        },
+        "HIVE_SOFT_MAX_BLOCK_SIZE": {
+          "type": "integer"
+        },
+        "HIVE_MAX_CASHOUT_WINDOW_SECONDS": {
+          "type": "integer"
+        },
+        "HIVE_MAX_COMMENT_DEPTH": {
+          "type": "integer"
+        },
+        "HIVE_MAX_COMMENT_DEPTH_PRE_HF17": {
+          "type": "integer"
+        },
+        "HIVE_MAX_FEED_AGE_SECONDS": {
+          "type": "integer"
+        },
+        "HIVE_MAX_INSTANCE_ID": {
+          "type": "string"
+        },
+        "HIVE_MAX_MEMO_SIZE": {
+          "type": "integer"
+        },
+        "HIVE_MAX_WITNESSES": {
+          "type": "integer"
+        },
+        "HIVE_MAX_MINER_WITNESSES_HF0": {
+          "type": "integer"
+        },
+        "HIVE_MAX_MINER_WITNESSES_HF17": {
+          "type": "integer"
+        },
+        "HIVE_MAX_PERMLINK_LENGTH": {
+          "type": "integer"
+        },
+        "HIVE_MAX_PROXY_RECURSION_DEPTH": {
+          "type": "integer"
+        },
+        "HIVE_MAX_RATION_DECAY_RATE": {
+          "type": "integer"
+        },
+        "HIVE_MAX_RESERVE_RATIO": {
+          "type": "integer"
+        },
+        "HIVE_MAX_RUNNER_WITNESSES_HF0": {
+          "type": "integer"
+        },
+        "HIVE_MAX_RUNNER_WITNESSES_HF17": {
+          "type": "integer"
+        },
+        "HIVE_MAX_SATOSHIS": {
+          "type": "string"
+        },
+        "HIVE_MAX_SHARE_SUPPLY": {
+          "type": "string"
+        },
+        "HIVE_MAX_SIG_CHECK_DEPTH": {
+          "type": "integer"
+        },
+        "HIVE_MAX_SIG_CHECK_ACCOUNTS": {
+          "type": "integer"
+        },
+        "HIVE_MAX_TIME_UNTIL_EXPIRATION": {
+          "type": "integer"
+        },
+        "HIVE_MAX_TRANSACTION_SIZE": {
+          "type": "integer"
+        },
+        "HIVE_MAX_UNDO_HISTORY": {
+          "type": "integer"
+        },
+        "HIVE_MAX_URL_LENGTH": {
+          "type": "integer"
+        },
+        "HIVE_MAX_VOTE_CHANGES": {
+          "type": "integer"
+        },
+        "HIVE_MAX_VOTED_WITNESSES_HF0": {
+          "type": "integer"
+        },
+        "HIVE_MAX_VOTED_WITNESSES_HF17": {
+          "type": "integer"
+        },
+        "HIVE_MAX_WITHDRAW_ROUTES": {
+          "type": "integer"
+        },
+        "HIVE_MAX_PENDING_TRANSFERS": {
+          "type": "integer"
+        },
+        "HIVE_MAX_WITNESS_URL_LENGTH": {
+          "type": "integer"
+        },
+        "HIVE_MIN_ACCOUNT_CREATION_FEE": {
+          "type": "integer"
+        },
+        "HIVE_MIN_ACCOUNT_NAME_LENGTH": {
+          "type": "integer"
+        },
+        "HIVE_MIN_BLOCK_SIZE_LIMIT": {
+          "type": "integer"
+        },
+        "HIVE_MIN_BLOCK_SIZE": {
+          "type": "integer"
+        },
+        "HIVE_MIN_CONTENT_REWARD": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "string"
+            },
+            "precision": {
+              "type": "integer",
+              "pattern": "^3$"
+            },
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000021$"
+            }
+          },
+          "required": [
+            "amount",
+            "nai",
+            "precision"
+          ]
+        },
+        "HIVE_MIN_CURATE_REWARD": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "string"
+            },
+            "precision": {
+              "type": "integer",
+              "pattern": "^3$"
+            },
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000021$"
+            }
+          },
+          "required": [
+            "amount",
+            "nai",
+            "precision"
+          ]
+        },
+        "HIVE_MIN_PERMLINK_LENGTH": {
+          "type": "integer"
+        },
+        "HIVE_MIN_REPLY_INTERVAL": {
+          "type": "integer"
+        },
+        "HIVE_MIN_REPLY_INTERVAL_HF20": {
+          "type": "integer"
+        },
+        "HIVE_MIN_ROOT_COMMENT_INTERVAL": {
+          "type": "integer"
+        },
+        "HIVE_MIN_COMMENT_EDIT_INTERVAL": {
+          "type": "integer"
+        },
+        "HIVE_MIN_VOTE_INTERVAL_SEC": {
+          "type": "integer"
+        },
+        "HIVE_MINER_ACCOUNT": {
+          "type": "string"
+        },
+        "HIVE_MINER_PAY_PERCENT": {
+          "type": "integer"
+        },
+        "HIVE_MIN_FEEDS": {
+          "type": "integer"
+        },
+        "HIVE_MINING_REWARD": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "string"
+            },
+            "precision": {
+              "type": "integer",
+              "pattern": "^3$"
+            },
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000021$"
+            }
+          },
+          "required": [
+            "amount",
+            "nai",
+            "precision"
+          ]
+        },
+        "HIVE_MINING_TIME": {
+          "type": "string"
+        },
+        "HIVE_MIN_LIQUIDITY_REWARD": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "string"
+            },
+            "precision": {
+              "type": "integer",
+              "pattern": "^3$"
+            },
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000021$"
+            }
+          },
+          "required": [
+            "amount",
+            "nai",
+            "precision"
+          ]
+        },
+        "HIVE_MIN_LIQUIDITY_REWARD_PERIOD_SEC": {
+          "type": "integer"
+        },
+        "HIVE_MIN_PAYOUT_HBD": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "string"
+            },
+            "precision": {
+              "type": "integer",
+              "pattern": "^3$"
+            },
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000013$"
+            }
+          },
+          "required": [
+            "amount",
+            "nai",
+            "precision"
+          ]
+        },
+        "HIVE_MIN_POW_REWARD": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "string"
+            },
+            "precision": {
+              "type": "integer",
+              "pattern": "^3$"
+            },
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000021$"
+            }
+          },
+          "required": [
+            "amount",
+            "nai",
+            "precision"
+          ]
+        },
+        "HIVE_MIN_PRODUCER_REWARD": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "string"
+            },
+            "precision": {
+              "type": "integer",
+              "pattern": "^3$"
+            },
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000021$"
+            }
+          },
+          "required": [
+            "amount",
+            "nai",
+            "precision"
+          ]
+        },
+        "HIVE_MIN_TRANSACTION_EXPIRATION_LIMIT": {
+          "type": "integer"
+        },
+        "HIVE_MIN_TRANSACTION_SIZE_LIMIT": {
+          "type": "integer"
+        },
+        "HIVE_MIN_UNDO_HISTORY": {
+          "type": "integer"
+        },
+        "HIVE_NULL_ACCOUNT": {
+          "type": "string"
+        },
+        "HIVE_NUM_INIT_MINERS": {
+          "type": "integer"
+        },
+        "HIVE_OWNER_AUTH_HISTORY_TRACKING_START_BLOCK_NUM": {
+          "type": "integer"
+        },
+        "HIVE_OWNER_AUTH_RECOVERY_PERIOD": {
+          "type": "string"
+        },
+        "HIVE_OWNER_CHALLENGE_COOLDOWN": {
+          "type": "string"
+        },
+        "HIVE_OWNER_CHALLENGE_FEE": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "string"
+            },
+            "precision": {
+              "type": "integer",
+              "pattern": "^3$"
+            },
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000021$"
+            }
+          },
+          "required": [
+            "amount",
+            "nai",
+            "precision"
+          ]
+        },
+        "HIVE_OWNER_UPDATE_LIMIT": {
+          "type": "integer"
+        },
+        "HIVE_POST_AVERAGE_WINDOW": {
+          "type": "integer"
+        },
+        "HIVE_POST_REWARD_FUND_NAME": {
+          "type": "string"
+        },
+        "HIVE_POST_WEIGHT_CONSTANT": {
+          "type": "integer"
+        },
+        "HIVE_POW_APR_PERCENT": {
+          "type": "integer"
+        },
+        "HIVE_PRODUCER_APR_PERCENT": {
+          "type": "integer"
+        },
+        "HIVE_PROXY_TO_SELF_ACCOUNT": {
+          "type": "string"
+        },
+        "HIVE_HBD_INTEREST_COMPOUND_INTERVAL_SEC": {
+          "type": "integer"
+        },
+        "HIVE_SECONDS_PER_YEAR": {
+          "type": "integer"
+        },
+        "HIVE_PROPOSAL_FUND_PERCENT_HF0": {
+          "type": "integer"
+        },
+        "HIVE_PROPOSAL_FUND_PERCENT_HF21": {
+          "type": "integer"
+        },
+        "HIVE_RECENT_RSHARES_DECAY_TIME_HF19": {
+          "type": "string"
+        },
+        "HIVE_RECENT_RSHARES_DECAY_TIME_HF17": {
+          "type": "string"
+        },
+        "HIVE_REVERSE_AUCTION_WINDOW_SECONDS_HF6": {
+          "type": "integer"
+        },
+        "HIVE_REVERSE_AUCTION_WINDOW_SECONDS_HF20": {
+          "type": "integer"
+        },
+        "HIVE_REVERSE_AUCTION_WINDOW_SECONDS_HF21": {
+          "type": "integer"
+        },
+        "HIVE_ROOT_POST_PARENT": {
+          "type": "string"
+        },
+        "HIVE_SAVINGS_WITHDRAW_REQUEST_LIMIT": {
+          "type": "integer"
+        },
+        "HIVE_SAVINGS_WITHDRAW_TIME": {
+          "type": "string"
+        },
+        "HIVE_HBD_START_PERCENT_HF14": {
+          "type": "integer"
+        },
+        "HIVE_HBD_START_PERCENT_HF20": {
+          "type": "integer"
+        },
+        "HIVE_HBD_STOP_PERCENT_HF14": {
+          "type": "integer"
+        },
+        "HIVE_HBD_STOP_PERCENT_HF20": {
+          "type": "integer"
+        },
+        "HIVE_SECOND_CASHOUT_WINDOW": {
+          "type": "integer"
+        },
+        "HIVE_SOFT_MAX_COMMENT_DEPTH": {
+          "type": "integer"
+        },
+        "HIVE_START_MINER_VOTING_BLOCK": {
+          "type": "integer"
+        },
+        "HIVE_START_VESTING_BLOCK": {
+          "type": "integer"
+        },
+        "HIVE_TEMP_ACCOUNT": {
+          "type": "string"
+        },
+        "HIVE_UPVOTE_LOCKOUT_HF7": {
+          "type": "integer"
+        },
+        "HIVE_UPVOTE_LOCKOUT_HF17": {
+          "type": "string"
+        },
+        "HIVE_UPVOTE_LOCKOUT_SECONDS": {
+          "type": "integer"
+        },
+        "HIVE_VESTING_FUND_PERCENT_HF16": {
+          "type": "integer"
+        },
+        "HIVE_VESTING_WITHDRAW_INTERVALS": {
+          "type": "integer"
+        },
+        "HIVE_VESTING_WITHDRAW_INTERVALS_PRE_HF_16": {
+          "type": "integer"
+        },
+        "HIVE_VESTING_WITHDRAW_INTERVAL_SECONDS": {
+          "type": "integer"
+        },
+        "HIVE_VOTE_DUST_THRESHOLD": {
+          "type": "integer"
+        },
+        "HIVE_VOTING_MANA_REGENERATION_SECONDS": {
+          "type": "integer"
+        },
+        "HIVE_SYMBOL": {
+          "type": "object",
+          "properties": {
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000021$"
+            },
+            "decimals": {
+              "type": "integer",
+              "pattern": "^3$"
+            }
+          },
+          "required": [
+            "decimals",
+            "nai"
+          ]
+        },
+        "VESTS_SYMBOL": {
+          "type": "object",
+          "properties": {
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000037$"
+            },
+            "decimals": {
+              "type": "integer",
+              "pattern": "^3$"
+            }
+          },
+          "required": [
+            "decimals",
+            "nai"
+          ]
+        },
+        "HIVE_VIRTUAL_SCHEDULE_LAP_LENGTH": {
+          "type": "string"
+        },
+        "HIVE_VIRTUAL_SCHEDULE_LAP_LENGTH2": {
+          "type": "string"
+        },
+        "HIVE_MAX_LIMIT_ORDER_EXPIRATION": {
+          "type": "integer"
+        },
+        "HIVE_DELEGATION_RETURN_PERIOD_HF0": {
+          "type": "integer"
+        },
+        "HIVE_DELEGATION_RETURN_PERIOD_HF20": {
+          "type": "integer"
+        },
+        "HIVE_RD_MIN_DECAY_BITS": {
+          "type": "integer"
+        },
+        "HIVE_RD_MAX_DECAY_BITS": {
+          "type": "integer"
+        },
+        "HIVE_RD_DECAY_DENOM_SHIFT": {
+          "type": "integer"
+        },
+        "HIVE_RD_MAX_POOL_BITS": {
+          "type": "integer"
+        },
+        "HIVE_RD_MAX_BUDGET_1": {
+          "type": "string"
+        },
+        "HIVE_RD_MAX_BUDGET_2": {
+          "type": "integer"
+        },
+        "HIVE_RD_MAX_BUDGET_3": {
+          "type": "integer"
+        },
+        "HIVE_RD_MAX_BUDGET": {
+          "type": "integer"
+        },
+        "HIVE_RD_MIN_DECAY": {
+          "type": "integer"
+        },
+        "HIVE_RD_MIN_BUDGET": {
+          "type": "integer"
+        },
+        "HIVE_RD_MAX_DECAY": {
+          "type": "integer"
+        },
+        "HIVE_ACCOUNT_SUBSIDY_PRECISION": {
+          "type": "integer"
+        },
+        "HIVE_WITNESS_SUBSIDY_BUDGET_PERCENT": {
+          "type": "integer"
+        },
+        "HIVE_WITNESS_SUBSIDY_DECAY_PERCENT": {
+          "type": "integer"
+        },
+        "HIVE_DEFAULT_ACCOUNT_SUBSIDY_DECAY": {
+          "type": "integer"
+        },
+        "HIVE_DEFAULT_ACCOUNT_SUBSIDY_BUDGET": {
+          "type": "integer"
+        },
+        "HIVE_DECAY_BACKSTOP_PERCENT": {
+          "type": "integer"
+        },
+        "HIVE_BLOCK_GENERATION_POSTPONED_TX_LIMIT": {
+          "type": "integer"
+        },
+        "HIVE_PENDING_TRANSACTION_EXECUTION_LIMIT": {
+          "type": "integer"
+        },
+        "HIVE_TREASURY_ACCOUNT": {
+          "type": "string"
+        },
+        "HIVE_TREASURY_FEE": {
+          "type": "integer"
+        },
+        "HIVE_PROPOSAL_MAINTENANCE_PERIOD": {
+          "type": "integer"
+        },
+        "HIVE_PROPOSAL_MAINTENANCE_CLEANUP": {
+          "type": "integer"
+        },
+        "HIVE_PROPOSAL_SUBJECT_MAX_LENGTH": {
+          "type": "integer"
+        },
+        "HIVE_PROPOSAL_MAX_IDS_NUMBER": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "HBD_SYMBOL",
+        "HIVE_100_PERCENT",
+        "HIVE_1_PERCENT",
+        "HIVE_ACCOUNT_RECOVERY_REQUEST_EXPIRATION_PERIOD",
+        "HIVE_ACCOUNT_SUBSIDY_PRECISION",
+        "HIVE_ACTIVE_CHALLENGE_COOLDOWN",
+        "HIVE_ACTIVE_CHALLENGE_FEE",
+        "HIVE_ADDRESS_PREFIX",
+        "HIVE_APR_PERCENT_MULTIPLY_PER_BLOCK",
+        "HIVE_APR_PERCENT_MULTIPLY_PER_HOUR",
+        "HIVE_APR_PERCENT_MULTIPLY_PER_ROUND",
+        "HIVE_APR_PERCENT_SHIFT_PER_BLOCK",
+        "HIVE_APR_PERCENT_SHIFT_PER_HOUR",
+        "HIVE_APR_PERCENT_SHIFT_PER_ROUND",
+        "HIVE_BANDWIDTH_AVERAGE_WINDOW_SECONDS",
+        "HIVE_BANDWIDTH_PRECISION",
+        "HIVE_BENEFICIARY_LIMIT",
+        "HIVE_BLOCKCHAIN_HARDFORK_VERSION",
+        "HIVE_BLOCKCHAIN_PRECISION",
+        "HIVE_BLOCKCHAIN_PRECISION_DIGITS",
+        "HIVE_BLOCKCHAIN_VERSION",
+        "HIVE_BLOCKS_PER_DAY",
+        "HIVE_BLOCKS_PER_HOUR",
+        "HIVE_BLOCKS_PER_YEAR",
+        "HIVE_BLOCK_GENERATION_POSTPONED_TX_LIMIT",
+        "HIVE_BLOCK_INTERVAL",
+        "HIVE_CASHOUT_WINDOW_SECONDS",
+        "HIVE_CASHOUT_WINDOW_SECONDS_PRE_HF12",
+        "HIVE_CASHOUT_WINDOW_SECONDS_PRE_HF17",
+        "HIVE_CHAIN_ID",
+        "HIVE_COMMENT_REWARD_FUND_NAME",
+        "HIVE_COMMENT_TITLE_LIMIT",
+        "HIVE_CONTENT_APR_PERCENT",
+        "HIVE_CONTENT_CONSTANT_HF0",
+        "HIVE_CONTENT_CONSTANT_HF21",
+        "HIVE_CONTENT_REWARD_PERCENT_HF16",
+        "HIVE_CONTENT_REWARD_PERCENT_HF21",
+        "HIVE_CONVERSION_DELAY",
+        "HIVE_CONVERSION_DELAY_PRE_HF_16",
+        "HIVE_CREATE_ACCOUNT_DELEGATION_RATIO",
+        "HIVE_CREATE_ACCOUNT_DELEGATION_TIME",
+        "HIVE_CREATE_ACCOUNT_WITH_HIVE_MODIFIER",
+        "HIVE_CURATE_APR_PERCENT",
+        "HIVE_CUSTOM_OP_DATA_MAX_LENGTH",
+        "HIVE_CUSTOM_OP_ID_MAX_LENGTH",
+        "HIVE_DECAY_BACKSTOP_PERCENT",
+        "HIVE_DEFAULT_ACCOUNT_SUBSIDY_BUDGET",
+        "HIVE_DEFAULT_ACCOUNT_SUBSIDY_DECAY",
+        "HIVE_DEFAULT_HBD_INTEREST_RATE",
+        "HIVE_DELEGATION_RETURN_PERIOD_HF0",
+        "HIVE_DELEGATION_RETURN_PERIOD_HF20",
+        "HIVE_DOWNVOTE_POOL_PERCENT_HF21",
+        "HIVE_ENABLE_SMT",
+        "HIVE_EQUIHASH_K",
+        "HIVE_EQUIHASH_N",
+        "HIVE_FEED_HISTORY_WINDOW",
+        "HIVE_FEED_HISTORY_WINDOW_PRE_HF_16",
+        "HIVE_FEED_INTERVAL_BLOCKS",
+        "HIVE_GENESIS_TIME",
+        "HIVE_HARDFORK_REQUIRED_WITNESSES",
+        "HIVE_HBD_INIT_SUPPLY",
+        "HIVE_HBD_INTEREST_COMPOUND_INTERVAL_SEC",
+        "HIVE_HBD_START_PERCENT_HF14",
+        "HIVE_HBD_START_PERCENT_HF20",
+        "HIVE_HBD_STOP_PERCENT_HF14",
+        "HIVE_HBD_STOP_PERCENT_HF20",
+        "HIVE_HF21_CONVERGENT_LINEAR_RECENT_CLAIMS",
+        "HIVE_INFLATION_NARROWING_PERIOD",
+        "HIVE_INFLATION_RATE_START_PERCENT",
+        "HIVE_INFLATION_RATE_STOP_PERCENT",
+        "HIVE_INITIAL_VOTE_POWER_RATE",
+        "HIVE_INIT_MINER_NAME",
+        "HIVE_INIT_PUBLIC_KEY_STR",
+        "HIVE_INIT_SUPPLY",
+        "HIVE_INIT_TIME",
+        "HIVE_IRREVERSIBLE_THRESHOLD",
+        "HIVE_LIQUIDITY_APR_PERCENT",
+        "HIVE_LIQUIDITY_REWARD_BLOCKS",
+        "HIVE_LIQUIDITY_REWARD_PERIOD_SEC",
+        "HIVE_LIQUIDITY_TIMEOUT_SEC",
+        "HIVE_MAX_ACCOUNT_CREATION_FEE",
+        "HIVE_MAX_ACCOUNT_NAME_LENGTH",
+        "HIVE_MAX_ACCOUNT_WITNESS_VOTES",
+        "HIVE_MAX_ASSET_WHITELIST_AUTHORITIES",
+        "HIVE_MAX_AUTHORITY_MEMBERSHIP",
+        "HIVE_MAX_BLOCK_SIZE",
+        "HIVE_MAX_CASHOUT_WINDOW_SECONDS",
+        "HIVE_MAX_COMMENT_DEPTH",
+        "HIVE_MAX_COMMENT_DEPTH_PRE_HF17",
+        "HIVE_MAX_FEED_AGE_SECONDS",
+        "HIVE_MAX_INSTANCE_ID",
+        "HIVE_MAX_LIMIT_ORDER_EXPIRATION",
+        "HIVE_MAX_MEMO_SIZE",
+        "HIVE_MAX_MINER_WITNESSES_HF0",
+        "HIVE_MAX_MINER_WITNESSES_HF17",
+        "HIVE_MAX_PENDING_TRANSFERS",
+        "HIVE_MAX_PERMLINK_LENGTH",
+        "HIVE_MAX_PROXY_RECURSION_DEPTH",
+        "HIVE_MAX_RATION_DECAY_RATE",
+        "HIVE_MAX_RESERVE_RATIO",
+        "HIVE_MAX_RUNNER_WITNESSES_HF0",
+        "HIVE_MAX_RUNNER_WITNESSES_HF17",
+        "HIVE_MAX_SATOSHIS",
+        "HIVE_MAX_SHARE_SUPPLY",
+        "HIVE_MAX_SIG_CHECK_ACCOUNTS",
+        "HIVE_MAX_SIG_CHECK_DEPTH",
+        "HIVE_MAX_TIME_UNTIL_EXPIRATION",
+        "HIVE_MAX_TRANSACTION_SIZE",
+        "HIVE_MAX_UNDO_HISTORY",
+        "HIVE_MAX_URL_LENGTH",
+        "HIVE_MAX_VOTED_WITNESSES_HF0",
+        "HIVE_MAX_VOTED_WITNESSES_HF17",
+        "HIVE_MAX_VOTE_CHANGES",
+        "HIVE_MAX_WITHDRAW_ROUTES",
+        "HIVE_MAX_WITNESSES",
+        "HIVE_MAX_WITNESS_URL_LENGTH",
+        "HIVE_MINER_ACCOUNT",
+        "HIVE_MINER_PAY_PERCENT",
+        "HIVE_MINING_REWARD",
+        "HIVE_MINING_TIME",
+        "HIVE_MIN_ACCOUNT_CREATION_FEE",
+        "HIVE_MIN_ACCOUNT_NAME_LENGTH",
+        "HIVE_MIN_BLOCK_SIZE",
+        "HIVE_MIN_BLOCK_SIZE_LIMIT",
+        "HIVE_MIN_COMMENT_EDIT_INTERVAL",
+        "HIVE_MIN_CONTENT_REWARD",
+        "HIVE_MIN_CURATE_REWARD",
+        "HIVE_MIN_FEEDS",
+        "HIVE_MIN_LIQUIDITY_REWARD",
+        "HIVE_MIN_LIQUIDITY_REWARD_PERIOD_SEC",
+        "HIVE_MIN_PAYOUT_HBD",
+        "HIVE_MIN_PERMLINK_LENGTH",
+        "HIVE_MIN_POW_REWARD",
+        "HIVE_MIN_PRODUCER_REWARD",
+        "HIVE_MIN_REPLY_INTERVAL",
+        "HIVE_MIN_REPLY_INTERVAL_HF20",
+        "HIVE_MIN_ROOT_COMMENT_INTERVAL",
+        "HIVE_MIN_TRANSACTION_EXPIRATION_LIMIT",
+        "HIVE_MIN_TRANSACTION_SIZE_LIMIT",
+        "HIVE_MIN_UNDO_HISTORY",
+        "HIVE_MIN_VOTE_INTERVAL_SEC",
+        "HIVE_NULL_ACCOUNT",
+        "HIVE_NUM_INIT_MINERS",
+        "HIVE_OWNER_AUTH_HISTORY_TRACKING_START_BLOCK_NUM",
+        "HIVE_OWNER_AUTH_RECOVERY_PERIOD",
+        "HIVE_OWNER_CHALLENGE_COOLDOWN",
+        "HIVE_OWNER_CHALLENGE_FEE",
+        "HIVE_OWNER_UPDATE_LIMIT",
+        "HIVE_PENDING_TRANSACTION_EXECUTION_LIMIT",
+        "HIVE_POST_AVERAGE_WINDOW",
+        "HIVE_POST_REWARD_FUND_NAME",
+        "HIVE_POST_WEIGHT_CONSTANT",
+        "HIVE_POW_APR_PERCENT",
+        "HIVE_PRODUCER_APR_PERCENT",
+        "HIVE_PROPOSAL_FUND_PERCENT_HF0",
+        "HIVE_PROPOSAL_FUND_PERCENT_HF21",
+        "HIVE_PROPOSAL_MAINTENANCE_CLEANUP",
+        "HIVE_PROPOSAL_MAINTENANCE_PERIOD",
+        "HIVE_PROPOSAL_MAX_IDS_NUMBER",
+        "HIVE_PROPOSAL_SUBJECT_MAX_LENGTH",
+        "HIVE_PROXY_TO_SELF_ACCOUNT",
+        "HIVE_RD_DECAY_DENOM_SHIFT",
+        "HIVE_RD_MAX_BUDGET",
+        "HIVE_RD_MAX_BUDGET_1",
+        "HIVE_RD_MAX_BUDGET_2",
+        "HIVE_RD_MAX_BUDGET_3",
+        "HIVE_RD_MAX_DECAY",
+        "HIVE_RD_MAX_DECAY_BITS",
+        "HIVE_RD_MAX_POOL_BITS",
+        "HIVE_RD_MIN_BUDGET",
+        "HIVE_RD_MIN_DECAY",
+        "HIVE_RD_MIN_DECAY_BITS",
+        "HIVE_RECENT_RSHARES_DECAY_TIME_HF17",
+        "HIVE_RECENT_RSHARES_DECAY_TIME_HF19",
+        "HIVE_REDUCED_VOTE_POWER_RATE",
+        "HIVE_REVERSE_AUCTION_WINDOW_SECONDS_HF20",
+        "HIVE_REVERSE_AUCTION_WINDOW_SECONDS_HF21",
+        "HIVE_REVERSE_AUCTION_WINDOW_SECONDS_HF6",
+        "HIVE_ROOT_POST_PARENT",
+        "HIVE_SAVINGS_WITHDRAW_REQUEST_LIMIT",
+        "HIVE_SAVINGS_WITHDRAW_TIME",
+        "HIVE_SECONDS_PER_YEAR",
+        "HIVE_SECOND_CASHOUT_WINDOW",
+        "HIVE_SOFT_MAX_BLOCK_SIZE",
+        "HIVE_SOFT_MAX_COMMENT_DEPTH",
+        "HIVE_START_MINER_VOTING_BLOCK",
+        "HIVE_START_VESTING_BLOCK",
+        "HIVE_SYMBOL",
+        "HIVE_TEMP_ACCOUNT",
+        "HIVE_TREASURY_ACCOUNT",
+        "HIVE_TREASURY_FEE",
+        "HIVE_UPVOTE_LOCKOUT_HF17",
+        "HIVE_UPVOTE_LOCKOUT_HF7",
+        "HIVE_UPVOTE_LOCKOUT_SECONDS",
+        "HIVE_VESTING_FUND_PERCENT_HF16",
+        "HIVE_VESTING_WITHDRAW_INTERVALS",
+        "HIVE_VESTING_WITHDRAW_INTERVALS_PRE_HF_16",
+        "HIVE_VESTING_WITHDRAW_INTERVAL_SECONDS",
+        "HIVE_VIRTUAL_SCHEDULE_LAP_LENGTH",
+        "HIVE_VIRTUAL_SCHEDULE_LAP_LENGTH2",
+        "HIVE_VOTE_DUST_THRESHOLD",
+        "HIVE_VOTING_MANA_REGENERATION_SECONDS",
+        "HIVE_WITNESS_SUBSIDY_BUDGET_PERCENT",
+        "HIVE_WITNESS_SUBSIDY_DECAY_PERCENT",
+        "IS_TEST_NET",
+        "VESTS_SYMBOL"
+      ]
+    },
+    "id": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "jsonrpc",
+    "result"
+  ]
+}
