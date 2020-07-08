@@ -1,0 +1,366 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "jsonrpc": {
+      "type": "string"
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "head_block_number": {
+          "type": "integer"
+        },
+        "head_block_id": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string"
+        },
+        "current_witness": {
+          "type": "string"
+        },
+        "total_pow": {
+          "type": "integer"
+        },
+        "num_pow_witnesses": {
+          "type": "integer"
+        },
+        "virtual_supply": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "string",
+              "pattern": "[1-9][0-9]*"
+            },
+            "precision": {
+              "type": "integer",
+              "pattern": "^3$"
+            },
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000021$"
+            }
+          },
+          "required": [
+            "amount",
+            "nai",
+            "precision"
+          ]
+        },
+        "current_supply": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "string",
+              "pattern": "[1-9][0-9]*"
+            },
+            "precision": {
+              "type": "integer",
+              "pattern": "^3$"
+            },
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000021$"
+            }
+          },
+          "required": [
+            "amount",
+            "nai",
+            "precision"
+          ]
+        },
+        "init_hbd_supply": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "string",
+              "pattern": "[0-9]+"
+            },
+            "precision": {
+              "type": "integer",
+              "pattern": "^3$"
+            },
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000013$"
+            }
+          },
+          "required": [
+            "amount",
+            "nai",
+            "precision"
+          ]
+        },
+        "current_hbd_supply": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "string",
+              "pattern": "[1-9][0-9]*"
+            },
+            "precision": {
+              "type": "integer",
+              "pattern": "^3$"
+            },
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000013$"
+            }
+          },
+          "required": [
+            "amount",
+            "nai",
+            "precision"
+          ]
+        },
+        "total_vesting_fund_hive": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "string",
+              "pattern": "[1-9][0-9]*"
+            },
+            "precision": {
+              "type": "integer",
+              "pattern": "^3$"
+            },
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000021$"
+            }
+          },
+          "required": [
+            "amount",
+            "nai",
+            "precision"
+          ]
+        },
+        "total_vesting_shares": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "string",
+              "pattern": "[1-9][0-9]*"
+            },
+            "precision": {
+              "type": "integer",
+              "pattern": "^6$"
+            },
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000037$"
+            }
+          },
+          "required": [
+            "amount",
+            "nai",
+            "precision"
+          ]
+        },
+        "total_reward_fund_hive": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "string",
+              "pattern": "[0-9]+"
+            },
+            "precision": {
+              "type": "integer",
+              "pattern": "^3$"
+            },
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000021$"
+            }
+          },
+          "required": [
+            "amount",
+            "nai",
+            "precision"
+          ]
+        },
+        "total_reward_shares2": {
+          "type": "string"
+        },
+        "pending_rewarded_vesting_shares": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "string",
+              "pattern": "[1-9][0-9]*"
+            },
+            "precision": {
+              "type": "integer",
+              "pattern": "^6$"
+            },
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000037$"
+            }
+          },
+          "required": [
+            "amount",
+            "nai",
+            "precision"
+          ]
+        },
+        "pending_rewarded_vesting_hive": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "string",
+              "pattern": "[1-9][0-9]*"
+            },
+            "precision": {
+              "type": "integer",
+              "pattern": "^3$"
+            },
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000021$"
+            }
+          },
+          "required": [
+            "amount",
+            "nai",
+            "precision"
+          ]
+        },
+        "hbd_interest_rate": {
+          "type": "integer"
+        },
+        "hbd_print_rate": {
+          "type": "integer"
+        },
+        "maximum_block_size": {
+          "type": "integer"
+        },
+        "required_actions_partition_percent": {
+          "type": "integer"
+        },
+        "current_aslot": {
+          "type": "integer"
+        },
+        "recent_slots_filled": {
+          "type": "string"
+        },
+        "participation_count": {
+          "type": "integer"
+        },
+        "last_irreversible_block_num": {
+          "type": "integer"
+        },
+        "vote_power_reserve_rate": {
+          "type": "integer"
+        },
+        "delegation_return_period": {
+          "type": "integer"
+        },
+        "reverse_auction_seconds": {
+          "type": "integer"
+        },
+        "available_account_subsidies": {
+          "type": "integer"
+        },
+        "hbd_stop_percent": {
+          "type": "integer"
+        },
+        "hbd_start_percent": {
+          "type": "integer"
+        },
+        "next_maintenance_time": {
+          "type": "string"
+        },
+        "last_budget_time": {
+          "type": "string"
+        },
+        "content_reward_percent": {
+          "type": "integer"
+        },
+        "vesting_reward_percent": {
+          "type": "integer"
+        },
+        "sps_fund_percent": {
+          "type": "integer"
+        },
+        "sps_interval_ledger": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "type": "string",
+              "pattern": "[1-9][0-9]*"
+            },
+            "precision": {
+              "type": "integer",
+              "pattern": "^3$"
+            },
+            "nai": {
+              "type": "string",
+              "pattern": "^@@000000013$"
+            }
+          },
+          "required": [
+            "amount",
+            "nai",
+            "precision"
+          ]
+        },
+        "downvote_pool_percent": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "available_account_subsidies",
+        "content_reward_percent",
+        "current_aslot",
+        "current_hbd_supply",
+        "current_supply",
+        "current_witness",
+        "delegation_return_period",
+        "downvote_pool_percent",
+        "hbd_interest_rate",
+        "hbd_print_rate",
+        "hbd_start_percent",
+        "hbd_stop_percent",
+        "head_block_id",
+        "head_block_number",
+        "id",
+        "init_hbd_supply",
+        "last_budget_time",
+        "last_irreversible_block_num",
+        "maximum_block_size",
+        "next_maintenance_time",
+        "num_pow_witnesses",
+        "participation_count",
+        "pending_rewarded_vesting_hive",
+        "pending_rewarded_vesting_shares",
+        "recent_slots_filled",
+        "required_actions_partition_percent",
+        "reverse_auction_seconds",
+        "sps_fund_percent",
+        "sps_interval_ledger",
+        "time",
+        "total_pow",
+        "total_reward_fund_hive",
+        "total_reward_shares2",
+        "total_vesting_fund_hive",
+        "total_vesting_shares",
+        "vesting_reward_percent",
+        "virtual_supply",
+        "vote_power_reserve_rate"
+      ]
+    },
+    "id": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "jsonrpc",
+    "result"
+  ]
+}
