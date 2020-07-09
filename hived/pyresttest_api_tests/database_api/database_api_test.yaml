@@ -8,8 +8,6 @@
     - test_id: {type: 'number_sequence', start: 1}
 
 - validator_base: &validator_base
-  - extract_test: {jsonpath_mini: "error", test: "not_exists"}
-  - extract_test: {jsonpath_mini: "result", test: "exists"}
   - compare: {jsonpath_mini: "id", comparator: "str_eq", expected: {template: $test_id}}
 
 - validator_result_json: &validator_result_json
