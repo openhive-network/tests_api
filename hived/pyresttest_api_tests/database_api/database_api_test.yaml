@@ -106,3 +106,10 @@
     - method: "list_witness_votes"
     - args: '{ "start": ["initminer", ""], "limit": 1, "order": "by_witness_account" }'
   - <<: *base_test
+
+- test:
+  - name: "get_active_witnesses"
+  - variable_binds:
+    - method: "get_active_witnesses"
+    - args: {}
+  - <<: *base_test
