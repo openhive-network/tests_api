@@ -17,7 +17,7 @@ def json_schema_generator(config):
     output.output_file = config['output_file']
     return output
 
-def gen_schema(json):
+def gen_schema(json, existing_schema):
     """Returns schema for given json string
 
     :json: json string
@@ -25,8 +25,19 @@ def gen_schema(json):
 
     """
     builder = SchemaBuilder()
+    builder.add_schema(existing_schema)
     builder.add_object(json)
     return builder.to_json(indent=2)
+
+def read_schema(file_name):
+    """Read json schema from a file.
+
+    :file_name: name of the file containing json
+    :returns: json schema as python object
+
+    """
+    with open(file_name, "r") as f:
+        return json.loads(f.read())
 
 def write(file_name, data):
     """Writes given data to file named filename
@@ -49,8 +60,9 @@ class JSONSchemaGenerator(validators.AbstractValidator):
         schema_file = string.Template(self.schema_file).safe_substitute(context.get_values())
         output_file = string.Template(self.output_file).safe_substitute(context.get_values())
         write(output_file, json.dumps(output, indent=2))
-        schema = gen_schema(output)
-        write(schema_file, schema)
+        existing_schema = read_schema(schema_file)
+        updated_schema = gen_schema(output, existing_schema)
+        write(schema_file, updated_schema)
         return False
 
 VALIDATORS = { 'json_schema_generate': json_schema_generator }
