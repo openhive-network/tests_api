@@ -56,7 +56,6 @@ class JSONFileValidator(validators.AbstractValidator):
     """
 
     name = 'ComparatorValidator'
-    config = None   # Configuration text, if parsed
     extractor = None
     comparator = None
     comparator_name = ""
@@ -132,7 +131,6 @@ class JSONFileValidator(validators.AbstractValidator):
 
         output = JSONFileValidator()
         config = parsing.lowercase_keys(parsing.flatten_dictionaries(config))
-        output.config = config
 
         # Extract functions are called by using defined extractor names
         output.extractor = validators._get_extractor(config)
