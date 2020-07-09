@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "jsonrpc": {
+      "type": "string"
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "blockchain_version": {
+          "type": "string",
+          "pattern": "[0-9]+(\\.[0-9]+){2}"
+        },
+        "hive_revision": {
+          "type": "string",
+          "pattern": "[0-9a-f]{40}"
+        },
+        "fc_revision": {
+          "type": "string",
+          "pattern": "[0-9a-f]{40}"
+        },
+        "chain_id": {
+          "type": "string",
+          "pattern": "[0-9a-f]{64}"
+        }
+      },
+      "required": [
+        "blockchain_version",
+        "chain_id",
+        "fc_revision",
+        "hive_revision"
+      ]
+    },
+    "id": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "jsonrpc",
+    "result"
+  ]
+}

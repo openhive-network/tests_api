@@ -45,6 +45,13 @@
   - <<: *base_test
 
 - test:
+  - name: "get_version"
+  - variable_binds:
+    - method: "get_version"
+    - args: {}
+  - <<: *base_test
+
+- test:
   - name: "get_witness_schedule"
   - variable_binds:
     - method: "get_witness_schedule"
