@@ -96,5 +96,6 @@
     "id",
     "jsonrpc",
     "result"
-  ]
+  ],
+  "additionalProperties": false
 }
