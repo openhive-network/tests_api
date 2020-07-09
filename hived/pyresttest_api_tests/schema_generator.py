@@ -26,6 +26,7 @@ def gen_schema(json, existing_schema):
     """
     builder = SchemaBuilder()
     builder.add_schema(existing_schema)
+    builder.add_schema({"additionalProperties": False})
     builder.add_object(json)
     return builder.to_json(indent=2)
 
