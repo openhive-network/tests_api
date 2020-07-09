@@ -16,6 +16,9 @@
 - validator_schema_json: &validator_schema_json
   - json_schema: {schema: {file: {template: '$method.json.schema'}}}
 
+- validator_schema_gen: &validator_schema_gen
+  - json_schema_generate: {schema_file: '$api/$method.json.schema', output_file: '$api/$method.json.out'}
+
 - base_test: &base_test
   - generator_binds:
     - test_id: test_id
