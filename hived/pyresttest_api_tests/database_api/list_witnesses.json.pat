@@ -21,7 +21,7 @@
                 "base": "0.000 HIVE",
                 "quote": "0.000 HIVE"
             },
-            "signing_key": "TST6LLegbAgLAy28EHrffBVuANFWcFgmqRMW13wBmTExqFE9SCkg4",
+            "signing_key": "STM6LLegbAgLAy28EHrffBVuANFWcFgmqRMW13wBmTExqFE9SCkg4",
             "total_missed": 0,
             "url": "",
             "virtual_last_update": "0",
