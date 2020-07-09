@@ -18,8 +18,8 @@ def contain(response, pattern):
         return dict_contain(response, pattern)
     if isinstance(response, list):
         return list_contain(response, pattern)
-    if isinstance(response):
-        return pattern in response
+   # if isinstance(response):
+   #     return pattern in response
    # all other types
     return pattern == response
 
