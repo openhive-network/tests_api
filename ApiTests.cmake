@@ -23,6 +23,22 @@ macro(ADD_API_TEST common_working_dir directory_with_test product api_name test_
     set_property(TEST "api/${api_name}/${test_name}" PROPERTY LABELS python_tests ${api_name} ${test_name})
 endmacro(ADD_API_TEST)
 
+# @common_working_dir - the root of working directories for all the api test
+# @directory_with_test - full path to tests_api repo on the disk
+# @product - hived or hivemind
+# @api_name  - for example database, condenser, etc...
+# @blocks_group - prefix of directory with tests for some number of blocks (2mln for directory 2mln_blocks)
+macro(ADD_API_PYREST_TEST common_working_dir directory_with_test product api_name blocks_group)
+    set(directory_for_blocks ${directory_with_test}/${product}/pyrest_tests/${blocks_group}_blocks)
+    set(api_test_directory ./${api_name}_api)
+    set(test_script_path ${api_test_directory}/${api_name}_api_test.yaml)
+    set(test_name "api/pyresttest/${blocks_group}/${api_name}")
+    message(STATUS "Adding ${test_name} to test list")
+    set(test_parameters --url=${TEST_NODE} --test=${test_script_path} --import_extensions "validator_ex\;comparator_contain")
+    add_test(NAME ${test_name} COMMAND pyresttest ${test_parameters} WORKING_DIRECTORY ${directory_for_blocks})
+    set_property(TEST ${test_name} PROPERTY LABELS python_tests ${pyresttest} ${api_name} )
+endmacro(ADD_API_PYREST_TEST)
+
 # @directory_with_test - full path to tests_api repo on the disk
 # @product - hived or hivemind
 macro(ADD_API_SMOKETEST directory_with_test product)

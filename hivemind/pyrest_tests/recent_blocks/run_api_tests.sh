@@ -20,7 +20,7 @@ fi
 
 echo COMPARATOR: $COMPARATOR
 echo "Running API tests\n"
-pyresttest $1 ./basic_smoketest.yaml
+pyresttest $1 ../basic_smoketest.yaml
 [ $? -ne 0 ] && echo FATAL: hivemind not running? && exit -1
 
 pyresttest $1 ./bridge/bridge_api_test.yaml --import_extensions='validator_ex;'$COMPARATOR
