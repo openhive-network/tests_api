@@ -37,8 +37,11 @@ def read_schema(file_name):
     :returns: json schema as python object
 
     """
-    with open(file_name, "r") as f:
-        return json.loads(f.read())
+    try:
+        with open(file_name, "r") as f:
+            return json.loads(f.read())
+    except FileNotFoundError as e:
+        return {}
 
 def write(file_name, data):
     """Writes given data to file named filename
