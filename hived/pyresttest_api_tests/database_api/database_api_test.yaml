@@ -99,3 +99,10 @@
     - method: "find_witnesses"
     - args: '{ "owners": ["initminer"] }'
   - <<: *base_test
+
+- test:
+  - name: "list_witness_votes"
+  - variable_binds:
+    - method: "list_witness_votes"
+    - args: '{ "start": ["initminer", ""], "limit": 1, "order": "by_witness_account" }'
+  - <<: *base_test
