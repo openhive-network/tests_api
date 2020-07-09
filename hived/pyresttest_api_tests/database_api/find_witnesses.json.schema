@@ -1,0 +1,309 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "additionalProperties": false,
+  "type": "object",
+  "properties": {
+    "jsonrpc": {
+      "type": "string"
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "witnesses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "owner": {
+                "type": "string"
+              },
+              "created": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "votes": {
+                "type": [
+                  "integer",
+                  "string"
+                ]
+              },
+              "virtual_last_update": {
+                "type": "string",
+                "pattern": "[0-9]+"
+              },
+              "virtual_position": {
+                "type": "string",
+                "pattern": "[0-9]+"
+              },
+              "virtual_scheduled_time": {
+                "type": "string",
+                "pattern": "[0-9]+"
+              },
+              "total_missed": {
+                "type": "integer"
+              },
+              "last_aslot": {
+                "type": "integer"
+              },
+              "last_confirmed_block_num": {
+                "type": "integer"
+              },
+              "pow_worker": {
+                "type": "integer"
+              },
+              "signing_key": {
+                "type": "string"
+              },
+              "props": {
+                "type": "object",
+                "properties": {
+                  "account_creation_fee": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "string"
+                      },
+                      "precision": {
+                        "type": "integer",
+                        "pattern": "^3$"
+                      },
+                      "nai": {
+                        "type": "string",
+                        "pattern": "^@@000000021$"
+                      }
+                    },
+                    "required": [
+                      "amount",
+                      "nai",
+                      "precision"
+                    ]
+                  },
+                  "maximum_block_size": {
+                    "type": "integer"
+                  },
+                  "hbd_interest_rate": {
+                    "type": "integer"
+                  },
+                  "account_subsidy_budget": {
+                    "type": "integer"
+                  },
+                  "account_subsidy_decay": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "account_creation_fee",
+                  "account_subsidy_budget",
+                  "account_subsidy_decay",
+                  "hbd_interest_rate",
+                  "maximum_block_size"
+                ]
+              },
+              "hbd_exchange_rate": {
+                "type": "object",
+                "properties": {
+                  "base": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "string"
+                      },
+                      "precision": {
+                        "type": "integer",
+                        "pattern": "^3$"
+                      },
+                      "nai": {
+                        "type": "string",
+                        "pattern": "^@@000000021$"
+                      }
+                    },
+                    "required": [
+                      "amount",
+                      "nai",
+                      "precision"
+                    ]
+                  },
+                  "quote": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "string"
+                      },
+                      "precision": {
+                        "type": "integer",
+                        "pattern": "^3$"
+                      },
+                      "nai": {
+                        "type": "string",
+                        "pattern": "^@@000000021$"
+                      }
+                    },
+                    "required": [
+                      "amount",
+                      "nai",
+                      "precision"
+                    ]
+                  }
+                },
+                "required": [
+                  "base",
+                  "quote"
+                ]
+              },
+              "last_hbd_exchange_update": {
+                "type": "string"
+              },
+              "last_work": {
+                "type": "string"
+              },
+              "running_version": {
+                "type": "string"
+              },
+              "hardfork_version_vote": {
+                "type": "string"
+              },
+              "hardfork_time_vote": {
+                "type": "string"
+              },
+              "available_witness_account_subsidies": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "available_witness_account_subsidies",
+              "created",
+              "hardfork_time_vote",
+              "hardfork_version_vote",
+              "hbd_exchange_rate",
+              "id",
+              "last_aslot",
+              "last_confirmed_block_num",
+              "last_hbd_exchange_update",
+              "last_work",
+              "owner",
+              "pow_worker",
+              "props",
+              "running_version",
+              "signing_key",
+              "total_missed",
+              "url",
+              "virtual_last_update",
+              "virtual_position",
+              "virtual_scheduled_time",
+              "votes"
+            ]
+          }
+        }
+      },
+      "required": [
+        "witnesses"
+      ]
+    },
+    "id": {
+      "type": "integer"
+    },
+    "error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            },
+            "stack": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "context": {
+                    "type": "object",
+                    "properties": {
+                      "level": {
+                        "type": "string"
+                      },
+                      "file": {
+                        "type": "string"
+                      },
+                      "line": {
+                        "type": "integer"
+                      },
+                      "method": {
+                        "type": "string"
+                      },
+                      "hostname": {
+                        "type": "string"
+                      },
+                      "timestamp": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "file",
+                      "hostname",
+                      "level",
+                      "line",
+                      "method",
+                      "timestamp"
+                    ]
+                  },
+                  "format": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type"
+                    ]
+                  }
+                },
+                "required": [
+                  "context",
+                  "data",
+                  "format"
+                ]
+              }
+            }
+          },
+          "required": [
+            "code",
+            "message",
+            "name",
+            "stack"
+          ]
+        }
+      },
+      "required": [
+        "code",
+        "data",
+        "message"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "jsonrpc"
+  ]
+}

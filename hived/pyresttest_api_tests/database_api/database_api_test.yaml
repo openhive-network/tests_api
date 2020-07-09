@@ -92,3 +92,10 @@
     - method: "list_witnesses"
     - args: '{ "start": 0, "limit": 1, "order": "by_name" }'
   - <<: *base_test
+
+- test:
+  - name: "find_witnesses"
+  - variable_binds:
+    - method: "find_witnesses"
+    - args: '{ "owners": ["initminer"] }'
+  - <<: *base_test
