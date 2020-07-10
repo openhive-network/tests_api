@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "additionalProperties": false,
+  "type": "object",
+  "properties": {
+    "jsonrpc": {
+      "type": "string"
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "owner_auths": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "account": {
+                "type": "string"
+              },
+              "previous_owner_authority": {
+                "type": "object",
+                "properties": {
+                  "weight_threshold": {
+                    "type": "integer"
+                  },
+                  "account_auths": {
+                    "type": "array"
+                  },
+                  "key_auths": {
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": [
+                          "integer",
+                          "string"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "account_auths",
+                  "key_auths",
+                  "weight_threshold"
+                ]
+              },
+              "last_valid_time": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "account",
+              "id",
+              "last_valid_time",
+              "previous_owner_authority"
+            ]
+          }
+        }
+      },
+      "required": [
+        "owner_auths"
+      ]
+    },
+    "id": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "jsonrpc",
+    "result"
+  ]
+}

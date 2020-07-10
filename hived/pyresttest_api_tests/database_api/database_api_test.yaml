@@ -127,3 +127,10 @@
     - method: "find_accounts"
     - args: '{ "accounts": ["initminer", "null"] }'
   - <<: *base_test
+
+- test:
+  - name: "list_owner_histories"
+  - variable_binds:
+    - method: "list_owner_histories"
+    - args: '{ "start": ["null", "1970-01-01T00:00:00"], "limit": 1 }'
+  - <<: *base_test
