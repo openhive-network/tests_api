@@ -155,3 +155,10 @@
     - method: "find_account_recovery_requests"
     - args: '{ "accounts": ["null"] }'
   - <<: *base_test
+
+- test:
+  - name: "list_change_recovery_account_requests"
+  - variable_binds:
+    - method: "list_change_recovery_account_requests"
+    - args: '{ "start": "", "limit": 2, "order": "by_account" }'
+  - <<: *base_test
