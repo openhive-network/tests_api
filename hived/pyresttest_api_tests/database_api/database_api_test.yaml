@@ -162,3 +162,10 @@
     - method: "list_change_recovery_account_requests"
     - args: '{ "start": "", "limit": 2, "order": "by_account" }'
   - <<: *base_test
+
+- test:
+  - name: "find_change_recovery_account_requests"
+  - variable_binds:
+    - method: "find_change_recovery_account_requests"
+    - args: '{ "accounts": ["null"] }'
+  - <<: *base_test
