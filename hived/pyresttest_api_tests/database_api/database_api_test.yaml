@@ -113,3 +113,10 @@
     - method: "get_active_witnesses"
     - args: {}
   - <<: *base_test
+
+- test:
+  - name: "list_accounts"
+  - variable_binds:
+    - method: "list_accounts"
+    - args: '{ "start": "", "limit": 10, "order": "by_name" }'
+  - <<: *base_test
