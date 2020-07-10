@@ -1,0 +1,601 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "additionalProperties": false,
+  "type": "object",
+  "properties": {
+    "jsonrpc": {
+      "type": "string"
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "accounts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "name": {
+                "type": "string"
+              },
+              "owner": {
+                "type": "object",
+                "properties": {
+                  "weight_threshold": {
+                    "type": "integer"
+                  },
+                  "account_auths": {
+                    "type": "array"
+                  },
+                  "key_auths": {
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": [
+                          "integer",
+                          "string"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "account_auths",
+                  "key_auths",
+                  "weight_threshold"
+                ]
+              },
+              "active": {
+                "type": "object",
+                "properties": {
+                  "weight_threshold": {
+                    "type": "integer"
+                  },
+                  "account_auths": {
+                    "type": "array"
+                  },
+                  "key_auths": {
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": [
+                          "integer",
+                          "string"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "account_auths",
+                  "key_auths",
+                  "weight_threshold"
+                ]
+              },
+              "posting": {
+                "type": "object",
+                "properties": {
+                  "weight_threshold": {
+                    "type": "integer"
+                  },
+                  "account_auths": {
+                    "type": "array"
+                  },
+                  "key_auths": {
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": [
+                          "integer",
+                          "string"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "account_auths",
+                  "key_auths",
+                  "weight_threshold"
+                ]
+              },
+              "memo_key": {
+                "type": "string"
+              },
+              "json_metadata": {
+                "type": "string"
+              },
+              "posting_json_metadata": {
+                "type": "string"
+              },
+              "proxy": {
+                "type": "string"
+              },
+              "last_owner_update": {
+                "type": "string"
+              },
+              "last_account_update": {
+                "type": "string"
+              },
+              "created": {
+                "type": "string"
+              },
+              "mined": {
+                "type": "boolean"
+              },
+              "recovery_account": {
+                "type": "string"
+              },
+              "last_account_recovery": {
+                "type": "string"
+              },
+              "reset_account": {
+                "type": "string"
+              },
+              "comment_count": {
+                "type": "integer"
+              },
+              "lifetime_vote_count": {
+                "type": "integer"
+              },
+              "post_count": {
+                "type": "integer"
+              },
+              "can_vote": {
+                "type": "boolean"
+              },
+              "voting_manabar": {
+                "type": "object",
+                "properties": {
+                  "current_mana": {
+                    "type": [
+                      "integer",
+                      "string"
+                    ]
+                  },
+                  "last_update_time": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "current_mana",
+                  "last_update_time"
+                ]
+              },
+              "downvote_manabar": {
+                "type": "object",
+                "properties": {
+                  "current_mana": {
+                    "type": "integer"
+                  },
+                  "last_update_time": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "current_mana",
+                  "last_update_time"
+                ]
+              },
+              "balance": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "pattern": "[0-9]+",
+                    "type": "string"
+                  },
+                  "precision": {
+                    "pattern": "^3$",
+                    "type": "integer"
+                  },
+                  "nai": {
+                    "pattern": "^@@000000021$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              },
+              "savings_balance": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "pattern": "[0-9]+",
+                    "type": "string"
+                  },
+                  "precision": {
+                    "pattern": "^3$",
+                    "type": "integer"
+                  },
+                  "nai": {
+                    "pattern": "^@@000000021$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              },
+              "hbd_balance": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "pattern": "[0-9]+",
+                    "type": "string"
+                  },
+                  "precision": {
+                    "pattern": "^3$",
+                    "type": "integer"
+                  },
+                  "nai": {
+                    "pattern": "^@@000000013$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              },
+              "hbd_seconds": {
+                "type": "string"
+              },
+              "hbd_seconds_last_update": {
+                "type": "string"
+              },
+              "hbd_last_interest_payment": {
+                "type": "string"
+              },
+              "savings_hbd_balance": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "pattern": "[0-9]+",
+                    "type": "string"
+                  },
+                  "precision": {
+                    "pattern": "^3$",
+                    "type": "integer"
+                  },
+                  "nai": {
+                    "pattern": "^@@000000013$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              },
+              "savings_hbd_seconds": {
+                "type": "string"
+              },
+              "savings_hbd_seconds_last_update": {
+                "type": "string"
+              },
+              "savings_hbd_last_interest_payment": {
+                "type": "string"
+              },
+              "savings_withdraw_requests": {
+                "type": "integer"
+              },
+              "reward_hbd_balance": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "pattern": "[0-9]+",
+                    "type": "string"
+                  },
+                  "precision": {
+                    "pattern": "^3$",
+                    "type": "integer"
+                  },
+                  "nai": {
+                    "pattern": "^@@000000013$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              },
+              "reward_hive_balance": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "pattern": "[0-9]+",
+                    "type": "string"
+                  },
+                  "precision": {
+                    "pattern": "^3$",
+                    "type": "integer"
+                  },
+                  "nai": {
+                    "pattern": "^@@000000021$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              },
+              "reward_vesting_balance": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "pattern": "[0-9]+",
+                    "type": "string"
+                  },
+                  "precision": {
+                    "pattern": "^6$",
+                    "type": "integer"
+                  },
+                  "nai": {
+                    "pattern": "^@@000000037$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              },
+              "reward_vesting_hive": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "pattern": "[0-9]+",
+                    "type": "string"
+                  },
+                  "precision": {
+                    "pattern": "^3$",
+                    "type": "integer"
+                  },
+                  "nai": {
+                    "pattern": "^@@000000021$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              },
+              "vesting_shares": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "pattern": "[0-9]+",
+                    "type": "string"
+                  },
+                  "precision": {
+                    "pattern": "^6$",
+                    "type": "integer"
+                  },
+                  "nai": {
+                    "pattern": "^@@000000037$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              },
+              "delegated_vesting_shares": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "pattern": "[0-9]+",
+                    "type": "string"
+                  },
+                  "precision": {
+                    "pattern": "^6$",
+                    "type": "integer"
+                  },
+                  "nai": {
+                    "pattern": "^@@000000037$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              },
+              "received_vesting_shares": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "pattern": "[0-9]+",
+                    "type": "string"
+                  },
+                  "precision": {
+                    "pattern": "^6$",
+                    "type": "integer"
+                  },
+                  "nai": {
+                    "pattern": "^@@000000037$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              },
+              "vesting_withdraw_rate": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "pattern": "[0-9]+",
+                    "type": "string"
+                  },
+                  "precision": {
+                    "pattern": "^6$",
+                    "type": "integer"
+                  },
+                  "nai": {
+                    "pattern": "^@@000000037$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              },
+              "next_vesting_withdrawal": {
+                "type": "string"
+              },
+              "withdrawn": {
+                "type": "integer"
+              },
+              "to_withdraw": {
+                "type": "integer"
+              },
+              "withdraw_routes": {
+                "type": "integer"
+              },
+              "pending_transfers": {
+                "type": "integer"
+              },
+              "curation_rewards": {
+                "type": "integer"
+              },
+              "posting_rewards": {
+                "type": "integer"
+              },
+              "proxied_vsf_votes": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              },
+              "witnesses_voted_for": {
+                "type": "integer"
+              },
+              "last_post": {
+                "type": "string"
+              },
+              "last_root_post": {
+                "type": "string"
+              },
+              "last_post_edit": {
+                "type": "string"
+              },
+              "last_vote_time": {
+                "type": "string"
+              },
+              "post_bandwidth": {
+                "type": "integer"
+              },
+              "pending_claimed_accounts": {
+                "type": "integer"
+              },
+              "is_smt": {
+                "type": "boolean"
+              },
+              "delayed_votes": {
+                "type": "array"
+              }
+            },
+            "required": [
+              "active",
+              "balance",
+              "can_vote",
+              "comment_count",
+              "created",
+              "curation_rewards",
+              "delayed_votes",
+              "delegated_vesting_shares",
+              "downvote_manabar",
+              "hbd_balance",
+              "hbd_last_interest_payment",
+              "hbd_seconds",
+              "hbd_seconds_last_update",
+              "id",
+              "is_smt",
+              "json_metadata",
+              "last_account_recovery",
+              "last_account_update",
+              "last_owner_update",
+              "last_post",
+              "last_post_edit",
+              "last_root_post",
+              "last_vote_time",
+              "lifetime_vote_count",
+              "memo_key",
+              "mined",
+              "name",
+              "next_vesting_withdrawal",
+              "owner",
+              "pending_claimed_accounts",
+              "pending_transfers",
+              "post_bandwidth",
+              "post_count",
+              "posting",
+              "posting_json_metadata",
+              "posting_rewards",
+              "proxied_vsf_votes",
+              "proxy",
+              "received_vesting_shares",
+              "recovery_account",
+              "reset_account",
+              "reward_hbd_balance",
+              "reward_hive_balance",
+              "reward_vesting_balance",
+              "reward_vesting_hive",
+              "savings_balance",
+              "savings_hbd_balance",
+              "savings_hbd_last_interest_payment",
+              "savings_hbd_seconds",
+              "savings_hbd_seconds_last_update",
+              "savings_withdraw_requests",
+              "to_withdraw",
+              "vesting_shares",
+              "vesting_withdraw_rate",
+              "voting_manabar",
+              "withdraw_routes",
+              "withdrawn",
+              "witnesses_voted_for"
+            ]
+          }
+        }
+      },
+      "required": [
+        "accounts"
+      ]
+    },
+    "id": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "jsonrpc",
+    "result"
+  ]
+}
