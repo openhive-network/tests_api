@@ -134,3 +134,10 @@
     - method: "list_owner_histories"
     - args: '{ "start": ["null", "1970-01-01T00:00:00"], "limit": 1 }'
   - <<: *base_test
+
+- test:
+  - name: "find_owner_histories"
+  - variable_binds:
+    - method: "find_owner_histories"
+    - args: '{ "owner": "null" }'
+  - <<: *base_test
