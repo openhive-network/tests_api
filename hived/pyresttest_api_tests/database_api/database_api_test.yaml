@@ -183,3 +183,10 @@
     - method: "find_escrows"
     - args: '{ "from": "temp" }'
   - <<: *base_test
+
+- test:
+  - name: "list_withdraw_vesting_routes"
+  - variable_binds:
+    - method: "list_withdraw_vesting_routes"
+    - args: '{ "start": ["", ""], "limit": 10, "order": "by_withdraw_route" }'
+  - <<: *base_test
