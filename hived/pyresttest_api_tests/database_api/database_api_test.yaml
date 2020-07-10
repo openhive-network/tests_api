@@ -176,3 +176,10 @@
     - method: "list_escrows"
     - args: '{ "start": ["initminer", 0], "limit": 10, "order": "by_from_id" }'
   - <<: *base_test
+
+- test:
+  - name: "find_escrows"
+  - variable_binds:
+    - method: "find_escrows"
+    - args: '{ "from": "temp" }'
+  - <<: *base_test

@@ -1,0 +1,142 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "additionalProperties": false,
+  "type": "object",
+  "properties": {
+    "jsonrpc": {
+      "type": "string"
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "escrows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "escrow_id": {
+                "type": "integer"
+              },
+              "from": {
+                "type": "string"
+              },
+              "to": {
+                "type": "string"
+              },
+              "agent": {
+                "type": "string"
+              },
+              "ratification_deadline": {
+                "type": "string"
+              },
+              "escrow_expiration": {
+                "type": "string"
+              },
+              "hbd_balance": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "pattern": "[0-9]+",
+                    "type": "string"
+                  },
+                  "precision": {
+                    "type": "integer"
+                  },
+                  "nai": {
+                    "pattern": "^@@[0-9]+$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              },
+              "hive_balance": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "pattern": "[0-9]+",
+                    "type": "string"
+                  },
+                  "precision": {
+                    "type": "integer"
+                  },
+                  "nai": {
+                    "pattern": "^@@[0-9]+$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              },
+              "pending_fee": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "pattern": "[0-9]+",
+                    "type": "string"
+                  },
+                  "precision": {
+                    "type": "integer"
+                  },
+                  "nai": {
+                    "pattern": "^@@[0-9]+$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              },
+              "to_approved": {
+                "type": "boolean"
+              },
+              "agent_approved": {
+                "type": "boolean"
+              },
+              "disputed": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "agent",
+              "agent_approved",
+              "disputed",
+              "escrow_expiration",
+              "escrow_id",
+              "from",
+              "hbd_balance",
+              "hive_balance",
+              "id",
+              "pending_fee",
+              "ratification_deadline",
+              "to",
+              "to_approved"
+            ]
+          }
+        }
+      },
+      "required": [
+        "escrows"
+      ]
+    },
+    "id": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "jsonrpc",
+    "result"
+  ]
+}
