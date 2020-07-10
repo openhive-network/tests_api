@@ -17,11 +17,10 @@
             },
             "precision": {
               "type": "integer",
-              "pattern": "^3$"
             },
             "nai": {
               "type": "string",
-              "pattern": "^@@000000013$"
+              "pattern": "^@@[0-9]+$"
             }
           },
           "required": [
@@ -39,11 +38,10 @@
             },
             "precision": {
               "type": "integer",
-              "pattern": "^3$"
             },
             "nai": {
               "type": "string",
-              "pattern": "^@@000000021$"
+              "pattern": "^@@[0-9]+$"
             }
           },
           "required": [

@@ -19,11 +19,10 @@
           "properties": {
             "nai": {
               "type": "string",
-              "pattern": "^@@000000013$"
+              "pattern": "^@@[0-9]+$"
             },
             "decimals": {
               "type": "integer",
-              "pattern": "^3$"
             }
           },
           "required": [
@@ -57,11 +56,10 @@
             },
             "precision": {
               "type": "integer",
-              "pattern": "^3$"
             },
             "nai": {
               "type": "string",
-              "pattern": "^@@000000021$"
+              "pattern": "^@@[0-9]+$"
             }
           },
           "required": [
@@ -378,11 +376,10 @@
             },
             "precision": {
               "type": "integer",
-              "pattern": "^3$"
             },
             "nai": {
               "type": "string",
-              "pattern": "^@@000000021$"
+              "pattern": "^@@[0-9]+$"
             }
           },
           "required": [
@@ -399,11 +396,10 @@
             },
             "precision": {
               "type": "integer",
-              "pattern": "^3$"
             },
             "nai": {
               "type": "string",
-              "pattern": "^@@000000021$"
+              "pattern": "^@@[0-9]+$"
             }
           },
           "required": [
@@ -447,11 +443,10 @@
             },
             "precision": {
               "type": "integer",
-              "pattern": "^3$"
             },
             "nai": {
               "type": "string",
-              "pattern": "^@@000000021$"
+              "pattern": "^@@[0-9]+$"
             }
           },
           "required": [
@@ -471,11 +466,10 @@
             },
             "precision": {
               "type": "integer",
-              "pattern": "^3$"
             },
             "nai": {
               "type": "string",
-              "pattern": "^@@000000021$"
+              "pattern": "^@@[0-9]+$"
             }
           },
           "required": [
@@ -495,11 +489,10 @@
             },
             "precision": {
               "type": "integer",
-              "pattern": "^3$"
             },
             "nai": {
               "type": "string",
-              "pattern": "^@@000000013$"
+              "pattern": "^@@[0-9]+$"
             }
           },
           "required": [
@@ -516,11 +509,10 @@
             },
             "precision": {
               "type": "integer",
-              "pattern": "^3$"
             },
             "nai": {
               "type": "string",
-              "pattern": "^@@000000021$"
+              "pattern": "^@@[0-9]+$"
             }
           },
           "required": [
@@ -537,11 +529,10 @@
             },
             "precision": {
               "type": "integer",
-              "pattern": "^3$"
             },
             "nai": {
               "type": "string",
-              "pattern": "^@@000000021$"
+              "pattern": "^@@[0-9]+$"
             }
           },
           "required": [
@@ -582,11 +573,10 @@
             },
             "precision": {
               "type": "integer",
-              "pattern": "^3$"
             },
             "nai": {
               "type": "string",
-              "pattern": "^@@000000021$"
+              "pattern": "^@@[0-9]+$"
             }
           },
           "required": [
@@ -711,11 +701,10 @@
           "properties": {
             "nai": {
               "type": "string",
-              "pattern": "^@@000000021$"
+              "pattern": "^@@[0-9]+$"
             },
             "decimals": {
               "type": "integer",
-              "pattern": "^3$"
             }
           },
           "required": [
@@ -728,11 +717,10 @@
           "properties": {
             "nai": {
               "type": "string",
-              "pattern": "^@@000000037$"
+              "pattern": "^@@[0-9]+$"
             },
             "decimals": {
               "type": "integer",
-              "pattern": "^3$"
             }
           },
           "required": [

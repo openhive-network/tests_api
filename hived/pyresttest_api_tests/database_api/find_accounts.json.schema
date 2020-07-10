@@ -190,11 +190,10 @@
                     "type": "string"
                   },
                   "precision": {
-                    "pattern": "^3$",
                     "type": "integer"
                   },
                   "nai": {
-                    "pattern": "^@@000000021$",
+                    "pattern": "^@@[0-9]+$",
                     "type": "string"
                   }
                 },
@@ -212,11 +211,10 @@
                     "type": "string"
                   },
                   "precision": {
-                    "pattern": "^3$",
                     "type": "integer"
                   },
                   "nai": {
-                    "pattern": "^@@000000021$",
+                    "pattern": "^@@[0-9]+$",
                     "type": "string"
                   }
                 },
@@ -234,11 +232,10 @@
                     "type": "string"
                   },
                   "precision": {
-                    "pattern": "^3$",
                     "type": "integer"
                   },
                   "nai": {
-                    "pattern": "^@@000000013$",
+                    "pattern": "^@@[0-9]+$",
                     "type": "string"
                   }
                 },
@@ -265,11 +262,10 @@
                     "type": "string"
                   },
                   "precision": {
-                    "pattern": "^3$",
                     "type": "integer"
                   },
                   "nai": {
-                    "pattern": "^@@000000013$",
+                    "pattern": "^@@[0-9]+$",
                     "type": "string"
                   }
                 },
@@ -299,11 +295,10 @@
                     "type": "string"
                   },
                   "precision": {
-                    "pattern": "^3$",
                     "type": "integer"
                   },
                   "nai": {
-                    "pattern": "^@@000000013$",
+                    "pattern": "^@@[0-9]+$",
                     "type": "string"
                   }
                 },
@@ -321,11 +316,10 @@
                     "type": "string"
                   },
                   "precision": {
-                    "pattern": "^3$",
                     "type": "integer"
                   },
                   "nai": {
-                    "pattern": "^@@000000021$",
+                    "pattern": "^@@[0-9]+$",
                     "type": "string"
                   }
                 },
@@ -343,11 +337,10 @@
                     "type": "string"
                   },
                   "precision": {
-                    "pattern": "^6$",
                     "type": "integer"
                   },
                   "nai": {
-                    "pattern": "^@@000000037$",
+                    "pattern": "^@@[0-9]+$",
                     "type": "string"
                   }
                 },
@@ -365,11 +358,10 @@
                     "type": "string"
                   },
                   "precision": {
-                    "pattern": "^3$",
                     "type": "integer"
                   },
                   "nai": {
-                    "pattern": "^@@000000021$",
+                    "pattern": "^@@[0-9]+$",
                     "type": "string"
                   }
                 },
@@ -387,11 +379,10 @@
                     "type": "string"
                   },
                   "precision": {
-                    "pattern": "^6$",
                     "type": "integer"
                   },
                   "nai": {
-                    "pattern": "^@@000000037$",
+                    "pattern": "^@@[0-9]+$",
                     "type": "string"
                   }
                 },
@@ -409,11 +400,10 @@
                     "type": "string"
                   },
                   "precision": {
-                    "pattern": "^6$",
                     "type": "integer"
                   },
                   "nai": {
-                    "pattern": "^@@000000037$",
+                    "pattern": "^@@[0-9]+$",
                     "type": "string"
                   }
                 },
@@ -431,11 +421,10 @@
                     "type": "string"
                   },
                   "precision": {
-                    "pattern": "^6$",
                     "type": "integer"
                   },
                   "nai": {
-                    "pattern": "^@@000000037$",
+                    "pattern": "^@@[0-9]+$",
                     "type": "string"
                   }
                 },
@@ -453,11 +442,10 @@
                     "type": "string"
                   },
                   "precision": {
-                    "pattern": "^6$",
                     "type": "integer"
                   },
                   "nai": {
-                    "pattern": "^@@000000037$",
+                    "pattern": "^@@[0-9]+$",
                     "type": "string"
                   }
                 },
