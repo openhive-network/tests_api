@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "additionalProperties": false,
+  "type": "object",
+  "properties": {
+    "jsonrpc": {
+      "type": "string"
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "withdrawals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "from": {
+                "type": "string"
+              },
+              "to": {
+                "type": "string"
+              },
+              "memo": {
+                "type": "string"
+              },
+              "request_id": {
+                "type": "integer"
+              },
+              "amount": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "pattern": "[0-9]+",
+                    "type": "string"
+                  },
+                  "precision": {
+                    "type": "integer"
+                  },
+                  "nai": {
+                    "pattern": "^@@[0-9]+$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              },
+              "complete": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "amount",
+              "complete",
+              "from",
+              "id",
+              "memo",
+              "request_id",
+              "to"
+            ]
+          }
+        }
+      },
+      "required": [
+        "withdrawals"
+      ]
+    },
+    "id": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "jsonrpc",
+    "result"
+  ]
+}
