@@ -211,3 +211,10 @@
     - method: "find_savings_withdrawals"
     - args: '{ "account": "voltair" }'
   - <<: *base_test
+
+- test:
+  - name: "list_vesting_delegations"
+  - variable_binds:
+    - method: "list_vesting_delegations"
+    - args: '{ "start": ["null", "null"], "limit": 10, "order": "by_delegation" }'
+  - <<: *base_test
