@@ -204,3 +204,10 @@
     - method: "list_savings_withdrawals"
     - args: '{ "start": ["null", 0], "limit": 10, "order": "by_from_id" }'
   - <<: *base_test
+
+- test:
+  - name: "find_savings_withdrawals"
+  - variable_binds:
+    - method: "find_savings_withdrawals"
+    - args: '{ "account": "voltair" }'
+  - <<: *base_test
