@@ -218,3 +218,10 @@
     - method: "list_vesting_delegations"
     - args: '{ "start": ["null", "null"], "limit": 10, "order": "by_delegation" }'
   - <<: *base_test
+
+- test:
+  - name: "find_vesting_delegations"
+  - variable_binds:
+    - method: "find_vesting_delegations"
+    - args: '{ "account": "voltair" }'
+  - <<: *base_test

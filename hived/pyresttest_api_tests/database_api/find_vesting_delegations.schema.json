@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "additionalProperties": false,
+  "type": "object",
+  "properties": {
+    "jsonrpc": {
+      "type": "string"
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "delegations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "delegator": {
+                "type": "string"
+              },
+              "delegatee": {
+                "type": "string"
+              },
+              "vesting_shares": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "pattern": "[0-9]+",
+                    "type": "string"
+                  },
+                  "precision": {
+                    "type": "integer"
+                  },
+                  "nai": {
+                    "pattern": "^@@[0-9]+$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              },
+              "min_delegation_time": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "delegatee",
+              "delegator",
+              "id",
+              "min_delegation_time",
+              "vesting_shares"
+            ]
+          }
+        }
+      },
+      "required": [
+        "delegations"
+      ]
+    },
+    "id": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "jsonrpc",
+    "result"
+  ]
+}
