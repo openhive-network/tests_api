@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "additionalProperties": false,
+  "type": "object",
+  "properties": {
+    "jsonrpc": {
+      "type": "string"
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "delegations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "delegator": {
+                "type": "string"
+              },
+              "vesting_shares": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "pattern": "[0-9]+",
+                    "type": "string"
+                  },
+                  "precision": {
+                    "type": "integer"
+                  },
+                  "nai": {
+                    "pattern": "^@@[0-9]+$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "nai",
+                  "precision"
+                ]
+              },
+              "expiration": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "delegator",
+              "expiration",
+              "id",
+              "vesting_shares"
+            ]
+          }
+        }
+      },
+      "required": [
+        "delegations"
+      ]
+    },
+    "id": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "jsonrpc",
+    "result"
+  ]
+}
