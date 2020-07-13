@@ -14,10 +14,10 @@
   - json_file_validator: {jsonpath_mini: "result", comparator: "json_compare", expected: {template: '$api/$method'}}
 
 - validator_schema_json: &validator_schema_json
-  - json_schema: {schema: {file: {template: '$method.json.schema'}}}
+  - json_schema: {schema: {file: {template: '$method.schema.json'}}}
 
 - validator_schema_gen: &validator_schema_gen
-  - json_schema_generate: {schema_file: '$api/$method.json.schema', output_file: '$api/$method.json.out'}
+  - json_schema_generate: {schema_file: '$api/$method.schema.json', output_file: '$api/$method.out.json'}
 
 - base_test: &base_test
   - generator_binds:
