@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "additionalProperties": false,
+  "type": "object",
+  "properties": {
+    "jsonrpc": {
+      "type": "string"
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "routes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "from_account": {
+                "type": "string"
+              },
+              "to_account": {
+                "type": "string"
+              },
+              "percent": {
+                "type": "integer"
+              },
+              "auto_vest": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "auto_vest",
+              "from_account",
+              "id",
+              "percent",
+              "to_account"
+            ]
+          }
+        }
+      },
+      "required": [
+        "routes"
+      ]
+    },
+    "id": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "id",
+    "jsonrpc",
+    "result"
+  ]
+}

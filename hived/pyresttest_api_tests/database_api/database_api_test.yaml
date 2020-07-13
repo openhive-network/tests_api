@@ -190,3 +190,10 @@
     - method: "list_withdraw_vesting_routes"
     - args: '{ "start": ["", ""], "limit": 10, "order": "by_withdraw_route" }'
   - <<: *base_test
+
+- test:
+  - name: "find_withdraw_vesting_routes"
+  - variable_binds:
+    - method: "find_withdraw_vesting_routes"
+    - args: '{ "account": "null", "order": "by_destination" }'
+  - <<: *base_test
