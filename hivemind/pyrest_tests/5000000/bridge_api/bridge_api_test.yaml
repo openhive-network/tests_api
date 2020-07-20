@@ -102,12 +102,12 @@
     - <<: *base_test
 
 # it fails
-#  - test:
-#    - name: "get_payout_stats"
-#    - variable_binds:
-#      - method: "get_payout_stats"
-#      - args: '[1.0]'
-#    - <<: *base_test
+  - test:
+    - name: "get_payout_stats"
+    - variable_binds:
+      - method: "get_payout_stats"
+      - args: '[1.0]'
+    - <<: *base_test
 
 # Communitiest not present at 5000000 blocks
 # - test:
