@@ -3,8 +3,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -34,8 +32,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -65,8 +61,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -96,8 +90,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -127,8 +119,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -158,8 +148,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -189,8 +177,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -220,8 +206,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -251,8 +235,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -282,8 +264,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -313,8 +293,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml

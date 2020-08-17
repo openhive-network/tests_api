@@ -90,8 +90,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -121,8 +119,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -152,8 +148,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -184,7 +178,7 @@
   marks:
     - patterntest
     - failing
-    - xfail
+    - xfail # some tags have too many comments/top_posts, influences total_payouts (problem when post is deleted and recreated); once that is fixed rest of total_payouts can be slightly different
 
   includes:
     - !include common.yaml
@@ -214,8 +208,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -245,8 +237,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -276,8 +266,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -307,8 +295,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -338,8 +324,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -368,7 +352,7 @@
   test_name: Hivemind condenser_api.get_discussions_by_feed patterns test
 
   marks:
-    - patterntest
+    - patterntest # can't find any params that would give nonempty results
 
   includes:
     - !include common.yaml
@@ -398,8 +382,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -429,8 +411,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -460,8 +440,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -491,8 +469,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -522,8 +498,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -553,8 +527,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
@@ -641,7 +613,7 @@
   test_name: Hivemind condenser_api.get_reblogged_by patterns test
 
   marks:
-    - patterntest
+    - patterntest # result is empty because reblogging functionality started past 5mln blocks
 
   includes:
     - !include common.yaml
@@ -671,6 +643,8 @@
 
   marks:
     - patterntest
+    - failing
+    - xfail # wrong pattern, wrong test params (empty result)
 
   includes:
     - !include common.yaml
@@ -700,8 +674,6 @@
 
   marks:
     - patterntest
-    - failing
-    - xfail
 
   includes:
     - !include common.yaml
