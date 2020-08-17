@@ -386,7 +386,7 @@ includes:
   - !include common.yaml
 
 stages:
-  - name: list_comments_by_cashout_time
+  - name: list_comments_by_permlink
     request:
       url: "{service.proto:s}://{service.server:s}:{service.port}/"
       method: POST
@@ -415,7 +415,7 @@ includes:
   - !include common.yaml
 
 stages:
-  - name: list_comments_by_cashout_time
+  - name: list_comments_by_permlink
     request:
       url: "{service.proto:s}://{service.server:s}:{service.port}/"
       method: POST
@@ -444,7 +444,7 @@ includes:
   - !include common.yaml
 
 stages:
-  - name: list_comments_by_cashout_time
+  - name: list_comments_by_permlink
     request:
       url: "{service.proto:s}://{service.server:s}:{service.port}/"
       method: POST
@@ -482,7 +482,7 @@ includes:
   - !include common.yaml
 
 stages:
-  - name: list_comments_by_cashout_time
+  - name: list_comments_by_permlink
     request:
       url: "{service.proto:s}://{service.server:s}:{service.port}/"
       method: POST
@@ -1510,3 +1510,767 @@ stages:
         function: validate_response:compare_error_message
         extra_kwargs:
           message: "Day of month value is out of range 1..31:Day of month value is out of range 1..31: unable to convert ISO-formatted string to fc::time_point_sec"
+
+########################  LIST VOTES  ########################
+
+
+#######################  COMMENT VOTER  ######################
+---
+test_name: Hivemind database_api.list_votes patterns test order "by_comment_voter" no data
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_votes_by_comment_voter
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_votes"
+        params:
+          {
+            "start": ["", "", ""],
+            "limit": 10,
+            "order": "by_comment_voter",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_votes_by_comment_voter_no_data"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_votes patterns test order "by_comment_voter" only voter
+
+marks:
+  - patterntest
+  - xfail # wrong output, shows first post votes
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_votes_by_comment_voter
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_votes"
+        params:
+          {
+            "start": ["", "", "winstonwolfe"],
+            "limit": 10,
+            "order": "by_comment_voter",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_votes_by_comment_voter_only_voter"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_votes patterns test order "by_comment_voter" all good data
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_votes_by_comment_voter
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_votes"
+        params:
+          {
+            "start": ["roelandp", "tldr-an-exploration-in-steem-botting-what-i-learned-since-it-s-inception-and-downfall-over-the-course-of-20-hours", "winstonwolfe"],
+            "limit": 10,
+            "order": "by_comment_voter",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_votes_by_comment_voter_all_good_data"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_votes patterns test order "by_comment_voter" one before last voter
+
+marks:
+  - patterntest
+  - xfail # only first is correct, rest is random
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_votes_by_comment_voter
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_votes"
+        params:
+          {
+            "start": ["roelandp", "tldr-an-exploration-in-steem-botting-what-i-learned-since-it-s-inception-and-downfall-over-the-course-of-20-hours", "pickoum"],
+            "limit": 10,
+            "order": "by_comment_voter",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_votes_by_comment_voter_one_before_last"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_votes patterns test order "by_comment_voter" author
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_votes_by_comment_voter
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_votes"
+        params:
+          {
+            "start": ["roelandp", "", ""],
+            "limit": 10,
+            "order": "by_comment_voter",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_error_message
+        extra_kwargs:
+          message: "Assert Exception:comment != nullptr: Could not find comment roelandp/."
+
+---
+test_name: Hivemind database_api.list_votes patterns test order "by_comment_voter" permlink
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_votes_by_comment_voter
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_votes"
+        params:
+          {
+            "start": ["", "re-roelandp-tldr-an-exploration-in-steem-botting-what-i-learned-since-it-s-inception-and-downfall-over-the-course-of-20-hours-20160825t212252221z", ""],
+            "limit": 10,
+            "order": "by_comment_voter",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_error_message
+        extra_kwargs:
+          message: "Assert Exception:comment != nullptr: Could not find comment /re-roelandp-tldr-an-exploration-in-steem-botting-what-i-learned-since-it-s-inception-and-downfall-over-the-course-of-20-hours-20160825t212252221z."
+
+#######################  VOTER COMMENT  ######################
+---
+test_name: Hivemind database_api.list_votes patterns test order "by_voter_comment" no data
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_votes_by_voter_comment
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_votes"
+        params:
+          {
+            "start": ["", "", ""],
+            "limit": 10,
+            "order": "by_voter_comment",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_votes_by_voter_comment_no_data"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_votes patterns test order "by_voter_comment" voter
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_votes_by_voter_comment
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_votes"
+        params:
+          {
+            "start": ["bunny", "", ""],
+            "limit": 10,
+            "order": "by_voter_comment",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_votes_by_voter_comment_voter"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_votes patterns test order "by_voter_comment" author
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_votes_by_voter_comment
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_votes"
+        params:
+          {
+            "start": ["", "roelandp", ""],
+            "limit": 10,
+            "order": "by_voter_comment",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_error_message
+        extra_kwargs:
+          message: "Assert Exception:comment != nullptr: Could not find comment roelandp/."
+
+---
+test_name: Hivemind database_api.list_votes patterns test order "by_voter_comment" permlink
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_votes_by_voter_comment
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_votes"
+        params:
+          {
+            "start": ["", "", "tldr-an-exploration-in-steem-botting-what-i-learned-since-it-s-inception-and-downfall-over-the-course-of-20-hours"],
+            "limit": 10,
+            "order": "by_voter_comment",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_error_message
+        extra_kwargs:
+          message: "Assert Exception:comment != nullptr: Could not find comment /tldr-an-exploration-in-steem-botting-what-i-learned-since-it-s-inception-and-downfall-over-the-course-of-20-hours."
+
+---
+test_name: Hivemind database_api.list_votes patterns test order "by_voter_comment" author + permlink
+
+marks:
+  - patterntest
+  - xfail # show "voter": "nxt2" votes, not connected with author and permlink (like no data)
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_votes_by_voter_comment
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_votes"
+        params:
+          {
+            "start": ["", "roelandp", "tldr-an-exploration-in-steem-botting-what-i-learned-since-it-s-inception-and-downfall-over-the-course-of-20-hours"],
+            "limit": 10,
+            "order": "by_voter_comment",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_votes_by_voter_comment_author_permlink"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_votes patterns test order "by_voter_comment" author + not full permlink
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_votes_by_voter_comment
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_votes"
+        params:
+          {
+            "start": ["", "roelandp", "tldr-an-exploration-in-st"],
+            "limit": 10,
+            "order": "by_voter_comment",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_error_message
+        extra_kwargs:
+          message: "Assert Exception:comment != nullptr: Could not find comment roelandp/tldr-an-exploration-in-st."
+
+---
+test_name: Hivemind database_api.list_votes patterns test order wrong order
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_votes_by_voter_comment
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_votes"
+        params:
+          {
+            "start": ["", "roelandp", "tldr-an-exploration-in-st"],
+            "limit": 10,
+            "order": "by_author",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_error_message
+        extra_kwargs:
+          message: "Bad Cast:invalid name 'by_author' in enum 'steem::plugins::database_api::sort_order_type'"
+
+########################  FIND VOTES  ########################
+
+---
+test_name: Hivemind database_api.find_votes patterns test all data 
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: find_votes
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.find_votes"
+        params:
+          {
+            "author": "kental",
+            "permlink": "hi-steem-my-russian-trip-on-the-bike-big-party-in-moscow-tour-of-moscow-by-slava",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "find_votes_all_data"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.find_votes patterns test no data 
+
+marks:
+  - patterntest
+  - failed  # on API docs it "shows" {
+            #   "votes": [
+            #     {
+            #       "id": 0,
+            #       "voter": "",
+            #       "author": "",
+            #       "permlink": "",
+            #       "weight": "0",
+            #       "rshares": 0,
+            #       "vote_percent": 0,
+            #       "last_update": "2016-04-07T19:15:36",
+            #       "num_changes": -1
+            #     }
+            #   ]
+            # }
+  - xfail
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: find_votes
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.find_votes"
+        params:
+          {
+            "author": "",
+            "permlink": "",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_error_message
+        extra_kwargs:
+          message: "Assert Exception:comment != nullptr: Could not find comment /"
+
+---
+test_name: Hivemind database_api.find_votes patterns test author 
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: find_votes
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.find_votes"
+        params:
+          {
+            "author": "kental",
+            "permlink": "",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_error_message
+        extra_kwargs:
+          message: "Assert Exception:comment != nullptr: Could not find comment kental/"
+
+---
+test_name: Hivemind database_api.find_votes patterns test permlink
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: find_votes
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.find_votes"
+        params:
+          {
+            "author": "",
+            "permlink": "hi-steem-my-russian-trip-on-the-bike-big-party-in-moscow-tour-of-moscow-by-slava",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_error_message
+        extra_kwargs:
+          message: "Assert Exception:comment != nullptr: Could not find comment /hi-steem-my-russian-trip-on-the-bike-big-party-in-moscow-tour-of-moscow-by-slava"
+
+---
+test_name: Hivemind database_api.find_votes patterns test no data 
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: find_votes
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.find_votes"
+        params:
+          {
+            "author": "hiveio",
+            "permlink": "firstpost",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_error_message
+        extra_kwargs:
+          message: "Assert Exception:comment != nullptr: Could not find comment hiveio/firstpost"
+
+########################  FIND COMMENTS  ########################
+# commments instead of start
+---
+test_name: Hivemind database_api.find_comments patterns test no data 
+
+marks:
+  - patterntest # wrong example of calling this function (no limit and order, comments instead of start) 
+  - failed
+  - xfail
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: find_comments
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.find_comments"
+        params:
+          {
+            "start":[["", ""]],
+            "limit": 0,
+            "order": "",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "find_comments_no_data"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.find_comments patterns test all data
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: find_comments
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.find_comments"
+        params:
+          {
+            "comments": [["magicmonk","hello-steemit-my-name-s-eddie-a-k-a-the-magic-monk-i-am-a-youtuber-and-a-high-school-teacher-let-the-writing-begin"]],
+            "limit": 0,
+            "order": "",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "find_comments_all_data"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.find_comments patterns test author
+
+marks:
+  - patterntest # why there is empty response?
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: find_comments
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.find_comments"
+        params:
+          {
+            "comments": [["magicmonk",""]],
+            "limit": 0,
+            "order": "",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "find_comments_no_data"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.find_comments patterns test permlink
+
+marks:
+  - patterntest # why there is empty response?
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: find_comments
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.find_comments"
+        params:
+          {
+            "comments": [["","hello-steemit-my-name-s-eddie-a-k-a-the-magic-monk-i-am-a-youtuber-and-a-high-school-teacher-let-the-writing-begin"]],
+            "limit": 0,
+            "order": "",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "find_comments_no_data"
+          directory: "database_api_patterns"
+
