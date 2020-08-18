@@ -697,3 +697,429 @@
           extra_kwargs:
             method: "get_active_votes"
             directory: "condenser_api_patterns"
+
+---
+  test_name: Hivemind condenser_api.get_active_votes patterns test all data
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_active_votes
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "condenser_api.get_active_votes"
+          params: ["noodhoog","steem-opening-the-forgotten-economy"]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_active_votes_all_data"
+            directory: "condenser_api_patterns"
+
+---
+  test_name: Hivemind condenser_api.get_active_votes patterns test no data
+
+  marks:
+    - patterntest # required values
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_active_votes
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "condenser_api.get_active_votes"
+          params: ["",""]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_error_message
+          extra_kwargs:
+            message: "unknown key:unknown key: "
+
+---
+  test_name: Hivemind condenser_api.get_active_votes patterns test author
+
+  marks:
+    - patterntest # required values
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_active_votes
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "condenser_api.get_active_votes"
+          params: ["noodhoog",""]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_error_message
+          extra_kwargs:
+            message: "unknown key:unknown key: "
+
+---
+  test_name: Hivemind condenser_api.get_active_votes patterns test empty votes
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_active_votes
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "condenser_api.get_active_votes"
+          params: ["lillianjones","re-the-amazing-mr-hydde-20160811t213717"]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_active_votes_no_votes"
+            directory: "condenser_api_patterns"
+
+
+---
+  test_name: Hivemind condenser_api.get_active_votes patterns test wrong author
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_active_votes
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "condenser_api.get_active_votes"
+          params: ["ciao","re-the-amazing-mr-hydde-20160811t213717"]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_error_message
+          extra_kwargs:
+            message: "unknown key:unknown key: "
+
+---
+  test_name: Hivemind condenser_api.get_active_votes patterns test 3 args
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_active_votes
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "condenser_api.get_active_votes"
+          params: ["ciao", "re-the-amazing-mr-hydde-20160811t213650", ""]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_error_message
+          extra_kwargs:
+            message: "Assert Exception:args.size() == 2: Expected #s argument(s), was 3"
+
+---
+  test_name: Hivemind condenser_api.get_accounts patterns test no data
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_accounts
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "condenser_api.get_accounts"
+          params: [[]]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_active_votes_no_votes"
+            directory: "condenser_api_patterns"
+
+---
+  test_name: Hivemind condenser_api.get_accounts patterns test one
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_accounts
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "condenser_api.get_accounts"
+          params: [["camilla"]]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_active_votes_one"
+            directory: "condenser_api_patterns"
+
+---
+  test_name: Hivemind condenser_api.get_accounts patterns test two
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_accounts
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "condenser_api.get_accounts"
+          params: [["camilla", "ryan-singer"]]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_active_votes_two"
+            directory: "condenser_api_patterns"
+
+---
+  test_name: Hivemind condenser_api.get_accounts patterns test double
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_accounts
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "condenser_api.get_accounts"
+          params: [["camilla", "ryan-singer", "camilla"]]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_active_votes_double"
+            directory: "condenser_api_patterns"
+
+---
+  test_name: Hivemind condenser_api.get_accounts patterns test much
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_accounts
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "condenser_api.get_accounts"
+          params: [["camilla", "ryan-singer","miners", "temp", "initminer","nxt1", "dark", "nxt2","nxt", "dantheman5", "any","nxt3", "nxt4", "cloop2","dantheman1", "dantheman6", "thisisnice","root", "thisisnice0", "dantheman2","nxt5","dantheman7","thisisnice2","dantheman8","nxt6","dantheman3","cloop3","nxt7","thisisnice3","nxt8","dantheman4","thisisnice4","steemit10","thisisnice5","dantheman9","nxt9","steemit11","thisisnice6"]]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_active_votes_much"
+            directory: "condenser_api_patterns"
+
+---
+  test_name: Hivemind condenser_api.get_accounts patterns test wrong name
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_accounts
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "condenser_api.get_accounts"
+          params: [["the6"]]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_active_votes_no_votes"
+            directory: "condenser_api_patterns"
+
+---
+  test_name: Hivemind condenser_api.get_reblogged_by patterns test 8080
+
+  marks:
+    - patterntest 
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_reblogged_by
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "condenser_api.get_reblogged_by"
+          params: ["", ""]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_error_message
+          extra_kwargs:
+            message: "Invalid parameters"
+ 
+---
+  test_name: Hivemind condenser_api.get_reblogged_by patterns test 8080
+
+  marks:
+    - patterntest 
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_reblogged_by
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "condenser_api.get_reblogged_by"
+          params: ["camilla", "a-quick-steem-elf-drawing", "aa"]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_error_message
+          extra_kwargs:
+            message: "Invalid parameters"
+
+---
+  test_name: Hivemind condenser_api.get_reblogged_by patterns test 8080
+
+  marks:
+    - patterntest 
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_reblogged_by
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "condenser_api.get_reblogged_by"
+          params: ["camilla", "a-quick-steem-elf-drawing", "aa"]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_error_message
+          extra_kwargs:
+            message: "Invalid parameters"
