@@ -1,0 +1,6 @@
+{
+      "code": -32000,
+      "message": "Server error",
+      "data": "ValueError: list.remove(x): x not in list"
+
+}
