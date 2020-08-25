@@ -1181,9 +1181,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "account not found: `wyuh`"
+            method: "list_all_subscriptions_account_not_found"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.list_all_subscriptions patterns test wrong account
@@ -1209,9 +1211,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "no account name specified"
+            method: "list_all_subscriptions_no_account_specified"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.list_all_subscriptions patterns test wrong account
@@ -1237,9 +1241,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "'account' parameter lacking default value"
+            method: "list_all_subscriptions_account_lacking_value"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.list_all_subscriptions patterns test
@@ -1293,39 +1299,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "'community' parameter lacking default value"
-
----
-  test_name: Hivemind bridge_api.list_subscribers patterns test # not documented 
-  # failed - tavern response: []
-
-  marks:
-    - patterntest
-    - xfail
-
-  includes:
-    - !include common.yaml
-
-  stages:
-    - name: list_subscribers
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "bridge.list_subscribers"
-          params: ['789']
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_error_data
-          extra_kwargs:
-            data: "Expecting value: line 4 column 13 (char 71)"
+            method: "list_subscribers_wrong_account_community_lacking_value"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.list_subscribers patterns test # not documented
@@ -1350,9 +1328,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "UndefinedFunction: operator does not exist: character varying = integer\nLINE 1: SELECT id FROM hive_communities WHERE name = 789\n                                                   ^\nHINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.\n"
+            method: "list_subscribers_undefined_operator"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.list_subscribers patterns test # not documented
@@ -1435,9 +1415,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "limit must be positive"
+            method: "get_payout_stats_negative_limit"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.get_payout_stats patterns test 10
@@ -1463,9 +1445,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "too many positional arguments"
+            method: "get_payout_stats_too_many_positional_arguments"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.get_payout_stats patterns test 10
@@ -1491,9 +1475,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "ValueError: invalid literal for int() with base 10: ''"
+            method: "get_payout_stats_invalid_literal"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.post_notifications patterns test
@@ -1519,9 +1505,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "InvalidTextRepresentation: invalid input syntax for integer: \"\"\nLINE 11:             AND score >= ''\n                                  ^\n"
+            method: "post_notifications_invalid_text_representation"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.post_notifications patterns test
@@ -1548,9 +1536,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "post id not found"
+            method: "post_notifications_post_id_not_found"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.post_notifications patterns test
@@ -1576,9 +1566,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "'permlink' parameter lacking default value"
+            method: "post_notifications_permlink_lacking_value"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.list_pop_communities patterns test # 8080
@@ -1607,9 +1599,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "ValueError: invalid literal for int() with base 10: 'steemit'"
+            method: "list_pop_communities_invalid_literal_steemit"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.list_pop_communities patterns test # 8080 023
@@ -1635,9 +1629,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "ValueError: invalid literal for int() with base 10: ''"
+            method: "list_pop_communities_invalid_literal"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.list_pop_communities patterns test # 8080
@@ -1663,9 +1659,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "too many positional arguments"
+            method: "list_pop_communities_too_many_positional_arguments"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.list_pop_communities patterns test # 8080
@@ -1691,9 +1689,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "limit exceeds max (77 > 25)"
+            method: "list_pop_communities_over_limit"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.list_pop_communities patterns test # 8080
@@ -1719,10 +1719,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "InvalidRequestError: A value is required for bind parameter 'cutoff' (Background on this error at: http://sqlalche.me/e/13/cd3x)"
-
+            method: "list_pop_communities_invalid_request_error"
+            directory: "bridge_api_patterns"
+            error_response: true
 ---
   test_name: Hivemind bridge_api.get_community_context patterns test # 8080
     # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
@@ -1749,9 +1750,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "community not found"
+            method: "get_community_context_community_not_found"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.get_relationship_between_accounts patterns test # 8080
@@ -1867,9 +1870,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "'account2' parameter lacking default value"
+            method: "get_relationship_between_accounts_account2_lacking_value"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.get_relationship_between_accounts patterns test # 8080
@@ -1895,9 +1900,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "'account1' parameter lacking default value"
+            method: "get_relationship_between_accounts_account1_lacking_value"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.get_relationship_between_accounts patterns test # 8080
@@ -1954,9 +1961,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "invalid account (not specified)"
+            method: "get_relationship_between_accounts_not_specified_accounts"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.get_relationship_between_accounts patterns test # 8080
@@ -1982,9 +1991,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "invalid account (not specified)"
+            method: "get_relationship_between_accounts_not_specified_account2"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.get_relationship_between_accounts patterns test # 8080
@@ -2066,9 +2077,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "invalid account name type"
+            method: "get_profile_invalid_account_name_type"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.get_profile patterns test
@@ -2094,9 +2107,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "'account' parameter lacking default value"
+            method: "get_profile_account_lacking_value"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.get_trending_topics patterns over limit test
@@ -2122,9 +2137,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_data
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            data: "limit must be positive"
+            method: "get_trending_topics_negative_limit"
+            directory: "bridge_api_patterns"
+            error_response: true
 
 ---
   test_name: Hivemind bridge_api.get_relationship_between_accounts follows patterns test

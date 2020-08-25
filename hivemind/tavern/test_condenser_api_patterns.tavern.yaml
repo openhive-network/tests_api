@@ -1912,9 +1912,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_message
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            message: "unknown key:unknown key: "
+            method: "get_active_votes_unknown_key"
+            directory: "condenser_api_patterns"
+            error_response: true"
 
 ---
   test_name: Hivemind condenser_api.get_active_votes patterns test author 33091
@@ -1940,9 +1942,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_message
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            message: "unknown key:unknown key: "
+            method: "get_active_votes_unknown_key2"
+            directory: "condenser_api_patterns"
+            error_response: true"
 
 ---
   test_name: Hivemind condenser_api.get_active_votes patterns test empty votes 33091
@@ -1998,9 +2002,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_message
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            message: "unknown key:unknown key: "
+            method: "get_active_votes_unknown_key3"
+            directory: "condenser_api_patterns"
+            error_response: true"
 
 ---
   test_name: Hivemind condenser_api.get_active_votes patterns test 3 args 33091
@@ -2026,9 +2032,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_message
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            message: "Assert Exception:args.size() == 2: Expected #s argument(s), was 3"
+            method: "get_active_votes_3_arguments"
+            directory: "condenser_api_patterns"
+            error_response: true"
 
 ---
   test_name: Hivemind condenser_api.get_accounts patterns test no data 33091
@@ -2225,9 +2233,11 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_message
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            message: "Invalid parameters"
+            method: "get_reblogged_by_invalid_empty_parameters"
+            directory: "condenser_api_patterns"
+            error_response: true"
  
 ---
   test_name: Hivemind condenser_api.get_reblogged_by patterns test 8080
@@ -2253,34 +2263,8 @@
       response:
         status_code: 200
         verify_response_with:
-          function: validate_response:compare_error_message
+          function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            message: "Invalid parameters"
-
----
-  test_name: Hivemind condenser_api.get_reblogged_by patterns test 8080
-
-  marks:
-    - patterntest 
-
-  includes:
-    - !include common.yaml
-
-  stages:
-    - name: get_reblogged_by
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "condenser_api.get_reblogged_by"
-          params: ["camilla", "a-quick-steem-elf-drawing", "aa"]
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_error_message
-          extra_kwargs:
-            message: "Invalid parameters"
+            method: "get_reblogged_by_invalid_parameters"
+            directory: "condenser_api_patterns"
+            error_response: true"

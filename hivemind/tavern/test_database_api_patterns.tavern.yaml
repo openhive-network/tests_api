@@ -1781,9 +1781,12 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_error_message
+        function: validate_response:compare_response_with_pattern
         extra_kwargs:
-          message: "Assert Exception:comment != nullptr: Could not find comment roelandp/."
+          method: "list_votes_comment_not_found"
+          directory: "database_api_patterns"
+          error_response: true
+          ignore_tags: ["timestamp"]
 
 ---
 test_name: Hivemind database_api.list_votes patterns test order "by_comment_voter" permlink
@@ -1814,9 +1817,12 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_error_message
+        function: validate_response:compare_response_with_pattern
         extra_kwargs:
-          message: "Assert Exception:comment != nullptr: Could not find comment /re-roelandp-tldr-an-exploration-in-steem-botting-what-i-learned-since-it-s-inception-and-downfall-over-the-course-of-20-hours-20160825t212252221z."
+          method: "list_votes_permlink_not_found"
+          directory: "database_api_patterns"
+          error_response: true
+          ignore_tags: ["timestamp"]
 
 #######################  VOTER COMMENT  ######################
 ---
@@ -1916,9 +1922,12 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_error_message
+        function: validate_response:compare_response_with_pattern
         extra_kwargs:
-          message: "Assert Exception:comment != nullptr: Could not find comment roelandp/."
+          method: "list_votes_comment_not_found2"
+          directory: "database_api_patterns"
+          error_response: true
+          ignore_tags: ["timestamp"]
 
 ---
 test_name: Hivemind database_api.list_votes patterns test order "by_voter_comment" permlink
@@ -1949,10 +1958,12 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_error_message
+        function: validate_response:compare_response_with_pattern
         extra_kwargs:
-          message: "Assert Exception:comment != nullptr: Could not find comment /tldr-an-exploration-in-steem-botting-what-i-learned-since-it-s-inception-and-downfall-over-the-course-of-20-hours."
-
+          method: "list_votes_comment_not_found3"
+          directory: "database_api_patterns"
+          error_response: true
+          ignore_tags: ["timestamp"]
 ---
 test_name: Hivemind database_api.list_votes patterns test order "by_voter_comment" author + permlink
 
@@ -2017,10 +2028,12 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_error_message
+        function: validate_response:compare_response_with_pattern
         extra_kwargs:
-          message: "Assert Exception:comment != nullptr: Could not find comment roelandp/tldr-an-exploration-in-st."
-
+          method: "list_votes_comment_not_found4"
+          directory: "database_api_patterns"
+          error_response: true
+          ignore_tags: ["timestamp"]
 ---
 test_name: Hivemind database_api.list_votes patterns test order wrong order
 
@@ -2050,9 +2063,12 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_error_message
+        function: validate_response:compare_response_with_pattern
         extra_kwargs:
-          message: "Bad Cast:invalid name 'by_author' in enum 'steem::plugins::database_api::sort_order_type'"
+          method: "list_votes_invalid_name_by_author"
+          directory: "database_api_patterns"
+          error_response: true
+          ignore_tags: ["timestamp"]
 
 ########################  FIND VOTES  ########################
 
@@ -2133,9 +2149,12 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_error_message
+        function: validate_response:compare_response_with_pattern
         extra_kwargs:
-          message: "Assert Exception:comment != nullptr: Could not find comment /"
+          method: "find_votes_comment_not_found"
+          directory: "database_api_patterns"
+          error_response: true
+          ignore_tags: ["timestamp"]
 
 ---
 test_name: Hivemind database_api.find_votes patterns test author 
@@ -2165,9 +2184,12 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_error_message
+        function: validate_response:compare_response_with_pattern
         extra_kwargs:
-          message: "Assert Exception:comment != nullptr: Could not find comment kental/"
+          method: "find_votes_comment_not_found2"
+          directory: "database_api_patterns"
+          error_response: true
+          ignore_tags: ["timestamp"]
 
 ---
 test_name: Hivemind database_api.find_votes patterns test permlink
@@ -2197,10 +2219,12 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_error_message
+        function: validate_response:compare_response_with_pattern
         extra_kwargs:
-          message: "Assert Exception:comment != nullptr: Could not find comment /hi-steem-my-russian-trip-on-the-bike-big-party-in-moscow-tour-of-moscow-by-slava"
-
+          method: "find_votes_comment_not_found_by_permlink"
+          directory: "database_api_patterns"
+          error_response: true
+          ignore_tags: ["timestamp"]
 ---
 test_name: Hivemind database_api.find_votes patterns test no data 
 
@@ -2229,9 +2253,12 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_error_message
+        function: validate_response:compare_response_with_pattern
         extra_kwargs:
-          message: "Assert Exception:comment != nullptr: Could not find comment hiveio/firstpost"
+          method: "find_votes_comment_not_found_hiveio_firstpost"
+          directory: "database_api_patterns"
+          error_response: true
+          ignore_tags: ["timestamp"]
 
 ########################  FIND COMMENTS  ########################
 # commments instead of start
