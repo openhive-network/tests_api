@@ -316,3 +316,91 @@
           extra_kwargs:
             method: "get_comment_discussions_by_payout"
             directory: "tags_api_patterns"
+
+
+---
+  test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test no data
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_comment_discussions_by_payout
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_comment_discussions_by_payout"
+          params: [] # start_author: str = '', start_permlink: str = '',limit: int = 20
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_comment_discussions_by_payout_no_data"
+            directory: "tags_api_patterns"
+            
+---
+  test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test no data error
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_comment_discussions_by_payout
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_comment_discussions_by_payout"
+          params: ["", "", ""]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_comment_discussions_by_payout_no_data_error"
+            directory: "tags_api_patterns"
+
+---
+  test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test author
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_comment_discussions_by_payout
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_comment_discussions_by_payout"
+          params: ["", "", ""]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_comment_discussions_by_payout_author"
+            directory: "tags_api_patterns"
