@@ -76,8 +76,15 @@ def compare_response_with_pattern(response, method=None, directory=None, ignore_
     msg = "Differences detected between response and pattern. Diff saved to {}\n\nDiff:\n{}".format(fname, pattern_resp_diff)
     raise PatternDiffException(msg)
 
-def compare_error_message(response, message):
+def compare_error_message(response, message, data=None):
   response_json = response.json()
   error = response_json.get("error", None)
-  if error['message'] != message:
-    raise PatternDiffException('error message not equal, expected: "' + message + '" given: "' + error['message'] + '"')
+  assert error is not None, "No error key in response"
+  error_message = error.get('message', None)
+  assert error_message is not None, "No message key in error"
+  assert error_message == message, 'error message not equal, expected: "' + message + '" given: "' + error_message + '"'
+  if data is not None:
+    error_data = error.get('data', None)
+    assert error_data is not None, "No data key in error"
+    assert error_data == data, 'error data are not equal, expected: "' + data + '" given: "' + error_data + '"'
+
