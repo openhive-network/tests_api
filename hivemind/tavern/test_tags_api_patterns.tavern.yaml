@@ -1,322 +1,321 @@
----
-  test_name: Hivemind tags_api.get_discussion patterns test
+# ---
+#   test_name: Hivemind tags_api.get_discussion patterns test
 
-  marks:
-    - patterntest
+#   marks:
+#     - patterntest
 
-  includes:
-    - !include common.yaml
+#   includes:
+#     - !include common.yaml
 
-  stages:
-    - name: get_discussion
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "tags_api.get_discussion"
-          params: {"author":"steemit", "permlink":"firstpost"}
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "get_discussion"
-            directory: "tags_api_patterns"
+#   stages:
+#     - name: get_discussion
+#       request:
+#         url: "{service.proto:s}://{service.server:s}:{service.port}/"
+#         method: POST
+#         headers:
+#           content-type: application/json
+#         json:
+#           jsonrpc: "2.0"
+#           id: 1
+#           method: "tags_api.get_discussion"
+#           params: {"author":"steemit", "permlink":"firstpost"}
+#       response:
+#         status_code: 200
+#         verify_response_with:
+#           function: validate_response:compare_response_with_pattern
+#           extra_kwargs:
+#             method: "get_discussion"
+#             directory: "tags_api_patterns"
 
----
-  test_name: Hivemind tags_api.get_content_replies patterns test
+# ---
+#   test_name: Hivemind tags_api.get_content_replies patterns test
 
-  marks:
-    - patterntest
+#   marks:
+#     - patterntest
 
-  includes:
-    - !include common.yaml
+#   includes:
+#     - !include common.yaml
 
-  stages:
-    - name: get_content_replies
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "tags_api.get_content_replies"
-          params: {"author":"admin", "permlink":"firstpost"}
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "get_content_replies"
-            directory: "tags_api_patterns"
+#   stages:
+#     - name: get_content_replies
+#       request:
+#         url: "{service.proto:s}://{service.server:s}:{service.port}/"
+#         method: POST
+#         headers:
+#           content-type: application/json
+#         json:
+#           jsonrpc: "2.0"
+#           id: 1
+#           method: "tags_api.get_content_replies"
+#           params: {"author":"admin", "permlink":"firstpost"}
+#       response:
+#         status_code: 200
+#         verify_response_with:
+#           function: validate_response:compare_response_with_pattern
+#           extra_kwargs:
+#             method: "get_content_replies"
+#             directory: "tags_api_patterns"
 
----
-  test_name: Hivemind tags_api.get_discussions_by_trending patterns test
+# ---
+#   test_name: Hivemind tags_api.get_discussions_by_trending patterns test
 
-  marks:
-    - patterntest
+#   marks:
+#     - patterntest
 
-  includes:
-    - !include common.yaml
+#   includes:
+#     - !include common.yaml
 
-  stages:
-    - name: get_discussions_by_trending
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "tags_api.get_discussions_by_trending"
-          params: {"tag":"polska","limit":1}
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "get_discussions_by_trending"
-            directory: "tags_api_patterns"
+#   stages:
+#     - name: get_discussions_by_trending
+#       request:
+#         url: "{service.proto:s}://{service.server:s}:{service.port}/"
+#         method: POST
+#         headers:
+#           content-type: application/json
+#         json:
+#           jsonrpc: "2.0"
+#           id: 1
+#           method: "tags_api.get_discussions_by_trending"
+#           params: {"tag":"polska","limit":1}
+#       response:
+#         status_code: 200
+#         verify_response_with:
+#           function: validate_response:compare_response_with_pattern
+#           extra_kwargs:
+#             method: "get_discussions_by_trending"
+#             directory: "tags_api_patterns"
 
----
-  test_name: Hivemind tags_api.get_discussions_by_hot patterns test
+# ---
+#   test_name: Hivemind tags_api.get_discussions_by_hot patterns test
 
-  marks:
-    - patterntest
+#   marks:
+#     - patterntest
 
-  includes:
-    - !include common.yaml
+#   includes:
+#     - !include common.yaml
 
-  stages:
-    - name: get_discussions_by_hot
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "tags_api.get_discussions_by_hot"
-          params: {"tag":"polska","limit":1}
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "get_discussions_by_hot"
-            directory: "tags_api_patterns"
+#   stages:
+#     - name: get_discussions_by_hot
+#       request:
+#         url: "{service.proto:s}://{service.server:s}:{service.port}/"
+#         method: POST
+#         headers:
+#           content-type: application/json
+#         json:
+#           jsonrpc: "2.0"
+#           id: 1
+#           method: "tags_api.get_discussions_by_hot"
+#           params: {"tag":"polska","limit":1}
+#       response:
+#         status_code: 200
+#         verify_response_with:
+#           function: validate_response:compare_response_with_pattern
+#           extra_kwargs:
+#             method: "get_discussions_by_hot"
+#             directory: "tags_api_patterns"
 
----
-  test_name: Hivemind tags_api.get_discussions_by_promoted patterns test
+# ---
+#   test_name: Hivemind tags_api.get_discussions_by_promoted patterns test
 
-  marks:
-    - patterntest
+#   marks:
+#     - patterntest
 
-  includes:
-    - !include common.yaml
+#   includes:
+#     - !include common.yaml
 
-  stages:
-    - name: get_discussions_by_promoted
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "tags_api.get_discussions_by_promoted"
-          params: {"tag":"steem","limit":1}
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "get_discussions_by_promoted"
-            directory: "tags_api_patterns"
+#   stages:
+#     - name: get_discussions_by_promoted
+#       request:
+#         url: "{service.proto:s}://{service.server:s}:{service.port}/"
+#         method: POST
+#         headers:
+#           content-type: application/json
+#         json:
+#           jsonrpc: "2.0"
+#           id: 1
+#           method: "tags_api.get_discussions_by_promoted"
+#           params: {"tag":"steem","limit":1}
+#       response:
+#         status_code: 200
+#         verify_response_with:
+#           function: validate_response:compare_response_with_pattern
+#           extra_kwargs:
+#             method: "get_discussions_by_promoted"
+#             directory: "tags_api_patterns"
 
----
-  test_name: Hivemind tags_api.get_discussions_by_created patterns test
+# ---
+#   test_name: Hivemind tags_api.get_discussions_by_created patterns test
 
-  marks:
-    - patterntest
+#   marks:
+#     - patterntest
 
-  includes:
-    - !include common.yaml
+#   includes:
+#     - !include common.yaml
 
-  stages:
-    - name: get_discussions_by_created
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "tags_api.get_discussions_by_created"
-          params: {"tag":"polska","limit":1}
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "get_discussions_by_created"
-            directory: "tags_api_patterns"
+#   stages:
+#     - name: get_discussions_by_created
+#       request:
+#         url: "{service.proto:s}://{service.server:s}:{service.port}/"
+#         method: POST
+#         headers:
+#           content-type: application/json
+#         json:
+#           jsonrpc: "2.0"
+#           id: 1
+#           method: "tags_api.get_discussions_by_created"
+#           params: {"tag":"polska","limit":1}
+#       response:
+#         status_code: 200
+#         verify_response_with:
+#           function: validate_response:compare_response_with_pattern
+#           extra_kwargs:
+#             method: "get_discussions_by_created"
+#             directory: "tags_api_patterns"
 
----
-  test_name: Hivemind tags_api.get_discussions_by_blog patterns test
+# ---
+#   test_name: Hivemind tags_api.get_discussions_by_blog patterns test
 
-  marks:
-    - patterntest
+#   marks:
+#     - patterntest
 
-  includes:
-    - !include common.yaml
+#   includes:
+#     - !include common.yaml
 
-  stages:
-    - name: get_discussions_by_blog
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "tags_api.get_discussions_by_blog"
-          params: {"tag":"steemit","limit":1}
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "get_discussions_by_blog"
-            directory: "tags_api_patterns"
+#   stages:
+#     - name: get_discussions_by_blog
+#       request:
+#         url: "{service.proto:s}://{service.server:s}:{service.port}/"
+#         method: POST
+#         headers:
+#           content-type: application/json
+#         json:
+#           jsonrpc: "2.0"
+#           id: 1
+#           method: "tags_api.get_discussions_by_blog"
+#           params: {"tag":"steemit","limit":1}
+#       response:
+#         status_code: 200
+#         verify_response_with:
+#           function: validate_response:compare_response_with_pattern
+#           extra_kwargs:
+#             method: "get_discussions_by_blog"
+#             directory: "tags_api_patterns"
 
----
-  test_name: Hivemind tags_api.get_discussions_by_comments patterns test
+# ---
+#   test_name: Hivemind tags_api.get_discussions_by_comments patterns test
 
-  marks:
-    - patterntest
+#   marks:
+#     - patterntest
 
-  includes:
-    - !include common.yaml
+#   includes:
+#     - !include common.yaml
 
-  stages:
-    - name: get_discussions_by_comments
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "tags_api.get_discussions_by_comments"
-          params: {"start_author":"admin","start_permlink":"firstpost","limit":1}
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "get_discussions_by_comments"
-            directory: "tags_api_patterns"
+#   stages:
+#     - name: get_discussions_by_comments
+#       request:
+#         url: "{service.proto:s}://{service.server:s}:{service.port}/"
+#         method: POST
+#         headers:
+#           content-type: application/json
+#         json:
+#           jsonrpc: "2.0"
+#           id: 1
+#           method: "tags_api.get_discussions_by_comments"
+#           params: {"start_author":"admin","start_permlink":"firstpost","limit":1}
+#       response:
+#         status_code: 200
+#         verify_response_with:
+#           function: validate_response:compare_response_with_pattern
+#           extra_kwargs:
+#             method: "get_discussions_by_comments"
+#             directory: "tags_api_patterns"
 
----
-  test_name: Hivemind tags_api.get_discussions_by_author_before_date patterns test
+# ---
+#   test_name: Hivemind tags_api.get_discussions_by_author_before_date patterns test
 
-  marks:
-    - patterntest
+#   marks:
+#     - patterntest
 
-  includes:
-    - !include common.yaml
+#   includes:
+#     - !include common.yaml
 
-  stages:
-    - name: get_discussions_by_author_before_date
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "tags_api.get_discussions_by_author_before_date"
-          params: {"author":"steemit","start_permlink":"firstpost","before_date":"2016-04-19T22:49:43","limit":1}
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "get_discussions_by_author_before_date"
-            directory: "tags_api_patterns"
+#   stages:
+#     - name: get_discussions_by_author_before_date
+#       request:
+#         url: "{service.proto:s}://{service.server:s}:{service.port}/"
+#         method: POST
+#         headers:
+#           content-type: application/json
+#         json:
+#           jsonrpc: "2.0"
+#           id: 1
+#           method: "tags_api.get_discussions_by_author_before_date"
+#           params: {"author":"steemit","start_permlink":"firstpost","before_date":"2016-04-19T22:49:43","limit":1}
+#       response:
+#         status_code: 200
+#         verify_response_with:
+#           function: validate_response:compare_response_with_pattern
+#           extra_kwargs:
+#             method: "get_discussions_by_author_before_date"
+#             directory: "tags_api_patterns"
 
----
-  test_name: Hivemind tags_api.get_post_discussions_by_payout patterns test
+# ---
+#   test_name: Hivemind tags_api.get_post_discussions_by_payout patterns test
 
-  marks:
-    - patterntest
+#   marks:
+#     - patterntest
 
-  includes:
-    - !include common.yaml
+#   includes:
+#     - !include common.yaml
 
-  stages:
-    - name: get_post_discussions_by_payout
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "tags_api.get_post_discussions_by_payout"
-          params: {"tag":"polska","limit":1}
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "get_post_discussions_by_payout"
-            directory: "tags_api_patterns"
+#   stages:
+#     - name: get_post_discussions_by_payout
+#       request:
+#         url: "{service.proto:s}://{service.server:s}:{service.port}/"
+#         method: POST
+#         headers:
+#           content-type: application/json
+#         json:
+#           jsonrpc: "2.0"
+#           id: 1
+#           method: "tags_api.get_post_discussions_by_payout"
+#           params: {"tag":"polska","limit":1}
+#       response:
+#         status_code: 200
+#         verify_response_with:
+#           function: validate_response:compare_response_with_pattern
+#           extra_kwargs:
+#             method: "get_post_discussions_by_payout"
+#             directory: "tags_api_patterns"
 
----
-  test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test
+# ---
+#   test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test
 
-  marks:
-    - patterntest
+#   marks:
+#     - patterntest
 
-  includes:
-    - !include common.yaml
+#   includes:
+#     - !include common.yaml
 
-  stages:
-    - name: get_comment_discussions_by_payout
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "tags_api.get_comment_discussions_by_payout"
-          params: {"tag":"polska","limit":1}
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "get_comment_discussions_by_payout"
-            directory: "tags_api_patterns"
-
+#   stages:
+#     - name: get_comment_discussions_by_payout
+#       request:
+#         url: "{service.proto:s}://{service.server:s}:{service.port}/"
+#         method: POST
+#         headers:
+#           content-type: application/json
+#         json:
+#           jsonrpc: "2.0"
+#           id: 1
+#           method: "tags_api.get_comment_discussions_by_payout"
+#           params: {"tag":"polska","limit":1}
+#       response:
+#         status_code: 200
+#         verify_response_with:
+#           function: validate_response:compare_response_with_pattern
+#           extra_kwargs:
+#             method: "get_comment_discussions_by_payout"
+#             directory: "tags_api_patterns"
 
 ---
   test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test no data
@@ -337,8 +336,8 @@
         json:
           jsonrpc: "2.0"
           id: 1
-          method: "tags_api.get_comment_discussions_by_payout"
-          params: [] # start_author: str = '', start_permlink: str = '',limit: int = 20
+          method: "tags_api.get_comment_discussions_by_payout" # returns comments by pending_payout
+          params: [] # start_author: str = '', start_permlink: str = '',limit: int = 20. tag: str = None, truncate_body: int = 0
       response:
         status_code: 200
         verify_response_with:
@@ -346,41 +345,14 @@
           extra_kwargs:
             method: "get_comment_discussions_by_payout_no_data"
             directory: "tags_api_patterns"
-            
----
-  test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test no data error
-
-  marks:
-    - patterntest
-
-  includes:
-    - !include common.yaml
-
-  stages:
-    - name: get_comment_discussions_by_payout
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "tags_api.get_comment_discussions_by_payout"
-          params: ["", "", ""]
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "get_comment_discussions_by_payout_no_data_error"
-            directory: "tags_api_patterns"
 
 ---
   test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test author
 
   marks:
     - patterntest
+    # does not work correctly, start_author does not matter in sorting
+    # take only comments with payouts
 
   includes:
     - !include common.yaml
@@ -396,11 +368,515 @@
           jsonrpc: "2.0"
           id: 1
           method: "tags_api.get_comment_discussions_by_payout"
-          params: ["", "", ""]
+          params: ["otc", "", "10", "", 0]
       response:
         status_code: 200
         verify_response_with:
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_comment_discussions_by_payout_author"
+            directory: "tags_api_patterns"
+
+---
+  test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test author permlink
+
+  marks:
+    - patterntest
+    # does not work correctly, start_author and start_permlink does not matter
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_comment_discussions_by_payout
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_comment_discussions_by_payout"
+          params: ["otc", "hi-steemit-let-me-take-a-picture", "10", "photography", 0]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_comment_discussions_by_payout_author_permlink"
+            directory: "tags_api_patterns"
+
+---
+  test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test category
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_comment_discussions_by_payout
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_comment_discussions_by_payout"
+          params: ["", "", "10", "photography", 0]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_comment_discussions_by_payout_author_permlink"
+            directory: "tags_api_patterns"
+
+---
+  test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test limit category with no votes (no payout)
+
+  marks:
+    - patterntest
+    # if all posts in category do not have any votes there is empty result
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_comment_discussions_by_payout
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_comment_discussions_by_payout"
+          params: ["", "", "1", "taylorswift", 0]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_comment_discussions_by_payout_empty_result"
+            directory: "tags_api_patterns"
+
+---
+  test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test limit not allowed category
+
+  marks:
+    - patterntest
+    # category name not allowed (starts with number)
+    # wrong output - comments with no payout
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_comment_discussions_by_payout
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_comment_discussions_by_payout"
+          params: ["", "", "10", "432hz", 0]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_comment_discussions_by_payout_not_allowed_category"
+            directory: "tags_api_patterns"
+
+---
+  test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test limit too long category
+
+  marks:
+    - patterntest
+    # category is too long > 24
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_comment_discussions_by_payout
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_comment_discussions_by_payout"
+          params: ["", "", "10", "thisisgoingintomyinternetfolder", 0]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_comment_discussions_by_payout_too_long_cat"
+            directory: "tags_api_patterns"
+
+---
+  test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test -truncate_body
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_comment_discussions_by_payout
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_comment_discussions_by_payout"
+          params: ["", "", "5", "pictures", -24]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_comment_discussions_by_payout_truncate_body"
+            directory: "tags_api_patterns"
+
+---
+  test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test good permlink
+
+  marks:
+    - patterntest
+    # returns empty result even if permlink is correct
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_comment_discussions_by_payout
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_comment_discussions_by_payout"
+          params: ["", "re-budgiebee-re-mikkolyytinen-re-budgiebee-hey-can-somebody-please-tell-me-how-to-add-pictures-to-blogs-20160911t191955857z", "5", "pictures", 0]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_comment_discussions_by_payout_empty_result"
+            directory: "tags_api_patterns"
+
+
+# --- does not work
+#   test_name: Hivemind tags_api.get_discussions_by_active patterns test no params
+
+#   marks:
+#     - patterntest
+
+#   includes:
+#     - !include common.yaml
+
+#   stages:
+#     - name: get_discussions_by_active
+#       request:
+#         url: "{service.proto:s}://{service.server:s}:{service.port}/"
+#         method: POST
+#         headers:
+#           content-type: application/json
+#         json:
+#           jsonrpc: "2.0"
+#           id: 1
+#           method: "tags_api.get_discussions_by_active"
+#           params: [] # context, start_author: str = '', start_permlink: str = '', limit: int = 20, tag: str = None, truncate_body: int = 0
+#       response:
+#         status_code: 200
+#         verify_response_with:
+#           function: validate_response:compare_response_with_pattern
+#           extra_kwargs:
+#             method: "get_discussions_by_active_empty_params"
+#             directory: "tags_api_patterns"
+
+---
+  test_name: Hivemind tags_api.get_discussions_by_author_before_date patterns test author
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_discussions_by_author_before_date
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_discussions_by_author_before_date"
+          params: ["camilla"]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_discussions_by_author_before_date_author"
+            directory: "tags_api_patterns"
+          
+---
+  test_name: Hivemind tags_api.get_discussions_by_author_before_date patterns test author and permlink
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_discussions_by_author_before_date
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_discussions_by_author_before_date"
+          params: ["camilla", "do-you-mind-if-we-play-in-your-puddle"]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_discussions_by_author_before_date_author_permlink"
+            directory: "tags_api_patterns"
+
+---
+  test_name: Hivemind tags_api.get_discussions_by_author_before_date patterns test author and first permlink
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_discussions_by_author_before_date
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_discussions_by_author_before_date"
+          params: ["camilla", "ready-for-action"]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_discussions_by_author_before_date_author_last_permlink"
+            directory: "tags_api_patterns"
+
+---
+  test_name: Hivemind tags_api.get_discussions_by_author_before_date patterns test author date
+
+  marks:
+    - patterntest
+    # note: before_date is completely ignored, and it appears to be broken and/or completely ignored in steemd as well. This call is similar to get_discussions_by_blog but does NOT serve reblogs
+    # does not work properly, there should be different result in output
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_discussions_by_author_before_date
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_discussions_by_author_before_date"
+          params: ["camilla", "","2016-05-11T21:25:36"]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_discussions_by_author_before_date_author_date"
+            directory: "tags_api_patterns"
+
+---
+  test_name: Hivemind tags_api.get_discussions_by_author_before_date patterns test author permlink date
+
+  marks:
+    - patterntest
+    # does not use date, only author and permlink
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_discussions_by_author_before_date
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_discussions_by_author_before_date"
+          params: ["kristylynn", "hot-springs-and-music-festivals-but-now-it-s-time-to-get-back-to-steemit","2016-05-11T21:25:36"]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_discussions_by_author_before_date_author_permlink_date"
+            directory: "tags_api_patterns"
+
+---
+  test_name: Hivemind tags_api.get_discussions_by_author_before_date patterns test not existing author empty result
+
+  marks:
+    - patterntest
+
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_discussions_by_author_before_date
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_discussions_by_author_before_date"
+          params: ["kr3", "", "", 1]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_comment_discussions_by_payout_empty_result"
+            directory: "tags_api_patterns"
+
+---
+  test_name: Hivemind tags_api.get_discussions_by_author_before_date patterns test not full permlink
+
+  marks:
+    - patterntest
+
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_discussions_by_author_before_date
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_discussions_by_author_before_date"
+          params: ["dragonho", "suntory-time-weekend", "", 1]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_comment_discussions_by_payout_empty_result"
+            directory: "tags_api_patterns"
+
+---
+  test_name: Hivemind tags_api.get_discussions_by_blog patterns test tag
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_discussions_by_blog
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_discussions_by_blog"
+          params: ["pictures"] 
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_discussions_by_blog_tag"
+            directory: "tags_api_patterns"
+
+---
+  test_name: Hivemind tags_api.get_discussions_by_blog patterns test author tag
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_discussions_by_blog
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_discussions_by_blog"
+          params: ["dragonho", "life"] 
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_comment_discussions_by_blog_author_tag"
             directory: "tags_api_patterns"

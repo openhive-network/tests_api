@@ -1,0 +1,274 @@
+---
+  test_name: Hivemind tags_api.get_discussions_by_author_before_date patterns test too big limit error
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_discussions_by_author_before_date
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_discussions_by_author_before_date"
+          params: ["dragonho", "", "", 101]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_discussions_by_author_before_date_author_limit_error"
+            directory: "tags_api_patterns_error"
+            error_response: true
+
+---
+  test_name: Hivemind tags_api.get_discussions_by_blog patterns test too big limit error
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_discussions_by_blog
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_discussions_by_blog"
+          params: [] # context, tag: str = None, start_author: str = '', start_permlink: str = '', limit: int = 20, truncate_body: int = 0, filter_tags: list = None
+         # tag -> auhtor
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_discussions_by_blog_empty_params"
+            directory: "tags_api_patterns_error"
+            error_response: true
+
+--- 
+
+  test_name: Hivemind tags_api.get_discussions_by_author_before_date patterns test empty params error
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_discussions_by_author_before_date
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_discussions_by_author_before_date"
+          params: [] # context, author: str = None, start_permlink: str = '', before_date: str = '', limit: int = 10
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_discussions_by_author_before_date_empty_error"
+            directory: "tags_api_patterns_error"
+            error_response: true
+
+
+---
+  test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test too short name error
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_comment_discussions_by_payout
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_comment_discussions_by_payout"
+          params: ["1", "re-budgiebee-re-mikkolyytinen-re-budgiebee-hey-can-somebody-please-tell-me-how-to-add-pictures-to-blogs-20160911t191955857z", "5", "pictures", 0]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_comment_discussions_by_payout_name_error"
+            directory: "tags_api_patterns_error"
+            error_response: true
+
+---
+  test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test account type error
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_comment_discussions_by_payout
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_comment_discussions_by_payout"
+          params: [2, "re-budgiebee-re-mikkolyytinen-re-budgiebee-hey-can-somebody-please-tell-me-how-to-add-pictures-to-blogs-20160911t191955857z", "5", "pictures", 0]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_comment_discussions_by_payout_type_error"
+            directory: "tags_api_patterns_error"
+            error_response: true
+
+---
+  test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test permlink type error
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_comment_discussions_by_payout
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_comment_discussions_by_payout"
+          params: ["", 8, "5", "pictures", 0]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_comment_discussions_by_payout_type_error_permlink"
+            directory: "tags_api_patterns_error"
+            error_response: true
+
+---
+  test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test limit wrong category (space)
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_comment_discussions_by_payout
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_comment_discussions_by_payout"
+          params: ["", "", "10", "ab dd", 0]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_comment_discussions_by_payout_wrong_cat_space"
+            directory: "tags_api_patterns_error"
+            error_response: true
+
+
+---
+  test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test limit error
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_comment_discussions_by_payout
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_comment_discussions_by_payout"
+          params: ["", "", "0", "photography", 0]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_comment_discussions_by_payout_limit_error"
+            directory: "tags_api_patterns_error"
+            error_response: true
+
+            
+---
+  test_name: Hivemind tags_api.get_comment_discussions_by_payout patterns test no data error
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_comment_discussions_by_payout
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "tags_api.get_comment_discussions_by_payout"
+          params: ["", "", ""]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_comment_discussions_by_payout_no_data_error"
+            directory: "tags_api_patterns_error"
+            error_response: true
