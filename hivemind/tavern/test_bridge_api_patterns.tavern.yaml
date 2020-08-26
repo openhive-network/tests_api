@@ -88,8 +88,7 @@
   marks:
     - patterntest
     - failing
-    - xfail # payout is zero in some cases, grey, flag_weight, total_votes counts all without filtering
-      # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+    - xfail # grey, flag_weight
 
   includes:
     - !include common.yaml
