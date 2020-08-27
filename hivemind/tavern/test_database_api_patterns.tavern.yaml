@@ -597,8 +597,6 @@ test_name: Hivemind database_api.list_comments patterns test order "by_root" onl
 
 marks:
   - patterntest
-  - failing
-  - xfail
 
 includes:
   - !include common.yaml
@@ -625,7 +623,8 @@ stages:
       verify_response_with:
         function: validate_response:compare_error_message
         extra_kwargs:
-          message: "Assert Exception:root != nullptr: Could not find comment vi1son/."
+          message: "Invalid parameters"
+          data: "Post/comment vi1son/ does not exist"
 
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_root" required values (comment of a post)
@@ -734,8 +733,6 @@ test_name: Hivemind database_api.list_comments patterns test order "by_root" wit
 
 marks:
   - patterntest # child_author, child_permlink are optional
-  - failing
-  - xfail
 
 includes:
   - !include common.yaml
@@ -762,15 +759,14 @@ stages:
       verify_response_with:
         function: validate_response:compare_error_message
         extra_kwargs:
-          message: "Assert Exception:child != nullptr: Could not find comment vi1son/."
+          message: "Invalid parameters"
+          data: "Post/comment vi1son/ does not exist"
 
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_root" wrong child_permlink 
 
 marks:
   - patterntest
-  - failing
-  - xfail
 
 includes:
   - !include common.yaml
@@ -797,7 +793,8 @@ stages:
       verify_response_with:
         function: validate_response:compare_error_message
         extra_kwargs:
-          message: "Assert Exception:child != nullptr: Could not find comment vi1son/randomvalues."
+          message: "Invalid parameters"
+          data: "Post/comment vi1son/randomvalues does not exist"
 
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_root" wrong val
@@ -978,8 +975,6 @@ test_name: Hivemind database_api.list_comments patterns test order "by_parent" c
 
 marks:
   - patterntest # child_author, child_permlink are optional 
-  - failing
-  - xfail
 
 includes:
   - !include common.yaml
@@ -1006,7 +1001,8 @@ stages:
       verify_response_with:
         function: validate_response:compare_error_message
         extra_kwargs:
-          message: "Assert Exception:child != nullptr: Could not find comment givemeyoursteem/."
+          message: "Invalid parameters"
+          data: "Post/comment givemeyoursteem/ does not exist"
 
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_parent" all data
@@ -1116,8 +1112,6 @@ test_name: Hivemind database_api.list_comments patterns test order "by_author_la
 
 marks:
   - patterntest
-  - failing
-  - xfail
 
 includes:
   - !include common.yaml
@@ -1144,15 +1138,14 @@ stages:
       verify_response_with:
         function: validate_response:compare_error_message
         extra_kwargs:
-          message: "Assert Exception:comment != nullptr: Could not find comment givemeyoursteem/."
+          message: "Invalid parameters"
+          data: "Post/comment givemeyoursteem/ does not exist"
 
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_author_last_update" correct date and author wrong permlink
 
 marks:
   - patterntest
-  - failing
-  - xfail
 
 includes:
   - !include common.yaml
@@ -1179,7 +1172,8 @@ stages:
       verify_response_with:
         function: validate_response:compare_error_message
         extra_kwargs:
-          message: "Assert Exception:comment != nullptr: Could not find comment givemeyoursteem/winners-of-steemit-food-challenge-3."
+          message: "Invalid parameters"
+          data: "Post/comment givemeyoursteem/winners-of-steemit-food-challenge-3 does not exist"
  
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_author_last_update" correct date author and permlink
