@@ -64,8 +64,6 @@ test_name: Hivemind database_api.list_comments patterns test order "by_cashout_t
 
 marks:
   - patterntest
-  - failing
-  - xfail
 
 includes:
   - !include common.yaml
@@ -90,12 +88,11 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_response_with_pattern
+        function: validate_response:compare_error_message
         extra_kwargs:
-          method: "list_comments_wrong_date"
-          directory: "database_api_patterns"
-          error_response: true
-          ignore_tags: ["timestamp"]
+          message: "Invalid parameters"
+          data: "Date should be in format Y-m-d H:M:S or Y-m-dTH:M:S"
+
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_cashout_time" date and author
 
@@ -291,8 +288,6 @@ test_name: Hivemind database_api.list_comments patterns test order "by_cashout_t
 
 marks:
   - patterntest
-  - failing
-  - xfail
 
 includes:
   - !include common.yaml
@@ -313,12 +308,11 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_response_with_pattern
+        function: validate_response:compare_error_message
         extra_kwargs:
-          method: "list_comments_day_of_the_month_out_of_range"
-          directory: "database_api_patterns"
-          error_response: true
-          ignore_tags: ["timestamp"]
+          message: "Invalid parameters"
+          data: "Date is blank"
+
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_cashout_time" data exist in database
 
@@ -604,8 +598,6 @@ test_name: Hivemind database_api.list_comments patterns test order "by_root" onl
 
 marks:
   - patterntest
-  - failing
-  - xfail
 
 includes:
   - !include common.yaml
@@ -630,12 +622,10 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_response_with_pattern
+        function: validate_response:compare_error_message
         extra_kwargs:
-          method: "list_comments_only_root_author"
-          directory: "database_api_patterns"
-          error_response: true
-          ignore_tags: ["timestamp"]
+          message: "Invalid parameters"
+          data: "Post/comment vi1son/ does not exist"
 
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_root" required values (comment of a post)
@@ -744,8 +734,6 @@ test_name: Hivemind database_api.list_comments patterns test order "by_root" wit
 
 marks:
   - patterntest # child_author, child_permlink are optional
-  - failing
-  - xfail
 
 includes:
   - !include common.yaml
@@ -770,20 +758,16 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_response_with_pattern
+        function: validate_response:compare_error_message
         extra_kwargs:
-          method: "list_comments_not_found"
-          directory: "database_api_patterns"
-          error_response: true
-          ignore_tags: ["timestamp"]
+          message: "Invalid parameters"
+          data: "Post/comment vi1son/ does not exist"
 
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_root" wrong child_permlink 
 
 marks:
   - patterntest
-  - failing
-  - xfail
 
 includes:
   - !include common.yaml
@@ -808,20 +792,16 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_response_with_pattern
+        function: validate_response:compare_error_message
         extra_kwargs:
-          method: "list_comments_not_found_vi1son_randomvalues"
-          directory: "database_api_patterns"
-          error_response: true
-          ignore_tags: ["timestamp"]
+          message: "Invalid parameters"
+          data: "Post/comment vi1son/randomvalues does not exist"
 
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_root" wrong val
 
 marks:
   - patterntest
-  - failing
-  - xfail
 
 includes:
   - !include common.yaml
@@ -846,12 +826,10 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_response_with_pattern
+        function: validate_response:compare_error_message
         extra_kwargs:
-          method: "list_comments_not_found_giv_winner"
-          directory: "database_api_patterns"
-          error_response: true
-          ignore_tags: ["timestamp"]
+          message: "Invalid parameters"
+          data: "Post/comment giv/winner does not exist"
 
 ########################  PARENT  ########################
 ---
@@ -997,8 +975,6 @@ test_name: Hivemind database_api.list_comments patterns test order "by_parent" c
 
 marks:
   - patterntest # child_author, child_permlink are optional 
-  - failing
-  - xfail
 
 includes:
   - !include common.yaml
@@ -1023,12 +999,10 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_response_with_pattern
+        function: validate_response:compare_error_message
         extra_kwargs:
-          method: "list_comments_not_found_givemeyoursteem"
-          directory: "database_api_patterns"
-          error_response: true
-          ignore_tags: ["timestamp"]
+          message: "Invalid parameters"
+          data: "Post/comment givemeyoursteem/ does not exist"
 
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_parent" all data
@@ -1138,8 +1112,6 @@ test_name: Hivemind database_api.list_comments patterns test order "by_author_la
 
 marks:
   - patterntest
-  - failing
-  - xfail
 
 includes:
   - !include common.yaml
@@ -1164,20 +1136,16 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_response_with_pattern
+        function: validate_response:compare_error_message
         extra_kwargs:
-          method: "list_comments_not_found_givemeyoursteem2"
-          directory: "database_api_patterns"
-          error_response: true
-          ignore_tags: ["timestamp"]
+          message: "Invalid parameters"
+          data: "Post/comment givemeyoursteem/ does not exist"
 
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_author_last_update" correct date and author wrong permlink
 
 marks:
   - patterntest
-  - failing
-  - xfail
 
 includes:
   - !include common.yaml
@@ -1202,12 +1170,10 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_response_with_pattern
+        function: validate_response:compare_error_message
         extra_kwargs:
-          method: "list_comments_not_found_givemeyoursteem_permlink"
-          directory: "database_api_patterns"
-          error_response: true
-          ignore_tags: ["timestamp"]
+          message: "Invalid parameters"
+          data: "Post/comment givemeyoursteem/winners-of-steemit-food-challenge-3 does not exist"
  
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_author_last_update" correct date author and permlink
@@ -1317,8 +1283,6 @@ test_name: Hivemind database_api.list_comments patterns test order "by_last_upda
 
 marks:
   - patterntest
-  - failing
-  - xfail
 
 includes:
   - !include common.yaml
@@ -1339,20 +1303,16 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_response_with_pattern
+        function: validate_response:compare_error_message
         extra_kwargs:
-          method: "list_comments_day_out_of_range_empty"
-          directory: "database_api_patterns"
-          error_response: true
-          ignore_tags: ["timestamp"]
+          message: "Invalid parameters"
+          data: "Date is blank"
+
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_last_update" date in author
 
 marks:
   - patterntest # first arg is author, not date (error about date)
-  - failing
-  - xfail
-
 
 includes:
   - !include common.yaml
@@ -1377,12 +1337,11 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_response_with_pattern
+        function: validate_response:compare_error_message
         extra_kwargs:
-          method: "list_comments_day_out_of_range_start_0"
-          directory: "database_api_patterns"
-          error_response: true
-          ignore_tags: ["timestamp"]
+          message: "Invalid parameters"
+          data: "invalid account name length: `2016-08-24T21:29:42`"
+
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_last_update" good date
 
@@ -1425,8 +1384,6 @@ test_name: Hivemind database_api.list_comments patterns test order "by_last_upda
 
 marks:
   - patterntest
-  - failing
-  - xfail
 
 includes:
   - !include common.yaml
@@ -1451,12 +1408,11 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_response_with_pattern
+        function: validate_response:compare_error_message
         extra_kwargs:
-          method: "list_comments_day_out_of_range_start_1"
-          directory: "database_api_patterns"
-          error_response: true
-          ignore_tags: ["timestamp"]
+          message: "Invalid parameters"
+          data: "Date should be in format Y-m-d H:M:S or Y-m-dTH:M:S"
+
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_last_update" very future date
 
@@ -1535,8 +1491,6 @@ test_name: Hivemind database_api.list_comments patterns test order "by_last_upda
 
 marks:
   - patterntest
-  - failing
-  - xfail
 
 includes:
   - !include common.yaml
@@ -1561,9 +1515,7 @@ stages:
     response:
       status_code: 200
       verify_response_with:
-        function: validate_response:compare_response_with_pattern
+        function: validate_response:compare_error_message
         extra_kwargs:
-          method: "list_comments_day_out_of_range_start_3"
-          directory: "database_api_patterns"
-          error_response: true
-          ignore_tags: ["timestamp"]
+          message: "Invalid parameters"
+          data: "Date should be in format Y-m-d H:M:S or Y-m-dTH:M:S"
