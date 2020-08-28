@@ -624,8 +624,9 @@ stages:
       verify_response_with:
         function: validate_response:compare_error_message
         extra_kwargs:
-          message: "Invalid parameters"
+          message: "Server error"
           data: "Post/comment vi1son/ does not exist"
+          data_as_substring: true
 
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_root" required values (comment of a post)
@@ -760,8 +761,9 @@ stages:
       verify_response_with:
         function: validate_response:compare_error_message
         extra_kwargs:
-          message: "Invalid parameters"
+          message: "Server error"
           data: "Post/comment vi1son/ does not exist"
+          data_as_substring: true
 
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_root" wrong child_permlink 
@@ -794,8 +796,9 @@ stages:
       verify_response_with:
         function: validate_response:compare_error_message
         extra_kwargs:
-          message: "Invalid parameters"
+          message: "Server error"
           data: "Post/comment vi1son/randomvalues does not exist"
+          data_as_substring: true
 
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_root" wrong val
@@ -828,8 +831,9 @@ stages:
       verify_response_with:
         function: validate_response:compare_error_message
         extra_kwargs:
-          message: "Invalid parameters"
+          message: "Server error"
           data: "Post/comment giv/winner does not exist"
+          data_as_substring: true
 
 ########################  PARENT  ########################
 ---
@@ -1001,8 +1005,9 @@ stages:
       verify_response_with:
         function: validate_response:compare_error_message
         extra_kwargs:
-          message: "Invalid parameters"
+          message: "Server error"
           data: "Post/comment givemeyoursteem/ does not exist"
+          data_as_substring: true
 
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_parent" all data
@@ -1138,8 +1143,9 @@ stages:
       verify_response_with:
         function: validate_response:compare_error_message
         extra_kwargs:
-          message: "Invalid parameters"
+          message: "Server error"
           data: "Post/comment givemeyoursteem/ does not exist"
+          data_as_substring: true
 
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_author_last_update" correct date and author wrong permlink
@@ -1172,8 +1178,9 @@ stages:
       verify_response_with:
         function: validate_response:compare_error_message
         extra_kwargs:
-          message: "Invalid parameters"
+          message: "Server error"
           data: "Post/comment givemeyoursteem/winners-of-steemit-food-challenge-3 does not exist"
+          data_as_substring: true
  
 ---
 test_name: Hivemind database_api.list_comments patterns test order "by_author_last_update" correct date author and permlink
