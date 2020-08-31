@@ -1,0 +1,5 @@
+{
+    "code": -32700,
+    "data": "Expecting property name enclosed in double quotes: line 4 column 43 (char 118)",
+    "message": "Invalid JSON"
+}

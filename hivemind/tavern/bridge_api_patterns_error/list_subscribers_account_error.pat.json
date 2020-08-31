@@ -1,0 +1,5 @@
+{
+    "code": -32700,
+    "data": "Expecting value: line 4 column 12 (char 70)",
+    "message": "Invalid JSON"
+}
