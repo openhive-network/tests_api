@@ -140,7 +140,7 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_followers_over_limit"
-            directory: "condenser_api_patterns"
+            directory: "condenser_api_patterns_error"
             error_response: true
 ---
   test_name: Hivemind condenser_api.get_followers wrong_type patterns test
@@ -169,7 +169,7 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_followers_wrong_type"
-            directory: "condenser_api_patterns"
+            directory: "condenser_api_patterns_error"
             error_response: true
 
 ---
@@ -313,7 +313,7 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_following_wrong_type"
-            directory: "condenser_api_patterns"
+            directory: "condenser_api_patterns_error"
             error_response: true
 ---
   test_name: Hivemind condenser_api.get_following over limit test
@@ -342,7 +342,7 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_following_over_limit"
-            directory: "condenser_api_patterns"
+            directory: "condenser_api_patterns_error"
             error_response: true
 
 ---
@@ -512,7 +512,7 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_content_deleted"
-            directory: "condenser_api_patterns"
+            directory: "condenser_api_patterns_error"
             error_response: true
 ---
   test_name: Hivemind condenser_api.get_content_replies patterns test
@@ -659,7 +659,7 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_followers_trending_tags_over_limit"
-            directory: "condenser_api_patterns"
+            directory: "condenser_api_patterns_error"
             error_response: true
 ---
   test_name: Hivemind condenser_api.get_discussions_by_trending patterns test
@@ -893,7 +893,7 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_discussions_by_comments_unexpected_keyword"
-            directory: "condenser_api_patterns"
+            directory: "condenser_api_patterns_error"
             error_response: true
 
 ---
@@ -1010,7 +1010,7 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_replies_by_last_update_over_limit"
-            directory: "condenser_api_patterns"
+            directory: "condenser_api_patterns_error"
             error_response: true
 
 ---
@@ -1040,7 +1040,7 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_replies_by_last_update_blank_start_author"
-            directory: "condenser_api_patterns"
+            directory: "condenser_api_patterns_error"
             error_response: true
 
 ---
@@ -1070,7 +1070,7 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_replies_by_last_update_invalid_account_name"
-            directory: "condenser_api_patterns"
+            directory: "condenser_api_patterns_error"
             error_response: true
             
 ---
@@ -1158,7 +1158,7 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_discussions_by_author_before_date_over_limit"
-            directory: "condenser_api_patterns"
+            directory: "condenser_api_patterns_error"
             error_response: true
 
 ---
@@ -1277,7 +1277,7 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_post_discussions_by_payout_over_limit"
-            directory: "condenser_api_patterns"
+            directory: "condenser_api_patterns_error"
             error_response: true
 
 ---
@@ -1396,7 +1396,7 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_comment_discussions_by_payout_over_limit"
-            directory: "condenser_api_patterns"
+            directory: "condenser_api_patterns_error"
             error_response: true
 
 ---
@@ -1455,7 +1455,7 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_blog_invalid_limit"
-            directory: "condenser_api_patterns"
+            directory: "condenser_api_patterns_error"
             error_response: true
             
 ---
@@ -1543,7 +1543,7 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_blog_over_limit"
-            directory: "condenser_api_patterns"
+            directory: "condenser_api_patterns_error"
             error_response: true
 
 ---
@@ -1575,7 +1575,7 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_blog_non_existing"
-            directory: "condenser_api_patterns"
+            directory: "condenser_api_patterns_error"
             error_response: true
 
 ---
@@ -1605,7 +1605,7 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_blog_too_long_account_name"
-            directory: "condenser_api_patterns"
+            directory: "condenser_api_patterns_error"
             error_response: true
 
 ---
@@ -1635,7 +1635,7 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_blog_invalid_account_char"
-            directory: "condenser_api_patterns"
+            directory: "condenser_api_patterns_error"
             error_response: true
 
 ---
@@ -1782,7 +1782,7 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_account_votes_deprecated"
-            directory: "condenser_api_patterns"
+            directory: "condenser_api_patterns_error"
             error_response: true
 
 ---
