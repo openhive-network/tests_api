@@ -28,7 +28,37 @@
             directory: "bridge_api_patterns_error"
             error_response: true
             ignore_tags: ["timestamp"]
-          
+
+---
+  test_name: Hivemind bridge_api.get_discussion non existing permlink patterns test
+      # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+  marks:
+    - patterntest
+
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_discussion
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_discussion"
+          params: {"author":"gtg", "permlink":"not_existing_permlink"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_discussion_not_existing_permlink"
+            directory: "bridge_api_patterns_error"
+
 ---
   test_name: Hivemind bridge_api.get_ranked_posts sort invalid patterns test
 
@@ -91,6 +121,38 @@
             ignore_tags: ["timestamp"]
 
 ---
+  test_name: Hivemind bridge_api.get_profile patterns test
+  #not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+
+  marks:
+    - patterntest # original gives no error, just no result
+  
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_profile
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_profile"
+          params: {"account":"468"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_profile_number_account"
+            directory: "bridge_api_patterns_error"
+            error_response: true
+            ignore_tags: ["timestamp"]
+
+---
   test_name: Hivemind bridge_api.get_trending_topics patterns over limit test
 
   marks:
@@ -117,6 +179,36 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_trending_topics_over_limit"
+            directory: "bridge_api_patterns_error"
+            error_response: true
+
+---
+  test_name: Hivemind bridge_api.get_trending_topics patterns over limit test
+  # not documented
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_trending_topics over limit
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_trending_topics"
+          params: {"limit": "-7"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_trending_topics_negative_limit"
             directory: "bridge_api_patterns_error"
             error_response: true
 
@@ -302,11 +394,9 @@
 
 ---
   test_name: Hivemind bridge_api.list_subscribers patterns test # not documented 
-  # failed - tavern response: []
 
   marks:
-    - patterntest
-    - xfail
+    - patterntest # error should be generated here, but we get empty result (like in original)
 
   includes:
     - !include common.yaml
@@ -330,12 +420,11 @@
           extra_kwargs:
             method: "list_subscribers_account_error"
             directory: "bridge_api_patterns_error"
-            error_response: true
 
 ---
   test_name: Hivemind bridge_api.list_subscribers patterns test # not documented
   marks:
-    - patterntest
+    - patterntest # change to proper error, missing check on type of argument
 
   includes:
     - !include common.yaml
@@ -425,7 +514,7 @@
   test_name: Hivemind bridge_api.get_payout_stats patterns test 10
 
   marks:
-    - patterntest
+    - patterntest # it should be changed to proper error, currrent server error is barely acceptable in that case
 
   includes:
     - !include common.yaml
@@ -456,7 +545,7 @@
     # author and permlink must be both to find post id
 
   marks:
-    - patterntest
+    - patterntest # maybe post 'steemit/' not found would be better
 
   includes:
     - !include common.yaml
@@ -518,7 +607,7 @@
   # no nonempty result possible for 5mln set
 
   marks:
-    - patterntest
+    - patterntest # change to proper error, server error is barely acceptable here
 
 
   includes:
@@ -549,7 +638,7 @@
   test_name: Hivemind bridge_api.list_pop_communities patterns test # 8080 023
 
   marks:
-    - patterntest
+    - patterntest # change to proper error, server error is barely acceptable here
 
   includes:
     - !include common.yaml
@@ -639,7 +728,7 @@
   test_name: Hivemind bridge_api.list_pop_communities patterns test # 8080
 
   marks:
-    - patterntest
+    - patterntest # change to proper error, server error is barely acceptable here
 
   includes:
     - !include common.yaml
@@ -664,6 +753,7 @@
             method: "list_pop_communities_server_error"
             directory: "bridge_api_patterns_error"
             error_response: true
+
 ---
   test_name: Hivemind bridge_api.get_community_context patterns test # 8080
     # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
@@ -875,3 +965,4 @@
             method: "get_profile_empty_error"
             directory: "bridge_api_patterns_error"
             error_response: true
+
