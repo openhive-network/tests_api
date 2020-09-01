@@ -1,4 +1,1125 @@
+---
+  test_name: Hivemind bridge_api.get_post_header patterns test
+      # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_post_header
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_post_header"
+          params: {"author":"steemit", "permlink":"firstpost"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_post_header"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_post_header gtg patterns test
+      # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_post_header gtg
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_post_header"
+          params: {"author":"gtg", "permlink":"missing-rewards-while-mining"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_post_header_gtg"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_discussion patterns test
+      # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+  marks:
+    - patterntest
+    - failing
+    - xfail # gray
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_discussion
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_discussion"
+          params: {"author":"steemit", "permlink":"firstpost"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_discussion"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_discussion gtg patterns test
+      # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_discussion
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_discussion"
+          params: {"author":"gtg", "permlink":"missing-rewards-while-mining"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_discussion_gtg"
+            directory: "bridge_api_patterns"       
             
+---
+  test_name: Hivemind bridge_api.get_post patterns test
+      # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_post
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_post"
+          params: {"author":"steemit", "permlink":"firstpost"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_post"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_post gtg patterns test
+      # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_post
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_post"
+          params: {"author":"gtg", "permlink":"heavy-duty-witness-node-infrastructure"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_post_gtg"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_account_posts patterns test
+      # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_account_posts
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_account_posts"
+          params: {"sort":"posts", "account":"steemit"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_account_posts"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_ranked_posts patterns test
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_ranked_posts
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_ranked_posts"
+          params: {"sort":"trending","tag":"","observer":"steemit"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_ranked_posts"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_ranked_posts hot patterns test
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_ranked_posts hot
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_ranked_posts"
+          params: {"sort":"hot","tag":"","observer":"alice"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_ranked_posts_hot"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_ranked_posts created patterns test
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_ranked_posts created
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_ranked_posts"
+          params: {"sort":"created","tag":"","observer":"alice"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_ranked_posts_created"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_ranked_posts promoted patterns test
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_ranked_posts promoted
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_ranked_posts"
+          params: {"sort":"promoted"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_ranked_posts_promoted"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_ranked_posts payout patterns test
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_ranked_posts payout
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_ranked_posts"
+          params: {"sort":"payout"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_ranked_posts_payout"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_ranked_posts payout_comments patterns test
+
+  marks:
+    - patterntest
+    - failing
+    - xfail # gray
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_ranked_posts payout_comments
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_ranked_posts"
+          params: {"sort":"payout_comments"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_ranked_posts_payout_comments"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_ranked_posts muted patterns test
+
+  marks:
+    - patterntest
+    - failing
+    - xfail # empty results caused by lack of is_grayed handling (same as gray elsewhere)
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_ranked_posts muted
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_ranked_posts"
+          params: {"sort":"muted"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_ranked_posts_muted"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_ranked_posts tag hive-123 patterns test
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_ranked_posts tag hive-123
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_ranked_posts"
+          params: {"sort":"trending","tag":"hive-123"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_ranked_posts_tag_hive-123"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_ranked_posts tag petrodollar patterns test
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_ranked_posts tag petrodollar
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_ranked_posts"
+          params: {"sort":"trending","tag":"petrodollar","observer":"steemit"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_ranked_posts_tag_petrodollar"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_profile patterns test
+      #not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_profile
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_profile"
+          params: {"account":"steemit"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_profile"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_profile gtg patterns test
+      #not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+  marks:
+    - patterntest
+    - failing
+    - xfail # plenty of differences, as if the whole routine does not work at all
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_profile gtg
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_profile"
+          params: {"account":"gtg"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_profile_gtg"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_trending_topics patterns test
+      # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_trending_topics
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_trending_topics"
+          params: {}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_trending_topics"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_trending_topics patterns limit 2 test
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_trending_topics limit 2
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_trending_topics"
+          params: {"limit": 2}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_trending_topics_limit_2"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.post_notifications patterns test
+
+  marks:
+    - patterntest
+    - failing
+    - xfail # no results (underlying functionality is not working)
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: post_notifications
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.post_notifications"
+          params: {"author":"admin", "permlink":"firstpost", "min_score":15}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "post_notifications"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.account_notifications patterns test
+
+  marks:
+    - patterntest
+    - failing
+    - xfail # no results (underlying functionality is not working)
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: account_notifications
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.account_notifications"
+          params: {"account":"steemit", "min_score": 15, "limit":20}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "account_notifications"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.unread_notifications patterns test
+      # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+  marks:
+    - patterntest
+    - failing
+    - xfail # underlying mechanism seems to be nonfunctional (related hive_notifs table is empty but it shouldn't)
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: unread_notifications
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.unread_notifications"
+          params: {"account":"steemit", "min_score":15}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "unread_notifications"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_payout_stats patterns test
+      # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_payout_stats
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_payout_stats"
+          params: [1.0]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_payout_stats"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_payout_stats patterns test 10
+
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_payout_stats
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_payout_stats"
+          params: [10]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_payout_stats_10"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.list_communities patterns test
+      # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+  marks:
+    - patterntest # no nonempty result possible for 5mln set
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: list_communities
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.list_communities"
+          params: {"limit":1}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "list_communities"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.list_community_roles patterns test
+
+  marks:
+    - patterntest # no nonempty result possible for 5mln set
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: list_community_roles
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.list_community_roles"
+          params: {"community":"hive-123456"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "list_community_roles"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.list_subscribers patterns test
+      # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+  marks:
+    - patterntest # no nonempty result possible for 5mln set
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: list_subscribers
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.list_subscribers"
+          params: {"community":"hive-123456"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "list_subscribers"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.list_subscribers patterns test # not documented
+  marks:
+    - patterntest # no nonempty result possible for 5mln set
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: list_subscribers
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.list_subscribers"
+          params: ["789"]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "list_subscribers_pos_arg"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.list_all_subscriptions patterns test
+
+  marks:
+    - patterntest # no nonempty result possible for 5mln set
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: list_all_subscriptions
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.list_all_subscriptions"
+          params: {"account":"steemit"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "list_all_subscriptions"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.list_all_subscriptions patterns test
+
+  marks:
+    - patterntest # same with params: {account: "steemit"} # no nonempty result possible for 5mln set
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: list_all_subscriptions
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.list_all_subscriptions"
+          params: ["steemit"]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "list_all_subscriptions_pos_arg"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_relationship_between_accounts patterns test # 8080
+    # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+    # no true from follow_blacklists and blacklisted for 5mln set
+  
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_relationship_between_accounts
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_relationship_between_accounts"
+          params: {"account1": "chhaylin","account2": "cannabisclub"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_relationship_between_accounts"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_relationship_between_accounts patterns test # 8080
+    # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+    # no true from follow_blacklists and blacklisted for 5mln set
+  
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_relationship_between_accounts
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_relationship_between_accounts"
+          params: {"account1": "jsc","account2": "max-keiser"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_relationship_between_accounts_true_state"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_relationship_between_accounts patterns test # 8080
+  
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_relationship_between_accounts
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_relationship_between_accounts"
+          params: {"account1": "tinfoilfedora","account2": "tonyson"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_relationship_between_accounts_true_state_2"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_relationship_between_accounts patterns test # 8080
+  
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+
+    - name: get_relationship_between_accounts
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_relationship_between_accounts"
+
+          params: {"account1": "tinfoilfedora","account2": "tonyson","observer": "tinfoilfedora"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_relationship_between_accounts_true_state_2_observer"
+            directory: "bridge_api_patterns"
+
+
+---
+  test_name: Hivemind bridge_api.get_relationship_between_accounts patterns test # 8080
+  
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_relationship_between_accounts
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_relationship_between_accounts"
+          params: {"account2": "tinfoilfedora","account1": "tonyson"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_relationship_between_accounts_change_accounts"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_relationship_between_accounts follows patterns test
+
+  marks:
+    - patterntest # no nonempty result possible for 5mln set
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_relationship_between_accounts follows
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_relationship_between_accounts"
+          params: {"account1": "good-karma", "account2": "steemit"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_relationship_between_accounts_follows"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_relationship_between_accounts ignores patterns test
+
+  marks:
+    - patterntest # no nonempty result possible for 5mln set
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_relationship_between_accounts ignores
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_relationship_between_accounts"
+          params: {"account1": "tuck-fheman", "account2": "tonyson"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_relationship_between_accounts_ignores"
+            directory: "bridge_api_patterns"
+
 # get_relationship_between_accounts is_blacklisted and follows_blacklists should be implemented after switching to tests over 5 mln blocks.
 
 ---
@@ -27,6 +1148,36 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "post_notifications_account_permlink"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge.post_notifications patterns test valid account, permlink and last_id # openapi
+
+  marks:
+    - patterntest
+    # show only votes (bc of last_it type - vote)
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: bridge.post_notifications
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.post_notifications"
+          params: {"author":"acidyo", "permlink": "announcing-askhive-community", "last_id": "73034458"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "post_notifications_account_permlink_last_it_votes"
             directory: "bridge_api_patterns"
 
 ---
