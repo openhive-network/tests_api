@@ -1290,7 +1290,7 @@ stages:
 test_name: Hivemind database_api.find_comments patterns test author
 
 marks:
-  - patterntest # why there is empty response?
+  - patterntest # show last comments in base
 
 includes:
   - !include common.yaml
