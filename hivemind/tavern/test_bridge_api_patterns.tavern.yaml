@@ -203,6 +203,152 @@
             method: "get_account_posts"
             directory: "bridge_api_patterns"
 
+
+---
+  test_name: Hivemind bridge_api.get_account_posts sort blog patterns test
+      # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_account_posts sort blog
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_account_posts"
+          params: {"sort":"blog", "account":"steemit"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_account_posts_sort_blog"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_account_posts sort feed patterns test
+
+  marks:
+    - patterntest # should return posts, now its empty (hive3 hivemind)
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_account_posts sort feed
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_account_posts"
+          params: {"sort":"feed", "account":"steemit"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_account_posts_sort_feed"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_account_posts sort comments patterns test
+
+  marks:
+    - patterntest # should return posts, now its empty (hive3 hivemind)
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_account_posts sort comments
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_account_posts"
+          params: {"sort":"comments", "account":"steemit"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_account_posts_sort_comments"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_account_posts sort replies patterns test
+      # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+  marks:
+    - patterntest
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_account_posts sort replies
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_account_posts"
+          params: {"sort":"replies", "account":"steemit"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_account_posts_sort_replies"
+            directory: "bridge_api_patterns"
+
+---
+  test_name: Hivemind bridge_api.get_account_posts sort payout patterns test
+
+  marks:
+    - patterntest # should return posts, now its empty (hive3 hivemind)
+
+  includes:
+    - !include common.yaml
+
+  stages:
+    - name: get_account_posts sort payout
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "bridge.get_account_posts"
+          params: {"sort":"payout", "account":"steemit"}
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "get_account_posts_sort_payout"
+            directory: "bridge_api_patterns"
+
 ---
   test_name: Hivemind bridge_api.get_ranked_posts patterns test
 
@@ -1123,7 +1269,7 @@
 # get_relationship_between_accounts is_blacklisted and follows_blacklists should be implemented after switching to tests over 5 mln blocks.
 
 ---
-  test_name: Hivemind bridge.post_notifications patterns test valid account and permlink # openapi
+  test_name: Hivemind bridge.post_notifications patterns test valid account and permlink
   marks:
     - patterntest
 
@@ -1141,7 +1287,7 @@
           jsonrpc: "2.0"
           id: 1
           method: "bridge.post_notifications"
-          params: {"author":"acidyo","permlink": "announcing-askhive-community"}
+          params: {"author":"venuspcs","permlink":"re-minion-how-to-summon-one-of-the-biggest-and-most-powerful-steemit-whales-berniesanders-20160812t010731631z","min_score":10}
       response:
         status_code: 200
         verify_response_with:
@@ -1151,7 +1297,7 @@
             directory: "bridge_api_patterns"
 
 ---
-  test_name: Hivemind bridge.post_notifications patterns test valid account, permlink and last_id # openapi
+  test_name: Hivemind bridge.post_notifications patterns test valid account, permlink and last_id
 
   marks:
     - patterntest
@@ -1171,37 +1317,7 @@
           jsonrpc: "2.0"
           id: 1
           method: "bridge.post_notifications"
-          params: {"author":"acidyo", "permlink": "announcing-askhive-community", "last_id": "73034458"}
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "post_notifications_account_permlink_last_it_votes"
-            directory: "bridge_api_patterns"
-
----
-  test_name: Hivemind bridge.post_notifications patterns test valid account, permlink and last_id # openapi
-
-  marks:
-    - patterntest
-    # show only votes (bc of last_it type - vote)
-
-  includes:
-    - !include common.yaml
-
-  stages:
-    - name: bridge.post_notifications
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "bridge.post_notifications"
-          params: {"author":"acidyo", "permlink": "announcing-askhive-community", "last_id": "73034458"}
+          params: {"author":"venuspcs","permlink":"re-minion-how-to-summon-one-of-the-biggest-and-most-powerful-steemit-whales-berniesanders-20160812t010731631z","min_score":10}
       response:
         status_code: 200
         verify_response_with:

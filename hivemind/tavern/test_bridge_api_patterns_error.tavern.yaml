@@ -4,6 +4,7 @@
       # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
   marks:
     - patterntest # original gives no error, just no result
+    - negative
 
   includes:
     - !include common.yaml
@@ -35,7 +36,7 @@
       # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
   marks:
     - patterntest
-
+    - negative
 
   includes:
     - !include common.yaml
@@ -65,6 +66,7 @@
 
   marks:
     - patterntest
+    - negative
 
   includes:
     - !include common.yaml
@@ -95,6 +97,7 @@
       #not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
   marks:
     - patterntest # original gives no error, just no result
+    - negative
 
   includes:
     - !include common.yaml
@@ -127,7 +130,8 @@
 
   marks:
     - patterntest # original gives no error, just no result
-  
+    - negative
+
   includes:
     - !include common.yaml
 
@@ -158,6 +162,7 @@
 
   marks:
     - patterntest
+    - negative
 
   includes:
     - !include common.yaml
@@ -188,6 +193,7 @@
   # not documented
   marks:
     - patterntest
+    - negative
 
   includes:
     - !include common.yaml
@@ -218,6 +224,7 @@
       # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
   marks:
     - patterntest
+    - negative
 
   includes:
     - !include common.yaml
@@ -246,8 +253,10 @@
 ---
   test_name: Hivemind bridge_api.get_community patterns test
       # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
+
   marks:
     - patterntest # communities do not exist in first 5mln, so only error response is possible
+    - negative
 
   includes:
     - !include common.yaml
@@ -278,6 +287,7 @@
 
   marks:
     - patterntest
+    - negative
 
   includes:
     - !include common.yaml
@@ -308,6 +318,7 @@
 
   marks:
     - patterntest
+    - negative
 
   includes:
     - !include common.yaml
@@ -338,6 +349,7 @@
 
   marks:
     - patterntest
+    - negative
 
   includes:
     - !include common.yaml
@@ -366,8 +378,10 @@
 
 ---
   test_name: Hivemind bridge_api.list_subscribers patterns test # not documented
+
   marks:
     - patterntest # no nonempty result possible for 5mln set
+    - negative
 
   includes:
     - !include common.yaml
@@ -398,6 +412,7 @@
 
   marks:
     - patterntest # error should be generated here, but we get empty result (like in original)
+    - negative
 
   includes:
     - !include common.yaml
@@ -424,8 +439,10 @@
 
 ---
   test_name: Hivemind bridge_api.list_subscribers patterns test # not documented
+
   marks:
     - patterntest # change to proper error, missing check on type of argument
+    - negative
 
   includes:
     - !include common.yaml
@@ -456,6 +473,7 @@
 
   marks:
     - patterntest
+    - negative
 
   includes:
     - !include common.yaml
@@ -486,6 +504,7 @@
 
   marks:
     - patterntest
+    - negative
 
   includes:
     - !include common.yaml
@@ -516,6 +535,7 @@
 
   marks:
     - patterntest # it should be changed to proper error, currrent server error is barely acceptable in that case
+    - negative
 
   includes:
     - !include common.yaml
@@ -547,6 +567,7 @@
 
   marks:
     - patterntest # maybe post 'steemit/' not found would be better
+    - negative
 
   includes:
     - !include common.yaml
@@ -577,6 +598,7 @@
 
   marks:
     - patterntest
+    - negative
 
   includes:
     - !include common.yaml
@@ -609,7 +631,7 @@
 
   marks:
     - patterntest # change to proper error, server error is barely acceptable here
-
+    - negative
 
   includes:
     - !include common.yaml
@@ -640,6 +662,7 @@
 
   marks:
     - patterntest # change to proper error, server error is barely acceptable here
+    - negative
 
   includes:
     - !include common.yaml
@@ -670,6 +693,7 @@
 
   marks:
     - patterntest
+    - negative
 
   includes:
     - !include common.yaml
@@ -700,6 +724,7 @@
 
   marks:
     - patterntest
+    - negative
 
   includes:
     - !include common.yaml
@@ -730,6 +755,7 @@
 
   marks:
     - patterntest # change to proper error, server error is barely acceptable here
+    - negative
 
   includes:
     - !include common.yaml
@@ -762,6 +788,7 @@
   
   marks:
     - patterntest
+    - negative
 
   includes:
     - !include common.yaml
@@ -792,6 +819,7 @@
   
   marks:
     - patterntest
+    - negative
 
   includes:
     - !include common.yaml
@@ -823,6 +851,7 @@
   # post_notifications(context, author, permlink, min_score=25, last_id=None, limit=100) last_id - notification id
   marks:
     - patterntest
+    - negative
 
   includes:
     - !include common.yaml
@@ -849,9 +878,11 @@
             error_response: true
 
 ---
-  test_name: Hivemind bridge.post_notifications patterns test only account # openapi
+  test_name: Hivemind bridge.post_notifications patterns test only account 
+
   marks:
     - patterntest
+    - negative
 
   includes:
     - !include common.yaml
@@ -879,8 +910,10 @@
 
 ---
   test_name: Hivemind bridge_api.get_profile empty params
+
   marks:
     - patterntest
+    - negative
 
   includes:
     - !include common.yaml
