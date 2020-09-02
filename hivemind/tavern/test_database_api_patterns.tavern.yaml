@@ -1,39 +1,10 @@
 ---
-  test_name: Hivemind database_api.find_comments patterns test
+  test_name: Hivemind database_api.list_comments patterns test order "by_permlink"
 
   marks:
     - patterntest
     - failing
-
-  includes:
-    - !include common.yaml
-
-  stages:
-    - name: find_comments
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "database_api.find_comments"
-          params: {"comments":[["temp","test1"],["temp","foobar"]], "limit":10, "order":"by_account"}
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "find_comments"
-            directory: "database_api_patterns"
-
----
-  test_name: Hivemind database_api.list_comments patterns test
-
-  marks:
-    - patterntest
-    - failing
+    - xfail # escaping
 
   includes:
     - !include common.yaml
@@ -63,7 +34,6 @@
 
   marks:
     - patterntest
-    - failing
 
   includes:
     - !include common.yaml
@@ -78,72 +48,1308 @@
         json:
           jsonrpc: "2.0"
           id: 1
-          method: "database_api.find_votes"
-          params: {"author":"steemit", "permlink":"firstpost"}
+          method: "database_api.find_comments"
+          params: {"comments":[["steemit","firstpost"]]}
       response:
         status_code: 200
         verify_response_with:
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
-            method: "find_votes"
+            method: "find_comments"
             directory: "database_api_patterns"
 
 ---
-  test_name: Hivemind database_api.list_votes patterns test
+test_name: Hivemind database_api.list_comments patterns test order "by_cashout_time" all data
 
-  marks:
-    - patterntest
-    - failing
-    
-  includes:
-    - !include common.yaml
+marks:
+  - patterntest # passing only because parameters were changed so results only cover specific posts
 
-  stages:
-    - name: list_votes
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "database_api.list_votes"
-          params: {"start":["", "", ""], "limit":10, "order":"by_comment_voter"}
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "list_votes"
-            directory: "database_api_patterns"
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_cashout_time
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start":
+              [
+                "1969-12-31T23:59:59",
+                "proskynneo",
+                "steemit-firstpost-1",
+              ],
+            "limit": 10,
+            "order": "by_cashout_time",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_by_cashout_time_all_data"
+          directory: "database_api_patterns"
 
 ---
-  test_name: Hivemind database_api.list_votes patterns test
+test_name: Hivemind database_api.list_comments patterns test order "by_cashout_time" future data
 
-  marks:
-    - patterntest
-    - failing
-    
-  includes:
-    - !include common.yaml
+marks:
+  - patterntest # show first posts comments
 
-  stages:
-    - name: list_votes
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "database_api.list_votes"
-          params: {"start":["", "", ""], "limit":10, "order":"by_voter_comment"}
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "list_votes2"
-            directory: "database_api_patterns"
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_cashout_time
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start": ["2030-07-08T00:45:15", "", ""],
+            "limit": 10,
+            "order": "by_cashout_time",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_by_cashout_time_future_data"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_cashout_time" data exist in database
+
+marks:
+  - patterntest # incomparable with original due to cashout_time differences
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_cashout_time
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start": ["1970-01-01T00:00:00", "", ""],
+            "limit": 10,
+            "order": "by_cashout_time",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_by_cashout_first_date"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_cashout_time" data exist in database
+
+marks:
+  - patterntest # incomparable with original due to cashout_time differences (same pattern as in list_comments_by_cashout_first_date)
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_cashout_time
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start": ["2016-07-08T00:45:15", "", ""],
+            "limit": 10,
+            "order": "by_cashout_time",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_by_cashout_time_second"
+          directory: "database_api_patterns"
+
+########################  PERMLINK  ########################
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_permlink" only author
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_permlink
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params: { "start": ["gtg", ""], "limit": 10, "order": "by_permlink" }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_permlink"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_permlink" no data
+
+marks:
+  - patterntest
+  - failing
+  - xfail # escaping
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_permlink
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params: { "start": ["", ""], "limit": 10, "order": "by_permlink" }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_permlink_permlink_no_data"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_permlink" good permlink
+
+marks:
+  - patterntest # author first - when empty, takes alphabetical (later by permlink)
+  - failing
+  - xfail # escaping
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_permlink
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start":
+              [
+                "",
+                "re-an-introduction-to-where-eagles-fly-the-american-wilderness-expedition-by-zedekiah-morse-20160824t212916",
+              ],
+            "limit": 10,
+            "order": "by_permlink",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_permlink_good_permlink"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_permlink" good params
+
+marks:
+  - patterntest
+  - failing
+  - xfail # abs_rshares/vote_rshares prior to first payout
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_permlink
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start":
+              [
+                "skypilot",
+                "an-introduction-to-where-eagles-fly-the-american-wilderness-expedition-by-zedekiah-morse",
+              ],
+            "limit": 10,
+            "order": "by_permlink",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_permlink_good_params"
+          directory: "database_api_patterns"
+
+########################  ROOT  ########################
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_root" good params
+
+marks:
+  - patterntest
+  - failing
+  - xfail # escaping
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_root
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start": ["gtg", "hello-world", "", ""],
+            "limit": 10,
+            "order": "by_root",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_root"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_root" no data
+
+marks:
+  - patterntest # first two params are required
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_root
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start": ["", "", "", ""],
+            "limit": 10,
+            "order": "by_root",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_root_no_data"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_root" required values (comment of a post)
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_root
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start": ["vi1son", "re-givemeyoursteem-winners-of-steemit-food-challenge-3-desserts-to-die-for-20160828t172955785z", "", ""],
+            "limit": 10,
+            "order": "by_root",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_root_required_values"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_root" required values (post)
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_root
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start": ["givemeyoursteem", "winners-of-steemit-food-challenge-3-desserts-to-die-for", "", ""],
+            "limit": 10,
+            "order": "by_root",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_root_required_values_comments"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_root" all values correct
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_root
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start": ["givemeyoursteem", "winners-of-steemit-food-challenge-3-desserts-to-die-for", "vi1son", "re-givemeyoursteem-winners-of-steemit-food-challenge-3-desserts-to-die-for-20160828t172955785z"],
+            "limit": 10,
+            "order": "by_root",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_root_all_values"
+          directory: "database_api_patterns"
+
+########################  PARENT  ########################
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_parent"
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_parent
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start": ["gtg", "hello-world", "", ""],
+            "limit": 10,
+            "order": "by_parent",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_parent"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_parent" no data
+
+marks:
+  - patterntest # first 2 params are required
+  - failing
+  - xfail # title
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_parent
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start": ["", "", "", ""],
+            "limit": 10,
+            "order": "by_parent",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_parent_no_data"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_parent" no data
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_parent
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start": ["vi1son", "", "", ""],
+            "limit": 10,
+            "order": "by_parent",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_parent_parent_author"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_parent" required data
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_parent
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start": ["knozaki2015", "re-givemeyoursteem-winners-of-steemit-food-challenge-3-desserts-to-die-for-20160828t181032961z", "", ""],
+            "limit": 10,
+            "order": "by_parent",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_parent_required_data"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_parent" all data
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_parent
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start": ["allasyummyfood", "re-givemeyoursteem-winners-of-steemit-food-challenge-3-desserts-to-die-for-20160829t004616466z", "vlad", "re-allasyummyfood-re-givemeyoursteem-winners-of-steemit-food-challenge-3-desserts-to-die-for-20160829t011002757z"],
+            "limit": 10,
+            "order": "by_parent",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_parent_all_data"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_parent" not full parent_permlink
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_parent
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start": ["allasyummy", "re-givemeyoursteem-winner", "vlad", "re-allasyummyfood-re-givemeyoursteem-winners-of-steemit-food-challenge-3-desserts-to-die-for-20160829t011002757z"],
+            "limit": 10,
+            "order": "by_parent",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_parent_not_full_data"
+          directory: "database_api_patterns"
+
+########################  AUTHOR LAST UPDATE  ########################
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_author_last_update" correct date
+
+marks:
+  - patterntest # incomparable with original (bug in fat node using wrong index)
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_author_last_update
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start": ["", "2016-08-28T17:15:12", "", ""],
+            "limit": 10,
+            "order": "by_author_last_update",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_author_last_update_corr_date"
+          directory: "database_api_patterns"
+ 
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_author_last_update" correct date author and permlink
+
+marks:
+  - patterntest # incomparable with original (bug in fat node using wrong index)
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_author_last_update
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start": ["", "2016-08-28T17:15:12", "givemeyoursteem", "winners-of-steemit-food-challenge-3-desserts-to-die-for"],
+            "limit": 10,
+            "order": "by_author_last_update",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_author_last_update_corr_dap"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_author_last_update" correct author and date
+
+marks:
+  - patterntest # incomparable with original (bug in fat node using wrong index)
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_author_last_update
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start": ["givemeyoursteem", "2016-08-28T17:15:12", "", ""],
+            "limit": 10,
+            "order": "by_author_last_update",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_author_last_update_corr_author_date"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_author_last_update" not full author and corr date
+
+marks:
+  - patterntest # incomparable with original (bug in fat node using wrong index); output should be the same as prev test or with completely diff author
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_author_last_update
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start": ["givemeyo", "2016-08-28T17:15:12", "", ""],
+            "limit": 10,
+            "order": "by_author_last_update",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_author_last_update_author_date"
+          directory: "database_api_patterns"
+
+########################  LAST UPDATE  ########################
+
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_last_update" good date
+
+marks:
+  - patterntest
+  - failing
+  - xfail # differences in rshares/weight after empty payout
+
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_update
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start": ["", "2016-08-24T21:29:42", "", ""],
+            "limit": 10,
+            "order": "by_last_update",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_last_update_good_date"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_comments patterns test order "by_last_update" future date
+
+marks:
+  - patterntest # show last comments in base
+  - failing
+  - xfail # beneficiaries as dict
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_comments_by_update
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_comments"
+        params:
+          {
+            "start": ["", "2022-08-24T21:29:42", "", ""],
+            "limit": 10,
+            "order": "by_last_update",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_comments_by_last_update_future_date"
+          directory: "database_api_patterns"
+
+########################  LIST VOTES  ########################
+
+
+#######################  COMMENT VOTER  ######################
+---
+test_name: Hivemind database_api.list_votes patterns test order "by_comment_voter" no data
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_votes_by_comment_voter
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_votes"
+        params:
+          {
+            "start": ["", "", ""],
+            "limit": 10,
+            "order": "by_comment_voter",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_votes_by_comment_voter_no_data"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_votes patterns test order "by_comment_voter" only voter
+
+marks:
+  - patterntest
+  - xfail # wrong output, shows first post votes
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_votes_by_comment_voter
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_votes"
+        params:
+          {
+            "start": ["", "", "winstonwolfe"],
+            "limit": 10,
+            "order": "by_comment_voter",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_votes_by_comment_voter_only_voter"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_votes patterns test order "by_comment_voter" all good data
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_votes_by_comment_voter
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_votes"
+        params:
+          {
+            "start": ["roelandp", "tldr-an-exploration-in-steem-botting-what-i-learned-since-it-s-inception-and-downfall-over-the-course-of-20-hours", "winstonwolfe"],
+            "limit": 10,
+            "order": "by_comment_voter",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_votes_by_comment_voter_all_good_data"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_votes patterns test order "by_comment_voter" one before last voter
+
+marks:
+  - patterntest
+  - xfail # only first is correct, rest is random
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_votes_by_comment_voter
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_votes"
+        params:
+          {
+            "start": ["roelandp", "tldr-an-exploration-in-steem-botting-what-i-learned-since-it-s-inception-and-downfall-over-the-course-of-20-hours", "pickoum"],
+            "limit": 10,
+            "order": "by_comment_voter",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_votes_by_comment_voter_one_before_last"
+          directory: "database_api_patterns"
+
+
+#######################  VOTER COMMENT  ######################
+---
+test_name: Hivemind database_api.list_votes patterns test order "by_voter_comment" no data
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_votes_by_voter_comment
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_votes"
+        params:
+          {
+            "start": ["", "", ""],
+            "limit": 10,
+            "order": "by_voter_comment",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_votes_by_voter_comment_no_data"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.list_votes patterns test order "by_voter_comment" voter
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_votes_by_voter_comment
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_votes"
+        params:
+          {
+            "start": ["bunny", "", ""],
+            "limit": 10,
+            "order": "by_voter_comment",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_votes_by_voter_comment_voter"
+          directory: "database_api_patterns"
+---
+test_name: Hivemind database_api.list_votes patterns test order "by_voter_comment" author + permlink
+
+marks:
+  - patterntest
+  - xfail # show "voter": "nxt2" votes, not connected with author and permlink (like no data)
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: list_votes_by_voter_comment
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.list_votes"
+        params:
+          {
+            "start": ["", "roelandp", "tldr-an-exploration-in-steem-botting-what-i-learned-since-it-s-inception-and-downfall-over-the-course-of-20-hours"],
+            "limit": 10,
+            "order": "by_voter_comment",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "list_votes_by_voter_comment_author_permlink"
+          directory: "database_api_patterns"
+
+########################  FIND VOTES  ########################
+
+---
+test_name: Hivemind database_api.find_votes patterns test all data 
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: find_votes
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.find_votes"
+        params:
+          {
+            "author": "kental",
+            "permlink": "hi-steem-my-russian-trip-on-the-bike-big-party-in-moscow-tour-of-moscow-by-slava",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "find_votes_all_data"
+          directory: "database_api_patterns"
+
+
+########################  FIND COMMENTS  ########################
+# commments instead of start
+---
+test_name: Hivemind database_api.find_comments patterns test no data 
+
+marks:
+  - patterntest # wrong example of calling this function (no limit and order, comments instead of start) 
+  - failed
+  - xfail
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: find_comments
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.find_comments"
+        params:
+          {
+            "start":[["", ""]],
+            "limit": 0,
+            "order": "",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "find_comments_no_data"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.find_comments patterns test all data
+
+marks:
+  - patterntest
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: find_comments
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.find_comments"
+        params:
+          {
+            "comments": [["magicmonk","hello-steemit-my-name-s-eddie-a-k-a-the-magic-monk-i-am-a-youtuber-and-a-high-school-teacher-let-the-writing-begin"]],
+            "limit": 0,
+            "order": "",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "find_comments_all_data"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.find_comments patterns test author
+
+marks:
+  - patterntest # why there is empty response?
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: find_comments
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.find_comments"
+        params:
+          {
+            "comments": [["magicmonk",""]],
+            "limit": 0,
+            "order": "",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "find_comments_no_data"
+          directory: "database_api_patterns"
+
+---
+test_name: Hivemind database_api.find_comments patterns test permlink
+
+marks:
+  - patterntest # why there is empty response?
+
+includes:
+  - !include common.yaml
+
+stages:
+  - name: find_comments
+    request:
+      url: "{service.proto:s}://{service.server:s}:{service.port}/"
+      method: POST
+      headers:
+        content-type: application/json
+      json:
+        jsonrpc: "2.0"
+        id: 1
+        method: "database_api.find_comments"
+        params:
+          {
+            "comments": [["","hello-steemit-my-name-s-eddie-a-k-a-the-magic-monk-i-am-a-youtuber-and-a-high-school-teacher-let-the-writing-begin"]],
+            "limit": 0,
+            "order": "",
+          }
+    response:
+      status_code: 200
+      verify_response_with:
+        function: validate_response:compare_response_with_pattern
+        extra_kwargs:
+          method: "find_comments_no_data"
+          directory: "database_api_patterns"

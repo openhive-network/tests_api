@@ -90,7 +90,7 @@
   test_name: Hivemind follow_api.get_followers patterns test
 
   marks:
-    - patterntest
+    - patterntest # to be changed for account that has some reputation
 
   includes:
     - !include common.yaml
