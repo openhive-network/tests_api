@@ -1,8 +1,104 @@
 {
-  "reputations": [
-    {
-      "name": "steem",
-      "reputation": 0
-    }
-  ]
-}
+    "reputations": [
+      {
+        "name": "steem",
+        "reputation": 0
+      },
+      {
+        "name": "steem1",
+        "reputation": 0
+      },
+      {
+        "name": "steem1234",
+        "reputation": 0
+      },
+      {
+        "name": "steem14",
+        "reputation": 0
+      },
+      {
+        "name": "steem1653",
+        "reputation": 0
+      },
+      {
+        "name": "steem1t",
+        "reputation": 0
+      },
+      {
+        "name": "steem2",
+        "reputation": 0
+      },
+      {
+        "name": "steem200",
+        "reputation": 0
+      },
+      {
+        "name": "steem3thr",
+        "reputation": 0
+      },
+      {
+        "name": "steem3vp0n8",
+        "reputation": 0
+      },
+      {
+        "name": "steem4",
+        "reputation": 0
+      },
+      {
+        "name": "steem42",
+        "reputation": 0
+      },
+      {
+        "name": "steem43dom",
+        "reputation": 0
+      },
+      {
+        "name": "steem4fobs",
+        "reputation": 0
+      },
+      {
+        "name": "steem4lyf",
+        "reputation": 0
+      },
+      {
+        "name": "steem9",
+        "reputation": 0
+      },
+      {
+        "name": "steema",
+        "reputation": 0
+      },
+      {
+        "name": "steemaccounts",
+        "reputation": 0
+      },
+      {
+        "name": "steemace",
+        "reputation": 0
+      },
+      {
+        "name": "steemachine",
+        "reputation": 0
+      },
+      {
+        "name": "steemad",
+        "reputation": 0
+      },
+      {
+        "name": "steemadventure",
+        "reputation": 0
+      },
+      {
+        "name": "steemafon",
+        "reputation": 0
+      },
+      {
+        "name": "steemahead",
+        "reputation": 0
+      },
+      {
+        "name": "steemalf",
+        "reputation": 0
+      }
+    ]
+  }
