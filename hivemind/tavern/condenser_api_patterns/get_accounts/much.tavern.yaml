@@ -1,0 +1,27 @@
+---
+  test_name: Hivemind condenser_api.get_accounts patterns test much 33091
+  marks:
+    - patterntest
+
+  includes:
+    - !include ../../common.yaml
+
+  stages:
+    - name: get_accounts
+      request:
+        url: "{service.proto:s}://{service.server:s}:{service.port}/"
+        method: POST
+        headers:
+          content-type: application/json
+        json:
+          jsonrpc: "2.0"
+          id: 1
+          method: "condenser_api.get_accounts"
+          params: [["camilla", "ryan-singer","miners", "temp", "initminer","nxt1", "dark", "nxt2","nxt", "dantheman5", "any","nxt3", "nxt4", "cloop2","dantheman1", "dantheman6", "thisisnice","root", "thisisnice0", "dantheman2","nxt5","dantheman7","thisisnice2","dantheman8","nxt6","dantheman3","cloop3","nxt7","thisisnice3","nxt8","dantheman4","thisisnice4","steemit10","thisisnice5","dantheman9","nxt9","steemit11","thisisnice6"]]
+      response:
+        status_code: 200
+        verify_response_with:
+          function: validate_response:compare_response_with_pattern
+          extra_kwargs:
+            method: "much"
+            directory: "condenser_api_patterns/get_accounts"
