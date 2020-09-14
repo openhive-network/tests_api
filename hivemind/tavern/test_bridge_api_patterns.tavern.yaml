@@ -854,34 +854,7 @@
             method: "get_payout_stats"
             directory: "bridge_api_patterns"
 
----
-  test_name: Hivemind bridge_api.get_payout_stats patterns test 10
 
-  marks:
-    - patterntest
-
-  includes:
-    - !include common.yaml
-
-  stages:
-    - name: get_payout_stats
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "bridge.get_payout_stats"
-          params: [10]
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "get_payout_stats_10"
-            directory: "bridge_api_patterns"
 
 ---
   test_name: Hivemind bridge_api.list_communities patterns test
@@ -970,33 +943,6 @@
             method: "list_subscribers"
             directory: "bridge_api_patterns"
 
----
-  test_name: Hivemind bridge_api.list_subscribers patterns test # not documented
-  marks:
-    - patterntest # no nonempty result possible for 5mln set
-
-  includes:
-    - !include common.yaml
-
-  stages:
-    - name: list_subscribers
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "bridge.list_subscribers"
-          params: ["789"]
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "list_subscribers_pos_arg"
-            directory: "bridge_api_patterns"
 
 ---
   test_name: Hivemind bridge_api.list_all_subscriptions patterns test
@@ -1027,65 +973,7 @@
             method: "list_all_subscriptions"
             directory: "bridge_api_patterns"
 
----
-  test_name: Hivemind bridge_api.list_all_subscriptions patterns test
 
-  marks:
-    - patterntest # same with params: {account: "steemit"} # no nonempty result possible for 5mln set
-
-  includes:
-    - !include common.yaml
-
-  stages:
-    - name: list_all_subscriptions
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "bridge.list_all_subscriptions"
-          params: ["steemit"]
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "list_all_subscriptions_pos_arg"
-            directory: "bridge_api_patterns"
-
----
-  test_name: Hivemind bridge_api.get_relationship_between_accounts patterns test # 8080
-    # not documented on https://developers.hive.io/apidefinitions/#apidefinitions-bridge
-    # no true from follow_blacklists and blacklisted for 5mln set
-  
-  marks:
-    - patterntest
-
-  includes:
-    - !include common.yaml
-
-  stages:
-    - name: get_relationship_between_accounts
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "bridge.get_relationship_between_accounts"
-          params: {"account1": "chhaylin","account2": "cannabisclub"}
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "get_relationship_between_accounts"
-            directory: "bridge_api_patterns"
 
 ---
   test_name: Hivemind bridge_api.get_relationship_between_accounts patterns test # 8080
@@ -1145,37 +1033,6 @@
           function: validate_response:compare_response_with_pattern
           extra_kwargs:
             method: "get_relationship_between_accounts_true_state_2"
-            directory: "bridge_api_patterns"
-
----
-  test_name: Hivemind bridge_api.get_relationship_between_accounts patterns test # 8080
-  
-  marks:
-    - patterntest
-
-  includes:
-    - !include common.yaml
-
-  stages:
-
-    - name: get_relationship_between_accounts
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "bridge.get_relationship_between_accounts"
-
-          params: {"account1": "tinfoilfedora","account2": "tonyson","observer": "tinfoilfedora"}
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "get_relationship_between_accounts_true_state_2_observer"
             directory: "bridge_api_patterns"
 
 
@@ -1268,60 +1125,3 @@
 
 # get_relationship_between_accounts is_blacklisted and follows_blacklists should be implemented after switching to tests over 5 mln blocks.
 
----
-  test_name: Hivemind bridge.post_notifications patterns test valid account and permlink
-  marks:
-    - patterntest
-
-  includes:
-    - !include common.yaml
-
-  stages:
-    - name: bridge.post_notifications
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "bridge.post_notifications"
-          params: {"author":"venuspcs","permlink":"re-minion-how-to-summon-one-of-the-biggest-and-most-powerful-steemit-whales-berniesanders-20160812t010731631z","min_score":10}
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "post_notifications_account_permlink"
-            directory: "bridge_api_patterns"
-
----
-  test_name: Hivemind bridge.post_notifications patterns test valid account, permlink and last_id
-
-  marks:
-    - patterntest
-    # show only votes (bc of last_it type - vote)
-
-  includes:
-    - !include common.yaml
-
-  stages:
-    - name: bridge.post_notifications
-      request:
-        url: "{service.proto:s}://{service.server:s}:{service.port}/"
-        method: POST
-        headers:
-          content-type: application/json
-        json:
-          jsonrpc: "2.0"
-          id: 1
-          method: "bridge.post_notifications"
-          params: {"author":"venuspcs","permlink":"re-minion-how-to-summon-one-of-the-biggest-and-most-powerful-steemit-whales-berniesanders-20160812t010731631z","min_score":10}
-      response:
-        status_code: 200
-        verify_response_with:
-          function: validate_response:compare_response_with_pattern
-          extra_kwargs:
-            method: "post_notifications_account_permlink_last_it_votes"
-            directory: "bridge_api_patterns"
