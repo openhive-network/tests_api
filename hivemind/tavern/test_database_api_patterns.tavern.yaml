@@ -4,8 +4,6 @@ test_name: Hivemind database_api.list_comments patterns test order "by_cashout_t
 
 marks:
   - patterntest
-  - failing
-  - xfail # should show error when there is only one of optional value (first)
 
 includes:
   - !include common.yaml
@@ -41,8 +39,6 @@ test_name: Hivemind database_api.list_comments patterns test order "by_cashout_t
 
 marks:
   - patterntest
-  - failing
-  - xfail # should show error when there is only one of optional value (second)
 
 includes:
   - !include common.yaml
