@@ -9,7 +9,7 @@ import datetime
 
 from .common import DEFAULT_LOG_FORMAT, DEFAULT_LOG_LEVEL
 
-MODULE_NAME = "hive-utils.hivemind"
+MODULE_NAME = "hivemind"
 
 logger = logging.getLogger(MODULE_NAME)
 logger.setLevel(DEFAULT_LOG_LEVEL)
@@ -22,6 +22,8 @@ logger.addHandler(ch)
 
 class HivemindInScreen(object):
   def __init__(self, hivemind_executable, mode, hivemind_port, database_url, working_dir = ".", hived_address="http://127.0.0.1", hived_port=8090):
+    self.logger = logging.getLogger(MODULE_NAME + ".HivemindInScreen")
+    self.logger.info("New hivemind instance")
     self.hivemind_executable = hivemind_executable
     assert mode in ['sync', 'server'], "Allowed modes are: `sync` and `server`"
     self.hivemind_mode = mode
@@ -69,7 +71,7 @@ class HivemindInScreen(object):
     ]
 
     start_params = screen_params + start_params
-    logger.info("Running hivemind with command: {0}".format(" ".join(start_params)))
+    self.logger.info("Running hivemind with command: {0}".format(" ".join(start_params)))
 
     try:
       save_pid_file(self.pid_file_name, "hive", self.hivemind_port, current_time_str)
@@ -84,15 +86,15 @@ class HivemindInScreen(object):
         raise ProcessLookupError(msg)
 
       self.hivemind_running = True
-      logger.info("Hivemind at {0}:{1} in {2} is up and running...".format("http://0.0.0.0", self.hivemind_port, self.working_dir))
+      self.logger.info("Hivemind at {0}:{1} in {2} is up and running...".format("http://0.0.0.0", self.hivemind_port, self.working_dir))
     except Exception as ex:
-      logger.exception("Exception during hivemind run: {0}".format(ex))
+      self.logger.exception("Exception during hivemind run: {0}".format(ex))
       kill_process(self.pid_file_name, "hive", "http://0.0.0.0", self.hivemind_port)
       self.hivemind_running = False
 
   def stop_hivemind(self):
     from .common import kill_process
-    logger.info("Stopping hivemind at {0}:{1}".format("http://0.0.0.0", self.hivemind_port))
+    self.logger.info("Stopping hivemind at {0}:{1}".format("http://0.0.0.0", self.hivemind_port))
     kill_process(self.pid_file_name, "hive", "http://0.0.0.0", self.hivemind_port)
     self.node_running = False
 

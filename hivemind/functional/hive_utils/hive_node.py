@@ -11,7 +11,7 @@ from .common import DEFAULT_LOG_FORMAT, DEFAULT_LOG_LEVEL
 
 from threading import Lock
 
-MODULE_NAME = "hive-utils.hive-node"
+MODULE_NAME = "hive_node"
 
 logger = logging.getLogger(MODULE_NAME)
 logger.setLevel(DEFAULT_LOG_LEVEL)
@@ -31,8 +31,10 @@ class HiveNode(object):
   hived_data_dir = None
   hived_args = list()
 
+  logger = logging.getLogger(MODULE_NAME + ".HiveNode")
+
   def __init__(self, binary_path : str, working_dir : str, binary_args : list):
-    logger.info("New hive node")
+    self.logger.info("New hive node")
     if not os.path.exists(binary_path):
       raise ValueError("Path to hived binary is not valid.")
     if not os.path.isfile(binary_path):
@@ -72,7 +74,7 @@ class HiveNode(object):
     return out
 
   def __exit__(self, exc, value, tb):
-    logger.info("Closing node")
+    self.logger.info("Closing node")
     from signal import SIGINT, SIGTERM
     from time import sleep
 
@@ -93,6 +95,8 @@ class HiveNode(object):
 
 class HiveNodeInScreen(object):
   def __init__(self, hive_executable, working_dir, config_src_path, run_using_existing_data = False, node_is_steem = False):
+    self.logger = logging.getLogger(MODULE_NAME + ".HiveNodeInScreen")
+    self.logger.info("New hive node")
     self.hive_executable = hive_executable
     self.working_dir = working_dir
     self.config_src_path = config_src_path
@@ -149,7 +153,7 @@ class HiveNodeInScreen(object):
       msg = "{0} process is running on {1}:{2}. Please terminate that process and try again.".format("hive", self.ip_address, self.port)
       raise ProcessLookupError(msg)
 
-    logger.info("*** START NODE at {0}:{1} in {2}".format(self.ip_address, self.port, self.working_dir))
+    self.logger.info("*** START NODE at {0}:{1} in {2}".format(self.ip_address, self.port, self.working_dir))
 
     parameters = [
       self.hive_executable,
@@ -180,7 +184,7 @@ class HiveNodeInScreen(object):
     ]
 
     parameters = screen_params + parameters
-    logger.info("Running hived with command: {0}".format(" ".join(parameters)))
+    self.logger.info("Running hived with command: {0}".format(" ".join(parameters)))
       
     try:
       subprocess.Popen(parameters)
@@ -202,16 +206,16 @@ class HiveNodeInScreen(object):
         else:
           wait_for_string_in_file(log_file_name, "start listening for ws requests", 20.)
       self.node_running = True
-      logger.info("Node at {0}:{1} in {2} is up and running...".format(self.ip_address, self.port, self.working_dir))
+      self.logger.info("Node at {0}:{1} in {2} is up and running...".format(self.ip_address, self.port, self.working_dir))
     except Exception as ex:
-      logger.error("Exception during hived run: {0}".format(ex))
+      self.logger.error("Exception during hived run: {0}".format(ex))
       kill_process(self.pid_file_name, "hived" if not self.node_is_steem else "steemd", self.ip_address, self.port)
       self.node_running = False
 
 
   def stop_hive_node(self):
     from .common import kill_process
-    logger.info("Stopping node at {0}:{1}".format(self.ip_address, self.port))
+    self.logger.info("Stopping node at {0}:{1}".format(self.ip_address, self.port))
     kill_process(self.pid_file_name, "hived" if not self.node_is_steem else "steemd", self.ip_address, self.port)
     self.node_running = False
 

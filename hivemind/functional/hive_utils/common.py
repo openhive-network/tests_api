@@ -4,13 +4,20 @@ import logging
 from junit_xml import TestCase
 import time
 import traceback
+import sys
 
 DEFAULT_LOG_FORMAT = '%(asctime)-15s - %(name)s - %(levelname)s - %(message)s'
 DEFAULT_LOG_LEVEL = logging.INFO
 
-MODULE_NAME = "hive-utils.common"
+MODULE_NAME = "common"
 logger = logging.getLogger(MODULE_NAME)
 logger.setLevel(DEFAULT_LOG_LEVEL)
+
+ch = logging.StreamHandler(sys.stdout)
+ch.setLevel(DEFAULT_LOG_LEVEL)
+ch.setFormatter(logging.Formatter(DEFAULT_LOG_FORMAT))
+
+logger.addHandler(ch)
 
 def send_rpc_query(target_node : str, payload : dict) -> dict:
   from requests import post
