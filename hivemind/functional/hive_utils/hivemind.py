@@ -34,6 +34,9 @@ class HivemindInScreen(object):
     self.working_dir = working_dir
     self.hivemind_running = False
 
+  def get_address(self):
+    return "http://{}:{}/".format("127.0.0.1", self.hivemind_port)
+
   def is_running(self):
     return self.hivemind_running
 
