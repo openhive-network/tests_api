@@ -170,34 +170,32 @@ class HivemindFunctionalRunner(hive_utils.test_runner.TestRunner):
         pass
 
     def on_after_hivemind_server_run(self):
-        # create community
-        community_name = "hive-12345"
-        communities = [
-            {"name" : community_name, "private_key" : "5Hxtady4d9AcJoQNt8FsMcGiq7rKSapMx7WZyG3UWB7YPfsHRRX", "public_key" : "TST6MsTXRVf3bFS5KBUHxrMRLSz7ystTUrGADFw98jEBWcZ3btXqb"},
-        ]
-        create_accounts(self.hived_node_client, "tester001", communities)
-        # validate if community exists
-        query = {
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "bridge.list_communities",
-            "params": {
-                "sort" : "new"
+        from time import sleep
+        counter = 0
+        while counter < 20:
+            #ask for headblocks
+            ret = self.hived_node_client.rpc.get_dynamic_global_properties()
+            logger.info("Head block from Hived: {}".format(ret['head_block_number']))
+
+            query = {
+              "jsonrpc":"2.0", 
+              "method":"hive.db_head_state", 
+              "id":1
             }
-        }
-        ret = hive_utils.common.send_rpc_query(self.hivemind_server.get_address(), query)
-        assert 'error' not in ret, "Query returned error response"
-        assert 'result' in ret, "Expected result key in response"
-        result = ret['result']
-        assert len(result) == 1, "Expecting one item"
-        assert result['name'] == community_name, "Expected name `{}` got `{}`".format(community_name, result['name'])
+
+            ret = hive_utils.common.send_rpc_query(self.hivemind_server.get_address(), query)
+            logger.info("Head block from hivemind: {}".format(ret['result']['db_head_block']))
+
+            sleep(3)
+            counter += 1
+
 
 if __name__ == '__main__':
     logger.info("Performing tests...")
     import argparse
     parser = argparse.ArgumentParser(description="Usage: python3 exaple.py path/to/hived/executable")
     parser.add_argument("hived_path", help = "Path to hived executable.")
-    parser.add_argument("database_url", help = "Path to database")
+    parser.add_argument("database_url", help = "Path to database.")
     parser.add_argument("--creator", dest="creator", default="initminer", help = "Account to create test accounts with")
     parser.add_argument("--wif", dest="wif", default="5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n", help="Private key for creator account")
     parser.add_argument("--node-url", dest="node_url", default="http://127.0.0.1:8090", help="Url of working hive node")
@@ -208,3 +206,4 @@ if __name__ == '__main__':
 
     test_runner = HivemindFunctionalRunner(args.creator, args.hived_path, args.wif, args.node_url, args.database_url, args.hived_working_dir, args.hived_config_path)
     test_runner.run()
+

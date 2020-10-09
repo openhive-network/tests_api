@@ -42,7 +42,7 @@ except Exception as ex:
     sys.exit(1)
 
 class TestRunner(object):
-    def __init__(self, hived_path, wif, node_url, working_dir, config_path):
+    def __init__(self, hived_path, wif, node_url, database_url, working_dir, config_path):
         self.logger = logging.getLogger(MODULE_NAME + ".TestRunner")
         self.hived_node = None
         self.hived_node_client = None
@@ -53,8 +53,10 @@ class TestRunner(object):
         self.hived_path = hived_path
         self.hived_wif = wif
         self.hived_node_url = node_url
+        self.hivemind_database_url = database_url
         self.hived_working_dir = working_dir
         self.hived_config_path = config_path
+
 
     def on_before_hived_run(self):
         pass
@@ -100,7 +102,7 @@ class TestRunner(object):
                 self.on_before_hivemind_sync_run()
 
                 self.logger.info("Start hivemind instance and perform initial sync")
-                self.hivemind_sync = HivemindInScreen("hive", "sync", 8080, "postgresql://hive@localhost:5432/hive3", "/tmp")
+                self.hivemind_sync = HivemindInScreen("hive", "sync", 8080, self.hivemind_database_url, "/tmp")
                 self.hivemind_sync.run_hivemind()
                 wait_for_string_in_file(self.hivemind_sync.log_file_name, "Initial sync complete", None)
                 self.logger.info("Initial sync complete, switching to live sync mode")
@@ -109,7 +111,7 @@ class TestRunner(object):
                 self.on_before_hivemind_server_run()
 
                 self.logger.info("Start hivemind instance as server")
-                self.hivemind_server = HivemindInScreen("hive", "server", 8081, "postgresql://hive@localhost:5432/hive3", "/tmp")
+                self.hivemind_server = HivemindInScreen("hive", "server", 8081, self.hivemind_database_url, "/tmp")
                 self.hivemind_server.run_hivemind()
 
                 self.logger.info("Executing after hivemind server run hook")

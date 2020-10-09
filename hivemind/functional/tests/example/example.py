@@ -127,8 +127,8 @@ def print_balance(node, accounts):
     return balances
 
 class HivemindFunctionalRunner(hive_utils.test_runner.TestRunner):
-    def __init__(self, creator, hived_path, wif, node_url, working_dir, config_path):
-        super().__init__(hived_path, wif, node_url, working_dir, config_path)
+    def __init__(self, creator, hived_path, wif, node_url, database_url, working_dir, config_path):
+        super().__init__(hived_path, wif, node_url, database_url, working_dir, config_path)
         self.creator = creator
         self.accounts = [
             # place accounts here in the format: {'name' : name, 'private_key' : private-key, 'public_key' : public-key}
@@ -179,6 +179,7 @@ if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser(description="Usage: python3 exaple.py path/to/hived/executable")
     parser.add_argument("hived_path", help = "Path to hived executable.")
+    parser.add_argument("database_url", help = "Path database.")
     parser.add_argument("--creator", dest="creator", default="initminer", help = "Account to create test accounts with")
     parser.add_argument("--wif", dest="wif", default="5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n", help="Private key for creator account")
     parser.add_argument("--node-url", dest="node_url", default="http://127.0.0.1:8090", help="Url of working hive node")
@@ -187,5 +188,5 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    test_runner = HivemindFunctionalRunner(args.creator, args.hived_path, args.wif, args.node_url, args.hived_working_dir, args.hived_config_path)
+    test_runner = HivemindFunctionalRunner(args.creator, args.hived_path, args.wif, args.node_url, args.database_url, args.hived_working_dir, args.hived_config_path)
     test_runner.run()
