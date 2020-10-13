@@ -9,7 +9,7 @@
     - !include ../../common.yaml
 
   stages:
-    - name: get_content gtg
+    - name: get_content without proper post
       request:
         url: "{service.proto:s}://{service.server:s}:{service.port}/"
         method: POST
@@ -27,4 +27,3 @@
           extra_kwargs:
             method: "deleted_post"
             directory: "condenser_api_negative/get_content"
-            error_response: true
