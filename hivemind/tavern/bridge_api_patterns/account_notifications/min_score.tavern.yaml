@@ -26,4 +26,4 @@
           extra_kwargs:
             method: "min_score"
             directory: "bridge_api_patterns/account_notifications"
-
+            ignore_tags: ['id']
