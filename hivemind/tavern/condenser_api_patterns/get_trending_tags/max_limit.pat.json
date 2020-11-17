@@ -1,5 +1,11 @@
 [
   {
+    "comments": 0,
+    "name": "",
+    "top_posts": 2,
+    "total_payouts": "246642.000 HBD"
+  },
+  {
     "comments": 22453,
     "name": "life",
     "top_posts": 3950,
@@ -1492,11 +1498,5 @@
     "name": "steemfit",
     "top_posts": 5,
     "total_payouts": "554.429 HBD"
-  },
-  {
-    "comments": 26,
-    "name": "steemtattoo",
-    "top_posts": 1,
-    "total_payouts": "546.399 HBD"
   }
 ]
