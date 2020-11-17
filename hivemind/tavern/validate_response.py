@@ -1,3 +1,7 @@
+import logging
+
+log = logging.getLogger(__name__)
+
 class PatternDiffException(Exception):
   pass
 
@@ -50,10 +54,12 @@ def compare_response_with_pattern(response, method=None, directory=None, ignore_
 
   if error is not None and not error_response:
     msg = "Error detected in response: {}".format(error["message"])
+    log.error("Full error response: {}".format(response_json))
     save_json(response_fname, response_json)
     raise PatternDiffException(msg)
   if error is None and error_response:
     msg = "Error expected but got result: {}".format(result)
+    log.error("Full result response: {}".format(response_json))
     save_json(response_fname, response_json)
     raise PatternDiffException(msg)
 
@@ -76,5 +82,6 @@ def compare_response_with_pattern(response, method=None, directory=None, ignore_
   if pattern_resp_diff:
     save_json(response_fname, result)
     msg = "Differences detected between response and pattern."
+    log.error("Recorded diff: {}".format(pattern_resp_diff.to_json()))
     raise PatternDiffException(msg)
 
