@@ -19,6 +19,7 @@
   },
   "tag_idx": {
     "trending": [
+      "",
       "life",
       "steemit",
       "story",
@@ -267,11 +268,16 @@
       "consciousness",
       "banking",
       "video",
-      "steemfit",
-      "steemtattoo"
+      "steemfit"
     ]
   },
   "tags": {
+    "": {
+      "comments": 0,
+      "name": "",
+      "top_posts": 2,
+      "total_payouts": "246642.000 HBD"
+    },
     "abortion": {
       "comments": 160,
       "name": "abortion",
@@ -1615,12 +1621,6 @@
       "name": "steemstats",
       "top_posts": 6,
       "total_payouts": "5063.413 HBD"
-    },
-    "steemtattoo": {
-      "comments": 26,
-      "name": "steemtattoo",
-      "top_posts": 1,
-      "total_payouts": "546.399 HBD"
     },
     "steemtools": {
       "comments": 279,

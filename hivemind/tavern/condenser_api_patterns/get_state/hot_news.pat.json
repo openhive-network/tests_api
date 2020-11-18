@@ -2861,6 +2861,7 @@
   },
   "tag_idx": {
     "trending": [
+      "",
       "life",
       "steemit",
       "story",
@@ -2909,8 +2910,7 @@
       "fiction",
       "steemdb",
       "funny",
-      "steemitphotochallenge",
-      "family"
+      "steemitphotochallenge"
     ]
   },
   "tags": {}
