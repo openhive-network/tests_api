@@ -5,9 +5,7 @@
     "author_payout_value": "0.000 HBD",
     "author_reputation": 25,
     "beneficiaries": [],
-    "blacklists": [
-      "reputation-0"
-    ],
+    "blacklists": [],
     "body": "Tester1 post is here. This post was added by mock block provider. Enjoy!",
     "category": "",
     "children": 0,
