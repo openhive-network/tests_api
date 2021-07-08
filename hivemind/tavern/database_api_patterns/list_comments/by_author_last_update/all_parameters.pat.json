@@ -23,7 +23,7 @@
       "depth": 1,
       "id": 1120694,
       "json_metadata": "{\"tags\":[\"introduceyourself\"],\"users\":[\"cwbrooch\"]}",
-      "last_payout": "1970-01-01T00:00:00",
+      "last_payout": "2016-09-05T01:34:12",
       "last_update": "2016-09-04T09:30:09",
       "max_accepted_payout": {
         "amount": "1000000000",
@@ -72,7 +72,7 @@
       "depth": 1,
       "id": 1076080,
       "json_metadata": "{\"tags\":[\"introduceyourself\"]}",
-      "last_payout": "1970-01-01T00:00:00",
+      "last_payout": "2016-09-01T19:22:30",
       "last_update": "2016-08-31T20:57:24",
       "max_accepted_payout": {
         "amount": "1000000000",
@@ -121,7 +121,7 @@
       "depth": 4,
       "id": 1059890,
       "json_metadata": "{\"tags\":[\"mining\",\"steem\"],\"users\":[\"djm34\"]}",
-      "last_payout": "1970-01-01T00:00:00",
+      "last_payout": "2016-08-31T17:29:27",
       "last_update": "2016-08-30T18:47:33",
       "max_accepted_payout": {
         "amount": "1000000000",
@@ -219,7 +219,7 @@
       "depth": 1,
       "id": 1047295,
       "json_metadata": "{\"tags\":[\"introduceyourself\"],\"users\":[\"emsenn\"]}",
-      "last_payout": "1970-01-01T00:00:00",
+      "last_payout": "2016-08-30T22:31:27",
       "last_update": "2016-08-29T21:35:24",
       "max_accepted_payout": {
         "amount": "1000000000",
@@ -268,7 +268,7 @@
       "depth": 1,
       "id": 1047119,
       "json_metadata": "{\"tags\":[\"introduceyourself\"]}",
-      "last_payout": "1970-01-01T00:00:00",
+      "last_payout": "2016-08-31T02:28:06",
       "last_update": "2016-08-29T21:24:18",
       "max_accepted_payout": {
         "amount": "1000000000",
@@ -317,7 +317,7 @@
       "depth": 1,
       "id": 1045371,
       "json_metadata": "{\"tags\":[\"introduceyourself\"],\"users\":[\"artywah\"]}",
-      "last_payout": "1970-01-01T00:00:00",
+      "last_payout": "2016-08-30T18:28:06",
       "last_update": "2016-08-29T19:19:18",
       "max_accepted_payout": {
         "amount": "1000000000",
@@ -415,7 +415,7 @@
       "depth": 1,
       "id": 1017160,
       "json_metadata": "{\"tags\":[\"introduceyourself\"]}",
-      "last_payout": "1970-01-01T00:00:00",
+      "last_payout": "2016-08-28T18:50:42",
       "last_update": "2016-08-27T19:38:03",
       "max_accepted_payout": {
         "amount": "1000000000",

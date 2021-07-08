@@ -2,7 +2,8 @@
   test_name: Hivemind
 
   marks:
-    - patterntest
+    - patterntest # HF1 multiplied all vests and rshares by 1mln; in case of this post first 3 votes were prior to that, 4th was after and first cashout
+                  # happened way further; now that net_rshares are taken from vop, we have actual value used by hived; it makes no difference post HF1
 
   includes:
     - !include ../../common.yaml

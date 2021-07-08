@@ -121,7 +121,7 @@
       "depth": 2,
       "id": 1164832,
       "json_metadata": "{\"tags\":[\"secretwriter\"]}",
-      "last_payout": "1970-01-01T00:00:00",
+      "last_payout": "2016-09-08T22:11:54",
       "last_update": "2016-09-07T22:23:09",
       "max_accepted_payout": {
         "amount": "1000000000",
@@ -219,7 +219,7 @@
       "depth": 2,
       "id": 1164847,
       "json_metadata": "{\"tags\":[\"secretwriter\"]}",
-      "last_payout": "1970-01-01T00:00:00",
+      "last_payout": "2016-09-08T22:11:54",
       "last_update": "2016-09-07T22:24:24",
       "max_accepted_payout": {
         "amount": "1000000000",
@@ -317,7 +317,7 @@
       "depth": 2,
       "id": 1218233,
       "json_metadata": "{\"tags\":[\"steemit\"]}",
-      "last_payout": "1970-01-01T00:00:00",
+      "last_payout": "2016-09-12T20:55:54",
       "last_update": "2016-09-12T10:05:03",
       "max_accepted_payout": {
         "amount": "1000000000",
@@ -366,7 +366,7 @@
       "depth": 2,
       "id": 1245676,
       "json_metadata": "{\"tags\":[\"story\"]}",
-      "last_payout": "1970-01-01T00:00:00",
+      "last_payout": "2016-09-15T00:24:30",
       "last_update": "2016-09-14T18:24:27",
       "max_accepted_payout": {
         "amount": "1000000000",
@@ -464,7 +464,7 @@
       "depth": 2,
       "id": 1177294,
       "json_metadata": "{\"tags\":[\"introduceyourself\"]}",
-      "last_payout": "1970-01-01T00:00:00",
+      "last_payout": "2016-09-09T21:21:06",
       "last_update": "2016-09-08T21:31:51",
       "max_accepted_payout": {
         "amount": "1000000000",

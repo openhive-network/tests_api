@@ -25,7 +25,7 @@
     "pending_payout_value": "0.000 HBD",
     "percent_hbd": 10000,
     "permlink": "crocodile03",
-    "post_id": 1256956,
+    "post_id": 1256964,
     "promoted": "0.000 HBD",
     "replies": [],
     "stats": {
@@ -64,7 +64,7 @@
     "pending_payout_value": "0.000 HBD",
     "percent_hbd": 10000,
     "permlink": "crocodile02",
-    "post_id": 1256954,
+    "post_id": 1256962,
     "promoted": "0.000 HBD",
     "replies": [],
     "stats": {
@@ -108,7 +108,7 @@
     "pending_payout_value": "0.004 HBD",
     "percent_hbd": 10000,
     "permlink": "crocodile01",
-    "post_id": 1256953,
+    "post_id": 1256961,
     "promoted": "0.000 HBD",
     "replies": [],
     "stats": {
@@ -13271,7 +13271,7 @@
       ]
     },
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 199912852172096,
+    "net_rshares": 258710228069319,
     "payout": 618.432,
     "payout_at": "2016-08-24T16:01:57",
     "pending_payout_value": "0.000 HBD",
@@ -13284,7 +13284,7 @@
       "flag_weight": 4.0,
       "gray": false,
       "hide": false,
-      "total_votes": 214
+      "total_votes": 220
     },
     "title": "BlockTrades adds support for Steem Dollars -> Bitcoin (and more)",
     "updated": "2016-07-06T17:53:21",
@@ -13757,7 +13757,7 @@
       ]
     },
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 163450826897698,
+    "net_rshares": 201542784324588,
     "payout": 881.474,
     "payout_at": "2016-08-24T15:52:00",
     "pending_payout_value": "0.000 HBD",
@@ -13770,7 +13770,7 @@
       "flag_weight": 3.0,
       "gray": false,
       "hide": false,
-      "total_votes": 110
+      "total_votes": 111
     },
     "title": "Bitcoin payments accepted in 20s (soon to be 6s)!",
     "updated": "2016-07-03T21:57:30",
@@ -14255,7 +14255,7 @@
       ]
     },
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 70828023779942,
+    "net_rshares": 108880240263256,
     "payout": 363.501,
     "payout_at": "2016-08-24T15:52:15",
     "pending_payout_value": "0.000 HBD",
@@ -14268,7 +14268,7 @@
       "flag_weight": 4.0,
       "gray": false,
       "hide": false,
-      "total_votes": 113
+      "total_votes": 115
     },
     "title": "Introducing the latest \u201cdollar-stable\u201d coin: TRADE.USDLABOR",
     "updated": "2016-07-02T21:27:36",
@@ -14747,7 +14747,7 @@
       ]
     },
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 176061810966076,
+    "net_rshares": 207413464314039,
     "payout": 2637.749,
     "payout_at": "2016-08-24T22:22:27",
     "pending_payout_value": "0.000 HBD",
@@ -14760,7 +14760,7 @@
       "flag_weight": 4.0,
       "gray": false,
       "hide": false,
-      "total_votes": 110
+      "total_votes": 112
     },
     "title": "BlockTrades supports buying/selling DAO coins without \"exchange-risk\"",
     "updated": "2016-05-29T17:17:54",
@@ -15120,7 +15120,7 @@
       ]
     },
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 92389508048692,
+    "net_rshares": 128796026073372,
     "payout": 1032.352,
     "payout_at": "2016-08-24T15:53:45",
     "pending_payout_value": "0.000 HBD",
@@ -15133,7 +15133,7 @@
       "flag_weight": 4.0,
       "gray": false,
       "hide": false,
-      "total_votes": 83
+      "total_votes": 84
     },
     "title": "DAO gateway on OpenLedger is fully operational",
     "updated": "2016-05-28T13:06:33",
@@ -15463,7 +15463,7 @@
       ]
     },
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 59120626993564,
+    "net_rshares": 95169948738285,
     "payout": 505.389,
     "payout_at": "2016-08-25T11:32:48",
     "pending_payout_value": "0.000 HBD",
@@ -15476,7 +15476,7 @@
       "flag_weight": 4.0,
       "gray": false,
       "hide": false,
-      "total_votes": 73
+      "total_votes": 74
     },
     "title": "BlockTrades wants to buy your DigixDAO (DGD)",
     "updated": "2016-05-22T18:23:33",
@@ -15897,7 +15897,7 @@
       ]
     },
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 113944490342939,
+    "net_rshares": 149877686502165,
     "payout": 1447.802,
     "payout_at": "2016-08-24T22:31:39",
     "pending_payout_value": "0.000 HBD",
@@ -15910,7 +15910,7 @@
       "flag_weight": 4.0,
       "gray": false,
       "hide": false,
-      "total_votes": 96
+      "total_votes": 97
     },
     "title": "BlockTrades now offering Steem Power for cryptocurrency",
     "updated": "2016-05-20T23:36:24",
@@ -16129,7 +16129,7 @@
     "is_paidout": true,
     "json_metadata": {},
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 74191675332885,
+    "net_rshares": 109925219756917,
     "payout": 732.318,
     "payout_at": "2016-08-24T15:54:21",
     "pending_payout_value": "0.000 HBD",
@@ -16142,7 +16142,7 @@
       "flag_weight": 4.0,
       "gray": false,
       "hide": false,
-      "total_votes": 49
+      "total_votes": 50
     },
     "title": "Bug in Web Wallet's implementation of memo encryption/decryption (fix available, but will break some legacy memos)",
     "updated": "2016-05-18T01:32:36",
@@ -16417,7 +16417,7 @@
     "is_paidout": true,
     "json_metadata": {},
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 112390662059467,
+    "net_rshares": 146493751497188,
     "payout": 1394.771,
     "payout_at": "2016-08-24T15:54:30",
     "pending_payout_value": "0.000 HBD",
@@ -16430,7 +16430,7 @@
       "flag_weight": 4.0,
       "gray": false,
       "hide": false,
-      "total_votes": 61
+      "total_votes": 62
     },
     "title": "I find steemit posts with summaries/analysis of 3rd party content more compelling",
     "updated": "2016-05-14T18:05:30",
@@ -16601,7 +16601,7 @@
     "is_paidout": true,
     "json_metadata": {},
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 14065554416855,
+    "net_rshares": -14693443107507,
     "payout": 369.088,
     "payout_at": "2016-08-24T15:54:42",
     "pending_payout_value": "0.000 HBD",
@@ -16614,7 +16614,7 @@
       "flag_weight": 4.0,
       "gray": false,
       "hide": false,
-      "total_votes": 37
+      "total_votes": 38
     },
     "title": "Confirmation of accounts I control on bitcointalk/bitsharestalk.org",
     "updated": "2016-05-08T21:12:30",
@@ -16981,7 +16981,7 @@
     "is_paidout": true,
     "json_metadata": {},
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 149759335912144,
+    "net_rshares": 188191792939547,
     "payout": 2397.49,
     "payout_at": "2016-08-24T19:42:12",
     "pending_payout_value": "0.000 HBD",
@@ -16994,7 +16994,7 @@
       "flag_weight": 4.0,
       "gray": false,
       "hide": false,
-      "total_votes": 86
+      "total_votes": 88
     },
     "title": "Tax Issues facing US-based Cryptocurrency Holders and Miners: Part 1 Capital Gains/Losses for Crypto",
     "updated": "2016-05-08T04:00:00",
@@ -17373,7 +17373,7 @@
     "is_paidout": true,
     "json_metadata": {},
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 137682280727391,
+    "net_rshares": 172653534620027,
     "payout": 2016.027,
     "payout_at": "2016-08-24T11:37:00",
     "pending_payout_value": "0.000 HBD",
@@ -17386,7 +17386,7 @@
       "flag_weight": 4.0,
       "gray": false,
       "hide": false,
-      "total_votes": 89
+      "total_votes": 90
     },
     "title": "Tax Issues facing US-based Cryptocurrency Holders and Miners: Intro and IRS Guidelines",
     "updated": "2016-05-08T04:01:03",
@@ -17545,7 +17545,7 @@
     "is_paidout": true,
     "json_metadata": {},
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 53794167060386,
+    "net_rshares": 91038634036446,
     "payout": 477.444,
     "payout_at": "2016-08-24T15:56:54",
     "pending_payout_value": "0.000 HBD",
@@ -17558,7 +17558,7 @@
       "flag_weight": 4.0,
       "gray": false,
       "hide": false,
-      "total_votes": 34
+      "total_votes": 35
     },
     "title": "Original posting date, Last comment date, or both on STEEM recent/trending topic summaries?",
     "updated": "2016-05-07T05:27:12",
@@ -17785,7 +17785,7 @@
     "is_paidout": true,
     "json_metadata": {},
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 99500624876679,
+    "net_rshares": 134439735156249,
     "payout": 1026.046,
     "payout_at": "2016-08-24T15:57:09",
     "pending_payout_value": "0.000 HBD",
@@ -17798,7 +17798,7 @@
       "flag_weight": 3.0,
       "gray": false,
       "hide": false,
-      "total_votes": 51
+      "total_votes": 52
     },
     "title": "Is vote changing an important feature for STEEM?",
     "updated": "2016-05-06T16:51:00",
@@ -18205,7 +18205,7 @@
     "is_paidout": true,
     "json_metadata": {},
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 133056096467282,
+    "net_rshares": 167980303584910,
     "payout": 1797.946,
     "payout_at": "2016-08-24T16:03:36",
     "pending_payout_value": "0.000 HBD",
@@ -18218,7 +18218,7 @@
       "flag_weight": 3.0,
       "gray": false,
       "hide": false,
-      "total_votes": 96
+      "total_votes": 97
     },
     "title": "OpenLedger pre-sale of DAO tokens is now live!",
     "updated": "2016-05-03T17:42:42",
@@ -19069,7 +19069,7 @@
       ]
     },
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 189894018378827,
+    "net_rshares": 224814525919621,
     "payout": 3332.686,
     "payout_at": "2016-08-24T01:13:48",
     "pending_payout_value": "0.000 HBD",
@@ -19082,7 +19082,7 @@
       "flag_weight": 4.0,
       "gray": false,
       "hide": false,
-      "total_votes": 196
+      "total_votes": 197
     },
     "title": "BlockTrades adds support for directly buying/selling STEEM",
     "updated": "2016-05-31T05:23:36",

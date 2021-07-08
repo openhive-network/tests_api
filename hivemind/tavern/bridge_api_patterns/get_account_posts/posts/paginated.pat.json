@@ -894,7 +894,7 @@
       ]
     },
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 199912852172096,
+    "net_rshares": 258710228069319,
     "payout": 618.432,
     "payout_at": "2016-08-24T16:01:57",
     "pending_payout_value": "0.000 HBD",
@@ -907,7 +907,7 @@
       "flag_weight": 4.0,
       "gray": false,
       "hide": false,
-      "total_votes": 214
+      "total_votes": 220
     },
     "title": "BlockTrades adds support for Steem Dollars -> Bitcoin (and more)",
     "updated": "2016-07-06T17:53:21",
@@ -1380,7 +1380,7 @@
       ]
     },
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 163450826897698,
+    "net_rshares": 201542784324588,
     "payout": 881.474,
     "payout_at": "2016-08-24T15:52:00",
     "pending_payout_value": "0.000 HBD",
@@ -1393,7 +1393,7 @@
       "flag_weight": 3.0,
       "gray": false,
       "hide": false,
-      "total_votes": 110
+      "total_votes": 111
     },
     "title": "Bitcoin payments accepted in 20s (soon to be 6s)!",
     "updated": "2016-07-03T21:57:30",
@@ -1878,7 +1878,7 @@
       ]
     },
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 70828023779942,
+    "net_rshares": 108880240263256,
     "payout": 363.501,
     "payout_at": "2016-08-24T15:52:15",
     "pending_payout_value": "0.000 HBD",
@@ -1891,7 +1891,7 @@
       "flag_weight": 4.0,
       "gray": false,
       "hide": false,
-      "total_votes": 113
+      "total_votes": 115
     },
     "title": "Introducing the latest \u201cdollar-stable\u201d coin: TRADE.USDLABOR",
     "updated": "2016-07-02T21:27:36",

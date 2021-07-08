@@ -2,7 +2,14 @@
   test_name: Hivemind
 
   marks:
-    - patterntest
+    - patterntest # note that vote edits prior HF14 could end in strange state due to bug in rounding code, f.e.: both votes on
+                  # dantheman/re-stealthtrader-earning-money-for-voting-early-steem-power-20160711t234257366z were cleared (edited with percent=0)
+                  # but their rshares remained positive due to bug, so when value of net_votes was based on rshares, they looked like upvotes
+                  # that was corrected and now votes are classified based on intention (vote_percent); the differences might also be an effect of
+                  # the rule, that allowed votes to be recast without being treated as vote edits, as long as they were in separate cashout windows;
+                  # since Hivemind always treats new matching votes as edits, it will internally count less total_votes in such cases and net_votes
+                  # can differ in both directions (I mean values reported by hived through vop and values calculated by update_posts_rshares -
+                  # such differences are only possible on old posts, since nowadays there is just one cashout window)
 
   includes:
     - !include ../../common.yaml

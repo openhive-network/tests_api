@@ -170,7 +170,7 @@
       "depth": 1,
       "id": 1076080,
       "json_metadata": "{\"tags\":[\"introduceyourself\"]}",
-      "last_payout": "1970-01-01T00:00:00",
+      "last_payout": "2016-09-01T19:22:30",
       "last_update": "2016-08-31T20:57:24",
       "max_accepted_payout": {
         "amount": "1000000000",
@@ -219,7 +219,7 @@
       "depth": 1,
       "id": 1002049,
       "json_metadata": "{\"tags\":[\"introduceyourself\"]}",
-      "last_payout": "1970-01-01T00:00:00",
+      "last_payout": "2016-08-27T21:18:18",
       "last_update": "2016-08-26T18:53:09",
       "max_accepted_payout": {
         "amount": "1000000000",
@@ -464,7 +464,7 @@
       "depth": 1,
       "id": 1045371,
       "json_metadata": "{\"tags\":[\"introduceyourself\"],\"users\":[\"artywah\"]}",
-      "last_payout": "1970-01-01T00:00:00",
+      "last_payout": "2016-08-30T18:28:06",
       "last_update": "2016-08-29T19:19:18",
       "max_accepted_payout": {
         "amount": "1000000000",
