@@ -66,7 +66,7 @@
   "max_accepted_payout": "1000000.000 HBD",
   "max_cashout_time": "1969-12-31T23:59:59",
   "net_rshares": 0,
-  "net_votes": 1,
+  "net_votes": 0,
   "parent_author": "",
   "parent_permlink": "test",
   "pending_payout_value": "0.000 HBD",

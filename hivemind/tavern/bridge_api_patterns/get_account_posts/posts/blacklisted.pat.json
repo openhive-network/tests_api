@@ -6308,7 +6308,7 @@
       ]
     },
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 22308611187918,
+    "net_rshares": 22311706390341,
     "payout": 42.248,
     "payout_at": "2016-08-25T12:25:30",
     "pending_payout_value": "0.000 HBD",
@@ -6321,7 +6321,7 @@
       "flag_weight": 4.0,
       "gray": false,
       "hide": false,
-      "total_votes": 168
+      "total_votes": 169
     },
     "title": "Steemit Quoted in Breitbart",
     "updated": "2016-06-27T18:37:54",
@@ -8623,7 +8623,7 @@
     "is_paidout": true,
     "json_metadata": {},
     "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 43138953295876,
+    "net_rshares": 73148007492310,
     "payout": 447.607,
     "payout_at": "2016-08-25T12:57:36",
     "pending_payout_value": "0.000 HBD",
@@ -8636,7 +8636,7 @@
       "flag_weight": 4.0,
       "gray": false,
       "hide": false,
-      "total_votes": 62
+      "total_votes": 63
     },
     "title": "Long live Vests ... Vests are dead ...",
     "updated": "2016-04-24T14:25:48",
