@@ -4,6 +4,8 @@ from difflib import SequenceMatcher
 from time import perf_counter as perf
 import deepdiff
 import re
+from time import time
+import json
 
 class PatternDiffException(Exception):
   pass
@@ -86,6 +88,47 @@ def get_time(test_id):
         if row[0] == test_id:
           return (float(row[1]), row[2])
   return (0., "{}")
+
+def get_timestamp_path(cwd):
+  rel_test_path = os.getenv("PYTEST_CURRENT_TEST").split("::")[0]
+  rel_timestamp_path = "%s.timestamp.txt" %rel_test_path.split(".")[0]
+  return os.path.join(cwd, rel_timestamp_path), rel_test_path
+
+def make_timestamp():
+  with open(get_timestamp_path(os.getcwd())[0], "w") as f:
+    f.write("%.20f" %(time()))
+  return {"": ""}
+
+def measure_request_execution_time(response):
+  start = time()
+  cwd = os.getcwd()
+  timestamp_path, rel_test_path = get_timestamp_path(cwd)
+  path_dur = time() - start
+
+  with open(timestamp_path, "r") as f:
+    start = float(f.read())
+  duration = time() - start - path_dur
+
+  with open(timestamp_path, "w") as f:
+    f.write("%.20f" %duration)
+
+  #save_time_result(cwd, rel_test_path, duration)
+  
+  #os.remove(timestamp_path)
+
+def save_time_result(cwd, rel_test_path, duration):
+  time_path = os.path.join(cwd, "request_execution_times.json")
+
+  if os.path.isfile(time_path):
+    with open(time_path, "r") as f:
+      time_dict = json.load(f)   
+  else:
+    time_dict = {}
+
+  time_dict[rel_test_path] = duration
+
+  with open(time_path, "w") as f:
+    json.dump(time_dict, f)
 
 def compare_response_with_pattern(response, method=None, directory=None, ignore_tags=None, error_response=False, benchmark_time_threshold=None):
   """ This method will compare response with pattern file """

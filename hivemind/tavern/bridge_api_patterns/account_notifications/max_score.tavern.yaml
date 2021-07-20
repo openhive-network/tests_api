@@ -10,6 +10,9 @@
   stages:
     - name: test
       request:
+        params:
+          $ext:
+            function: validate_response:make_timestamp
         url: "{service.proto:s}://{service.server:s}:{service.port}/"
         method: POST
         headers:
@@ -20,6 +23,9 @@
           method: "bridge.account_notifications"
           params: {"account":"ozchartart", "min_score": 100, "limit":20}
       response:
+        save:
+          $ext:
+            function: validate_response:measure_request_execution_time
         status_code: 200
         verify_response_with:
           function: validate_response:compare_response_with_pattern
