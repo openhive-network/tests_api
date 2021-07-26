@@ -2356,8 +2356,6 @@
   {
     "active_votes": [
       {
-<<<<<<< HEAD
-=======
         "percent": "100",
         "reputation": 145171381514207,
         "rshares": 375241000000,
@@ -2996,7 +2994,6 @@
   {
     "active_votes": [
       {
->>>>>>> 42befe14d4ca6eb7dc6d702c7593c176fc2f2818
         "percent": "10000",
         "reputation": 5045406568403,
         "rshares": 12089675328,
@@ -11664,61 +11661,5 @@
     "title": "Down The Line",
     "total_payout_value": "0.000 HBD",
     "url": "/photography/@funny/ad8l6-down-the-line"
-  },
-  {
-    "active_votes": [
-      {
-        "percent": "10000",
-        "reputation": 147722466499,
-        "rshares": 10745569654,
-        "voter": "gubbes"
-      },
-      {
-        "percent": "10000",
-        "reputation": 688176613733,
-        "rshares": 251412025,
-        "voter": "karenmckersie"
-      },
-      {
-        "percent": "10000",
-        "reputation": 1560565135,
-        "rshares": 98195514,
-        "voter": "anirban"
-      },
-      {
-        "percent": "10000",
-        "reputation": 0,
-        "rshares": 45355016,
-        "voter": "ecology"
-      }
-    ],
-    "author": "funny",
-    "author_reputation": 8923501480463,
-    "beneficiaries": [],
-    "body": "<p>I will admit, I was one of those kids who was not a fan of gym. You know the ones. The ones that hope the three outs pass before the ball makes it to the outfield. Come on strike-out! I like to hit the ball, but the whole catching and throwing thing was not for me. I couldn't kick in soccer and apparently you need something called co-ordination for tennis. Basketball required dribbling, so that was out and football was a time to chill on the bench. I never played rugby but I'm sure I would suck at it. Golf is a no unless it is mini. Surfing involves balance and I would sink like a stone at the first wave. Skateboarding lead to ripped pants and scrapped knees. I was not winning an olympic medal when we did our track and field events in school. Hockey, ha! I was happy if I didn't fall on my ass when I was skating. I was not bad at bowling, so that is something. The point is (if there is a point) is if you did suck at sports, you are not alone. I wanted to be on the bench with a pad and a pencil drawing. So if you are or were like me, don't sweat it, find your own ways to stay in shape, eat right and embarce your lack of strength, speed and co-ordination.</p>\n<p><img src=\"https://s32.postimg.org/m5tnws97p/baseball.jpg\" /></p>",
-    "body_length": 1245,
-    "cashout_time": "1969-12-31T23:59:59",
-    "category": "life",
-    "children": 1,
-    "created": "2016-07-26T13:20:27",
-    "curator_payout_value": "0.000 HBD",
-    "depth": 0,
-    "json_metadata": "{\"tags\":[\"life\",\"funny\",\"sports\"],\"image\":[\"https://s32.postimg.org/m5tnws97p/baseball.jpg\"]}",
-    "last_payout": "2016-08-26T14:11:42",
-    "last_update": "2016-07-26T13:20:27",
-    "max_accepted_payout": "1000000.000 HBD",
-    "net_rshares": 11140532209,
-    "parent_author": "",
-    "parent_permlink": "life",
-    "pending_payout_value": "0.000 HBD",
-    "percent_hbd": 10000,
-    "permlink": "2gakj4-don-t-hit-it-to-me-don-t-hit-to-me-don-t-hit-to-me-man-did-i-suck-at-sports",
-    "post_id": 372939,
-    "promoted": "0.000 HBD",
-    "replies": [],
-    "root_title": "Don't Hit It To Me, Don't Hit To Me, Don't Hit To Me, Man Did I Suck At Sports",
-    "title": "Don't Hit It To Me, Don't Hit To Me, Don't Hit To Me, Man Did I Suck At Sports",
-    "total_payout_value": "0.000 HBD",
-    "url": "/life/@funny/2gakj4-don-t-hit-it-to-me-don-t-hit-to-me-don-t-hit-to-me-man-did-i-suck-at-sports"
   }
 ]
