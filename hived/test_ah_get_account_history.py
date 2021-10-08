@@ -15,7 +15,7 @@ from concurrent.futures import ProcessPoolExecutor
 from concurrent.futures import Future
 from concurrent.futures import wait
 from jsonsocket import JSONSocket
-from jsonsocket import hived_call
+# from jsonsocket import hived_call
 from list_account import list_accounts
 from pathlib import Path
 import deepdiff
@@ -130,13 +130,18 @@ def get_account_history(url1, url2, account, max_tries=10, timeout=0.1):
   HARD_LIMIT = 1000
   LIMIT = HARD_LIMIT
 
+  def hived_call(url, data, *args, **kwargs):
+    from requests import post
+    result = post(url, json=data)
+    return [result.status_code, result.text]
+
   while True:
-    request = bytes( json.dumps( {
+    request = {
       "jsonrpc": "2.0",
       "id": 0,
       "method": "account_history_api.get_account_history",
       "params": { "account": account, "start": START, "limit": LIMIT }
-      } ), "utf-8" ) + b"\r\n"
+      }
 
     with ThreadPoolExecutor(max_workers=2) as executor:
       future1 = executor.submit(hived_call, url1, data=request, max_tries=max_tries, timeout=timeout)
@@ -144,6 +149,8 @@ def get_account_history(url1, url2, account, max_tries=10, timeout=0.1):
 
     status1, json1 = future1.result()
     status2, json2 = future2.result()
+    json1 = json.loads(json1)
+    json2 = json.loads(json2)
     #status1, json1 = hived_call(url1, data=request, max_tries=max_tries, timeout=timeout)
     #status2, json2 = hived_call(url2, data=request, max_tries=max_tries, timeout=timeout)
     
@@ -161,15 +168,15 @@ def get_account_history(url1, url2, account, max_tries=10, timeout=0.1):
       except: print("Cannot open file:", filename3); return False
       
       file1.write("{} response:\n".format(url1))
-      json.dump(json1, file1, indent=2, sort_keys=True)
+      json.dump(json1, file1, indent=2, sort_keys=True, default=vars)
       file1.close()
       file2.write("{} response:\n".format(url2))
-      json.dump(json2, file2, indent=2, sort_keys=True)
+      json.dump(json2, file2, indent=2, sort_keys=True, default=vars)
       file2.close()
 
       file3.write("Differences:\n")
       json_diff = deepdiff.DeepDiff(json1, json2)
-      json.dump(json_diff, file3, indent=2, sort_keys=True)
+      json.dump(json_diff, file3, indent=2, sort_keys=True, default=vars)
       file3.close()
       return False
 
