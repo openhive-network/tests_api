@@ -15,7 +15,7 @@ from concurrent.futures import ProcessPoolExecutor
 from concurrent.futures import Future
 from concurrent.futures import wait
 from jsonsocket import JSONSocket
-# from jsonsocket import hived_call
+from jsonsocket import universal_call as hived_call
 from list_account import list_accounts
 from pathlib import Path
 import deepdiff
@@ -41,18 +41,18 @@ def main():
 
   global wdir
   global errors
-    
+
   jobs = int(sys.argv[1])
   if jobs <= 0:
     import multiprocessing
     jobs = multiprocessing.cpu_count()
-    
+
   url1 = sys.argv[2]
   url2 = sys.argv[3]
-  
+
   if len( sys.argv ) > 4:
     wdir = Path(sys.argv[4])
-    
+
   accounts_file = sys.argv[5] if len( sys.argv ) > 5 else ""
 
   if accounts_file != "":
@@ -65,10 +65,10 @@ def main():
     accounts = list_accounts(url1)
 
   length = len(accounts)
-  
+
   if length == 0:
     exit("There are no any account!")
-    
+
   create_wdir()
 
   print( str(length) + " accounts" )
@@ -82,7 +82,7 @@ def main():
   print( "  url2: {}".format(url2) )
   print( "  wdir: {}".format(wdir) )
   print( "  accounts_file: {}".format(accounts_file) )
-  
+
   if jobs > 1:
     first = 0
     last = length
@@ -100,14 +100,14 @@ def main():
 
   exit( errors )
 
-  
+
 def create_wdir():
   global wdir
-  
+
   if wdir.exists():
     if wdir.is_file():
       os.remove(wdir)
-      
+
   if wdir.exists() == False:
     wdir.mkdir(parents=True)
 
@@ -130,11 +130,6 @@ def get_account_history(url1, url2, account, max_tries=10, timeout=0.1):
   HARD_LIMIT = 1000
   LIMIT = HARD_LIMIT
 
-  def hived_call(url, data, *args, **kwargs):
-    from requests import post
-    result = post(url, json=data)
-    return [result.status_code, result.text]
-
   while True:
     request = {
       "jsonrpc": "2.0",
@@ -153,7 +148,7 @@ def get_account_history(url1, url2, account, max_tries=10, timeout=0.1):
     json2 = json.loads(json2)
     #status1, json1 = hived_call(url1, data=request, max_tries=max_tries, timeout=timeout)
     #status2, json2 = hived_call(url2, data=request, max_tries=max_tries, timeout=timeout)
-    
+
     if status1 == False or status2 == False or json1 != json2:
       print("Comparison failed for account: {}; start: {}; limit: {}".format(account, START, LIMIT))
 
@@ -166,7 +161,7 @@ def get_account_history(url1, url2, account, max_tries=10, timeout=0.1):
       except: print("Cannot open file:", filename2); return False
       try:    file3 = filename3.open("w")
       except: print("Cannot open file:", filename3); return False
-      
+
       file1.write("{} response:\n".format(url1))
       json.dump(json1, file1, indent=2, sort_keys=True, default=vars)
       file1.close()
@@ -182,15 +177,15 @@ def get_account_history(url1, url2, account, max_tries=10, timeout=0.1):
 
     history = json1["result"]["history"]
     last = history[0][0] if len(history) else 0
-    
-    if last == 0 or last == 1: 
+
+    if last == 0 or last == 1:
       break
 
     last -= 1
     START = last
     LIMIT = last if last < HARD_LIMIT else HARD_LIMIT
   # while True
-  
+
   return True
 
 
