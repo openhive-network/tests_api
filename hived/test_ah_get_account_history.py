@@ -139,8 +139,8 @@ def get_account_history(url1, url2, account, max_tries=10, timeout=0.1):
 
     status1, json1 = future1.result()
     status2, json2 = future2.result()
-    json1 = json.loads(json1)
-    json2 = json.loads(json2)
+    json1 = json.loads(json1) if isinstance(json1, str) else json1
+    json2 = json.loads(json2) if isinstance(json2, str) else json2
     #status1, json1 = hived_call(url1, data=request, max_tries=max_tries, timeout=timeout)
     #status2, json2 = hived_call(url2, data=request, max_tries=max_tries, timeout=timeout)
 

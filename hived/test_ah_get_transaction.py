@@ -131,8 +131,8 @@ def get_tramsacton(url1, url2, trx : str, max_tries=10, timeout=0.1):
     status1, json1 = future1.result()
     status2, json2 = future2.result()
 
-    json1 = json.loads(json1)
-    json2 = json.loads(json2)
+    json1 = json.loads(json1) if isinstance(json1, str) else json1
+    json2 = json.loads(json2) if isinstance(json2, str) else json2
 
     if status1 == False or status2 == False or json1 != json2:
       print("Comparison failed for trx: {};".format(trx))

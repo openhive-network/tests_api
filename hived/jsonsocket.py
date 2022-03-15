@@ -121,4 +121,5 @@ def hived_call(host, data=None, json=None, max_tries=10, timeout=0.1):
 def universal_call(url, data, *args, **kwargs):
     from requests import post
     result = post(url, json=data)
-    return [result.status_code, result.content.decode('utf-8')]
+    return [result.status_code, result.json()]
+    # return [result.status_code, result.content.decode('utf-8')]
