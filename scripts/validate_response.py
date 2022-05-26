@@ -87,7 +87,7 @@ def get_time(test_id):
           return (float(row[1]), row[2])
   return (0., "{}")
 
-def compare_response_with_pattern(response, method=None, directory=None, ignore_tags=None, error_response=False, benchmark_time_threshold=None, is_direct_call=False):
+def compare_response_with_pattern(response, method=None, directory=None, ignore_tags=None, error_response=False, benchmark_time_threshold=None):
   """ This method will compare response with pattern file """
   test_fname, _ = os.getenv('PYTEST_CURRENT_TEST').split("::")
   
@@ -106,10 +106,10 @@ def compare_response_with_pattern(response, method=None, directory=None, ignore_
 
   response_json = response.json()
   error = response_json.get("error", None)
-  if is_direct_call is False:
-    result = response_json.get("result", None)
-  else:
+  if os.getenv("IS_DIRECT_CALL", False):
     result = response_json
+  else:
+    result = response_json.get("result", None)
 
   exclude_regex_path = None
   if isinstance(ignore_tags, str):
