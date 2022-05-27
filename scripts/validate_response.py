@@ -106,7 +106,7 @@ def compare_response_with_pattern(response, method=None, directory=None, ignore_
 
   response_json = response.json()
   error = response_json.get("error", None)
-  if os.getenv("IS_DIRECT_CALL", False):
+  if os.getenv("IS_DIRECT_CALL_HAFAH", False):
     result = response_json
   else:
     result = response_json.get("result", None)
