@@ -80,21 +80,16 @@ ENV eROOT_DIR ${ROOT_DIR}
 ARG SERVE_PORT=""
 ENV eSERVE_PORT ${SERVE_PORT}
 
+# additional arguments that will be passed to benchmarking script
+ARG ADDITIONAL_ARGS=""
+ENV eADDITIONAL_ARGS ${ADDITIONAL_ARGS}
+
+# path to directory, where jmeter and python benchmark script will put all it's output
+ENV JMETER_WORKDIR=${eROOT_DIR}/wdir
+
 # verification is setup ready
 RUN python3 benchmark.py -h
 RUN python3 benchmark.py -n ${eAPI} -l
 
 # defines what to do after docker starts
-ENTRYPOINT python3 benchmark.py          \
-    -r $eROOT_DIR                        \
-    -d wdir                              \
-    -j $JMETER                           \
-    -p $ePORT                            \
-    -a $eADDRESS                         \
-    --postgres $ePOSTGRES_URL            \
-    --postgres-schema $ePOSTGRES_SCHEMA  \
-    -n $eAPI                             \
-    -c $eCSV                             \
-    -k $eLOOPS                           \
-    -t $eJOBS                            \
-    --call-style $eCALL_STYLE; bash -c "[[ ! -z ${eSERVE_PORT} ]] && python3 $WOOF -i 0.0.0.0 -p $eSERVE_PORT -Z -c 1 wdir"; echo "exitting"
+ENTRYPOINT bash ${eROOT_DIR}/benchmarks/docker/entrypoint.bash $eADDITIONAL_ARGS
