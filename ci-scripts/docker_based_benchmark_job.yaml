@@ -1,0 +1,39 @@
+.benchmark_api:
+  image:
+    name: registry.gitlab.syncad.com/hive/tests_api/benchmark_aio@sha256:f5ecf7832dbf4eb685fd7a23b6cfd340230a76b52da8c18dd1ae197f68b62091
+    entrypoint: [""]
+  variables:
+    ## required:
+    eADDRESS: ""
+    ePORT: ""
+
+    ## optional:
+    # eROOT_DIR: "/jmeter"
+    # eAPI: account_history_api
+    # eCSV: perf_60M_heavy.csv
+    # eJOBS: 10
+    # eLOOPS: 500
+    # eCALL_STYLE: old-style
+    # ePOSTGRES_URL: postgresql:///haf_block_log
+    # ePOSTGRES_SCHEMA: hive
+    # eSERVE_PORT: ""
+    # eADDITIONAL_ARGS: ""
+
+    ## config
+    JMETER_WORKDIR: $eROOT_DIR/wdir
+    ARTIFACTS_PATH: $CI_PROJECT_DIR/benchmark_artifacts
+
+  script:
+    - bash $eROOT_DIR/benchmarks/docker/entrypoint.bash $eADDITIONAL_ARGS
+
+  after_script:
+    - if [[ "$JMETER_WORKDIR" != "$ARTIFACTS_PATH" ]]; then cp -r $JMETER_WORKDIR $ARTIFACTS_PATH; fi
+
+  artifacts:
+    name: "benchmarks-$CI_JOB_NAME-$CI_COMMIT_REF_NAME"
+    reports:
+      junit: "$ARTIFACTS_PATH/report.junit"
+    paths:
+      - "$ARTIFACTS_PATH"
+    when: always
+    expire_in: 6 hours
