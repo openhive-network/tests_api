@@ -175,8 +175,8 @@ if CSV_FILENAME in AVAILA_CSV:
 	CSV_MODE: CSV.MODE = AVAILA_CSV[CSV_FILENAME][1]
 	CSV_PATH: Path = AVAILA_CSV[CSV_FILENAME][0]
 else:
-	assert Path(CSV_FILENAME).exists()
-	CSV_PATH = CSV_FILENAME
+	CSV_PATH = Path(CSV_FILENAME)
+	assert CSV_PATH.exists()
 	CSV_MODE: CSV.MODE = (CSV.MODE.PERF if CSV_PATH.name.startswith('perf') else CSV.MODE.CL)
 
 # process postgresql conection string to fill jdbc requirements
