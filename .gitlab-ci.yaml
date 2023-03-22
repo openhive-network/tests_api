@@ -13,11 +13,11 @@ Trigger any benchmark:
 
   variables:
     ## required
-    eADDRESS: hive-staging.pl.syncad.com
-    ePORT: 58091
+    ADDRESS: hive-staging.pl.syncad.com
+    PORT: 58091
 
     ## optional
-    eROOT_DIR: $CI_PROJECT_DIR
+    ROOT_DIR: $CI_PROJECT_DIR
 
   tags:
     # - public-runner-docker
