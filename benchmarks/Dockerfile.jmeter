@@ -37,59 +37,47 @@ FROM jmeter_dependencies AS benchmark_aio
 WORKDIR ${BENCHMARK_DIR}
 
 # api to test
-ARG API="account_history_api"
-ENV eAPI ${API}
+ENV API="account_history_api"
 
 # input file to use for performance testing
-ARG CSV="perf_60M_heavy.csv"
-ENV eCSV ${CSV}
+ENV CSV="perf_60M_heavy.csv"
 
 # amount of threads
-ARG JOBS=10
-ENV eJOBS ${JOBS}
+ENV JOBS=10
 
 # amount of requests per thread (-1 for infinite)
-ARG LOOPS=500
-ENV eLOOPS ${LOOPS}
+ENV LOOPS=500
 
 # possible options: old-style, new-style, postgres
-ARG CALL_STYLE="old-style"
-ENV eCALL_STYLE ${CALL_STYLE}
+ENV CALL_STYLE="old-style"
 
 # address to test (default is set to default host address in docker)
-ARG ADDRESS='172.17.0.1'
-ENV eADDRESS ${ADDRESS}
+ENV ADDRESS='172.17.0.1'
 
 # port to perform tests
-ARG PORT=8090
-ENV ePORT ${PORT}
+ENV PORT=8090
 
 # url to postgres database (required only if CALL_STYLE = postgres)
-ARG POSTGRES_URL="postgresql:///haf_block_log"
-ENV ePOSTGRES_URL ${POSTGRES_URL}
+ENV POSTGRES_URL="postgresql:///haf_block_log"
 
 # schema in which functions to test are (required only if CALL_STYLE = postgres)
-ARG POSTGRES_SCHEMA="hive"
-ENV ePOSTGRES_SCHEMA ${POSTGRES_SCHEMA}
+ENV POSTGRES_SCHEMA="hive"
 
 # path to root directory of tests_api project (can be set on CI to /build/path/to/hive/tests/tests_api)
-ARG ROOT_DIR="${WDIR}"
-ENV eROOT_DIR ${ROOT_DIR}
+ENV ROOT_DIR="${WDIR}"
 
 # if set, start hosting workdir after benchmarking on specified port (just one time), remember to expose that port
-ARG SERVE_PORT=""
-ENV eSERVE_PORT ${SERVE_PORT}
+ENV SERVE_PORT=""
 
 # additional arguments that will be passed to benchmarking script
-ARG ADDITIONAL_ARGS=""
-ENV eADDITIONAL_ARGS ${ADDITIONAL_ARGS}
+ENV ADDITIONAL_ARGS=""
 
 # path to directory, where jmeter and python benchmark script will put all it's output
-ENV JMETER_WORKDIR=${eROOT_DIR}/wdir
+ENV JMETER_WORKDIR=${ROOT_DIR}/wdir
 
 # verification is setup ready
 RUN python3 benchmark.py -h
-RUN python3 benchmark.py -n ${eAPI} -l
+RUN python3 benchmark.py -n ${API} -l
 
 # defines what to do after docker starts
-ENTRYPOINT bash ${eROOT_DIR}/benchmarks/docker/entrypoint.bash $eADDITIONAL_ARGS
+ENTRYPOINT bash ${ROOT_DIR}/benchmarks/docker/entrypoint.bash $ADDITIONAL_ARGS
