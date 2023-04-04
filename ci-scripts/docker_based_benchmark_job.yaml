@@ -24,7 +24,8 @@
     ARTIFACTS_PATH: $CI_PROJECT_DIR/benchmark_artifacts
 
   script:
-    - ping -c 4  http://hive-4.pl.syncad.com || true
+    - ping -c 4  hive-4.pl.syncad.com || true
+    - apt install curl -y || apk add curl || true
     - curl -s --data '{"jsonrpc":"2.0", "method":"block_api.get_block", "params":{"block_num":1}, "id":1}' http://hive-4.pl.syncad.com:18092 || true
     - bash $eROOT_DIR/benchmarks/docker/entrypoint.bash $eADDITIONAL_ARGS
 
