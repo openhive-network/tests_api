@@ -20,6 +20,4 @@ Trigger any benchmark:
     ROOT_DIR: $CI_PROJECT_DIR
 
   tags:
-    # - public-runner-docker
-    - hivemind-heavy-job
-    - hivemind-light-job
+    - tests-api
