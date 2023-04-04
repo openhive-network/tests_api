@@ -8,8 +8,8 @@ Trigger any benchmark:
   extends: .benchmark_api
   stage: benchmark
 
-  rules:
-    - when: manual
+    #  rules:
+    #    - when: manual
 
   variables:
     ## required
