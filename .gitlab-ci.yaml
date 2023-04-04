@@ -1,23 +1,115 @@
 stages:
-  - benchmark
+- account history api
+- blocks api
+- hivemind
+
 
 include:
-  - local: '/ci-scripts/docker_based_benchmark_job.yaml'
+- local: '/ci-scripts/docker_based_benchmark_job.yaml'
 
-Trigger any benchmark:
+.custom_benchmark:
   extends: .benchmark_api
-  stage: benchmark
-
   rules:
-    - when: manual
-
-  variables:
-    ## required
-    ADDRESS: hive-staging.pl.syncad.com
-    PORT: 58091
-
-    ## optional
-    ROOT_DIR: $CI_PROJECT_DIR
-
+  - when: manual
   tags:
-    - tests-api
+  - tests-api
+
+######## VARIANTS ########
+
+.api_account_history: &api_ah
+  API: account_history_api
+
+.api_block: &api_blocks
+  API: blocks_api
+
+.universal: &api_universal
+  API: universal
+
+.light_60M: &light_60M
+  CSV: perf_60M_light.csv
+
+.heavy_60M: &heavy_60M
+  CSV: perf_60M_heavy.csv
+
+.http: &http
+  CALL_STYLE: old-style
+
+.postgres: &postgres
+  CALL_STYLE: postgres
+
+######## STAGES ########
+
+.account_history_api:
+  extends: .custom_benchmark
+  stage: account history api
+  variables: *api_ah
+
+.blocks_api:
+  extends: .custom_benchmark
+  stage: blocks api
+  variables: *api_blocks
+
+.hivemind:
+  extends: .custom_benchmark
+  stage: hivemind
+  variables: *api_universal
+
+### account history api ###
+
+light 60M http account history api:
+  extends: .account_history_api
+  variables:
+    CSV: perf_60M_light.csv
+    CALL_STYLE: old-style
+
+heavy 60M http account history api:
+  extends: .account_history_api
+  variables:
+    CSV: perf_60M_heavy.csv
+    CALL_STYLE: old-style
+
+light 60M postgres account history api:
+  extends: .account_history_api
+  variables:
+    CSV: perf_60M_light.csv
+    CALL_STYLE: postgres
+
+heavy 60M postgres account history api:
+  extends: .account_history_api
+  variables:
+    CSV: perf_60M_heavy.csv
+    CALL_STYLE: postgres
+
+### blocks api ###
+
+light 60M http blocks api:
+  extends: .blocks_api
+  variables:
+    CSV: perf_60M_light.csv
+    CALL_STYLE: old-style
+
+heavy 60M http blocks api:
+  extends: .blocks_api
+  variables:
+    CSV: perf_60M_heavy.csv
+    CALL_STYLE: old-style
+
+light 60M postgres blocks api:
+  extends: .blocks_api
+  variables:
+    CSV: perf_60M_light.csv
+    CALL_STYLE: postgres
+
+heavy 60M postgres blocks api:
+  extends: .blocks_api
+  variables:
+    CSV: perf_60M_heavy.csv
+    CALL_STYLE: postgres
+
+######## hivemind ########
+
+warmup:
+  extends: .hivemind
+  variables:
+    CSV: 2022_11_16_hivemind_60M_prod_jrpc.csv
+    CALL_STYLE: old-style
