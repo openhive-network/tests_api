@@ -1,6 +1,6 @@
 .benchmark_api:
   image:
-    name: registry.gitlab.syncad.com/hive/tests_api/benchmark_aio@sha256:f5ecf7832dbf4eb685fd7a23b6cfd340230a76b52da8c18dd1ae197f68b62091
+    name: registry.gitlab.syncad.com/hive/tests_api/benchmark_aio@sha256:4acf4b83dce920ac2f49f2109f0f392d1df6d003c79f9e51592e2cd9f9775386
     entrypoint: [""]
   variables:
     ## required:
