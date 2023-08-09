@@ -10,6 +10,7 @@ description = "A collective library containing tests for different APIs and tool
 authors = ["Krzysztof Mochocki"]
 packages = [
     { include = "benchmarks" },
+    { include = "validate_response" },
 ]
 
 
@@ -17,3 +18,5 @@ packages = [
 python = "^3.10"
 prettytable = "3.8.0"
 requests = "2.27.1"
+types-requests = "2.31.0.2"
+deepdiff = "6.3.0"
