@@ -105,7 +105,13 @@ def compare_response_with_pattern(response, method=None, directory=None, ignore_
     os.remove(response_fname)
 
   response_json = response.json()
-  error = response_json.get("error", None)
+
+  error = None
+  if isinstance(response_json, dict) and all(key in response_json.keys() for key in ["code", "details", "hint", "message"]):
+    error = response_json
+  elif "error" in response_json:
+    error = response_json["error"]
+
   if os.getenv("IS_DIRECT_CALL_HAFAH", "").lower() == "true":
     result = response_json
   else:
