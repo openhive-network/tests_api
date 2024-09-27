@@ -1,7 +1,9 @@
 import os
 import csv
 from difflib import SequenceMatcher
+from pathlib import Path
 from time import perf_counter as perf
+from typing import Any
 import deepdiff
 import re
 
@@ -36,7 +38,7 @@ predefined_ignore_tags = {
 
 def get_overlap(s1, s2):
     s = SequenceMatcher(None, s1, s2)
-    pos_a, pos_b, size = s.find_longest_match(0, len(s1), 0, len(s2)) 
+    pos_a, pos_b, size = s.find_longest_match(0, len(s1), 0, len(s2))
     return s1[pos_a:pos_a+size] if pos_b == 0 else ""
 
 def json_pretty_string(json_obj):
@@ -90,15 +92,15 @@ def get_time(test_id):
 def compare_response_with_pattern(response, method=None, directory=None, ignore_tags=None, error_response=False, benchmark_time_threshold=None, allow_null_response=False):
   """ This method will compare response with pattern file """
   test_fname, _ = os.getenv('PYTEST_CURRENT_TEST').split("::")
-  
+
   test_dir = os.getenv("TAVERN_DIR", "")
   overlap = get_overlap(test_dir, test_fname)
   test_fname = test_dir + "/" + test_fname.replace(overlap, "")
   test_fname = test_fname.replace(TEST_FILE_EXT, "")
-  
+
   response_fname = test_fname + RESPONSE_FILE_EXT
   pattern_fname = test_fname + PATTERN_FILE_EXT
-  
+
   tavern_disable_comparator = bool(os.getenv('TAVERN_DISABLE_COMPARATOR', False))
 
   if os.path.exists(response_fname) and not tavern_disable_comparator:
@@ -119,7 +121,7 @@ def compare_response_with_pattern(response, method=None, directory=None, ignore_
   if ignore_tags is not None:
     assert isinstance(ignore_tags, list), "ignore_tags should be list of tags"
 
-  # disable comparison with pattern on demand and save 
+  # disable comparison with pattern on demand and save
   if tavern_disable_comparator:
     if error is not None:
       save_json(response_fname, error)
@@ -168,16 +170,16 @@ def compare_response_with_pattern(response, method=None, directory=None, ignore_
 
 def has_valid_response(response, method=None, directory=None, error_response=False, response_fname=None, benchmark_time_threshold=None):
   test_fname, _ = os.getenv('PYTEST_CURRENT_TEST').split("::")
-  
+
   test_dir = os.getenv("TAVERN_DIR", "")
   overlap = get_overlap(test_dir, test_fname)
   test_fname = test_dir + "/" + test_fname.replace(overlap, "")
   test_fname = test_fname.replace(TEST_FILE_EXT, "")
-  
+
   response_fname = test_fname + RESPONSE_FILE_EXT
 
   tavern_disable_comparator = bool(os.getenv('TAVERN_DISABLE_COMPARATOR', False))
-  
+
   if os.path.exists(response_fname) and not tavern_disable_comparator:
     os.remove(response_fname)
 
@@ -191,7 +193,7 @@ def has_valid_response(response, method=None, directory=None, error_response=Fal
     correct_response = result
 
   # disable coparison with pattern on demand
-  # and save 
+  # and save
   if tavern_disable_comparator:
     test_id = response_json.get("id", None)
     if error is not None:
@@ -207,3 +209,26 @@ def has_valid_response(response, method=None, directory=None, error_response=Fal
   if correct_response is None:
     msg = "Error detected in response: result is null, json object was expected"
     raise NoResultException(msg)
+
+
+def compare_rest_response_with_pattern(response, method=None, directory=None, error_response: bool = False):
+  test_fname, _ = os.getenv('PYTEST_CURRENT_TEST').split("::")
+
+  test_dir = os.getenv("TAVERN_DIR", "")
+  overlap = get_overlap(test_dir, test_fname)
+  test_fname = test_dir + "/" + test_fname.replace(overlap, "")
+  test_fname = test_fname.replace(TEST_FILE_EXT, "")
+
+  response_fname = test_fname + RESPONSE_FILE_EXT
+
+  json_response: dict[str, Any] = response.json()
+  save_json(response_fname, json_response)
+
+  if error_response:
+    for required_key in ["code", "details", "hint", "message"]:
+      assert required_key in json_response, f"Response, marked as error, does not contain {required_key} key"
+
+  pattern = load_pattern(test_fname + PATTERN_FILE_EXT)
+  pattern_resp_diff = deepdiff.DeepDiff(pattern, json_response)
+  if pattern_resp_diff:
+    raise PatternDiffException("Differences detected between response and pattern.")
