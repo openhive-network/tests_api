@@ -4,7 +4,7 @@ echo "setting up paths"
 mkdir -p "$JMETER_WORKDIR"
 
 echo "starting benchmarks"
-python3 "$ROOT_DIR/benchmarks/benchmark.py"  \
+source $VENV && python3 "$ROOT_DIR/benchmarks/benchmark.py"  \
     -r "$ROOT_DIR"                           \
     -d "$JMETER_WORKDIR"                      \
     -j "$JMETER"                              \

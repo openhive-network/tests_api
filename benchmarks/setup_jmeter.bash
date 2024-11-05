@@ -3,8 +3,8 @@
 set -euo pipefail
 
 WORKDIR=jmeter
-JMETER_DOWNLOAD_URL="https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.4.3.zip"
-JMETER_POSTGRES_DOWNLOAD_URL="https://jdbc.postgresql.org/download/postgresql-42.3.1.jar"
+JMETER_DOWNLOAD_URL="https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.3.zip"
+JMETER_POSTGRES_DOWNLOAD_URL="https://jdbc.postgresql.org/download/postgresql-42.7.4.jar"
 
 if [[ -f "$WORKDIR/activate" ]]; then
     echo "using cached jmeter"
