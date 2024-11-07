@@ -79,7 +79,7 @@ ENV ROOT_DIR="${WDIR}"
 ENV SERVE_PORT=""
 
 # additional arguments that will be passed to benchmarking script
-ENV ADDITIONAL_ARGS="--skip-version-check"
+ENV ADDITIONAL_ARGS="--skip-version-check -i"
 
 # path to directory, where jmeter and python benchmark script will put all it's output
 ENV JMETER_WORKDIR=${ROOT_DIR}/wdir

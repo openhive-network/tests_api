@@ -339,6 +339,7 @@ with JMETER_REPORT_OUT_FILE.open('rt', encoding='utf-8') as in_file:
 	if error_counter > 0:
 		log.error(f'Amount of invalid requests/total amount of requests: {error_counter}/{count + 1}')
 
+	log.info(f"total amount of calls: {count}")
 # generate pretty table
 table = PrettyTable(field_names=['Endpoint', 'Max [ms]', 'Min [ms]', 'Average [ms]', 'Median [ms]'])
 value_extr = lambda x: x.value
