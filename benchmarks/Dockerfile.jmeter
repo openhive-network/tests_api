@@ -84,6 +84,9 @@ ENV ADDITIONAL_ARGS="--skip-version-check -i"
 # path to directory, where jmeter and python benchmark script will put all it's output
 ENV JMETER_WORKDIR=${ROOT_DIR}/wdir
 
+# set to 0 to generate junit report using m2u
+ENV SKIP_JUNIT_TEST_REPORT=1
+
 # verification is setup ready
 RUN source ${VENV} && python3 -m pip list
 RUN source ${VENV} && python3 benchmark.py -h

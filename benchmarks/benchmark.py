@@ -79,7 +79,6 @@ environment.add_argument('-l', '--list',           dest='list_csv',        **BOO
 environment.add_argument('-r', '--root-dir',       dest='root_dir',        type=str,     default=DEFAULT_ROOT_DIR,                help=f'path to root directory of tests_api project [default={DEFAULT_ROOT_DIR}]')
 environment.add_argument('-d', '--datadir',        dest='datadir',         type=str,     default='./wdir',                        help='defines path to workdir (path to this dir will alway be recreated) [default=./wdir]')
 environment.add_argument('-j', '--jmeter',         dest='jmeter',          type=str,     default='/usr/bin/jmeter',               help='path to jmeter executable [default=/usr/bin/jmeter]')
-environment.add_argument('-q', '--supr-errors',    dest='supr_err',        **BOOL_PARAM,                                          help="if specified error messages of bad requests won't be printed")
 environment.add_argument('--skip-version-check',   dest='skip_version',    **BOOL_PARAM,                                          help='if specified, `hive_api.get_version` call will not be performed')
 
 # benchmarking options
@@ -113,7 +112,6 @@ SKIP_VERSION      : bool              = args.skip_version
 API_NAME          : str               = args.api
 LOOP_COUNT        : int               = max(-1, args.loops)
 IGNORE_BAD_REQ    : bool              = args.ignore_br
-SUPR_ERRRORS      : bool              = args.supr_err
 SCHEMA            : str               = args.schema
 
 # print configuration
@@ -282,6 +280,9 @@ except Exception as e:
 
 # processing output
 
+# gathering data from CSV
+input_csv_lines = CSV_PATH.read_text().strip("\n").splitlines()
+len_input_csv_lines = min(len(input_csv_lines), LOOP_COUNT)
 # read and organize output from JMETER
 @dataclass
 class jmeter_record:
@@ -291,6 +292,8 @@ class jmeter_record:
 # process incoming data from JMETER
 jmeter_output : Dict[str, List[jmeter_record]] = dict()
 error_counter = 0
+error_lines_in_csv: set[tuple[int, str]] = set()
+groups_counts: dict[str, int] = {}
 with JMETER_REPORT_OUT_FILE.open('rt', encoding='utf-8') as in_file:
 	raw_line = in_file.readline()
 	headers_raw = raw_line.split(',')
@@ -303,28 +306,31 @@ with JMETER_REPORT_OUT_FILE.open('rt', encoding='utf-8') as in_file:
 
 	def handle_error(msg : str):
 		global error_counter
-		error_counter += 1
-		if not SUPR_ERRRORS:
-			log.error('during analysis of jmeter output, found error in line: \n' + msg)
 
 	for count, raw_line in enumerate(in_file):
 		line = raw_line.split(',')
+		group_id = line[5]
+		if group_id not in groups_counts:
+			groups_counts[group_id] = 0
+		else:
+			groups_counts[group_id] += 1
 
 		if line[success_idx] != 'true':
+			error_lines_in_csv.add(((groups_counts[group_id] % len_input_csv_lines), f"{line[2]},{line[3]},{line[4]}"))
 			if CSV_MODE == CSV.MODE.CL and ( jmeter_interrupt or LOOP_COUNT > 0 ):
 				if not IGNORE_BAD_REQ:
 					log.info(f'total amount of calls on {THREADS} threads: {count-1}')
 					break
 				else:
-					handle_error(raw_line)
+					error_counter += 1
 			else:
-				handle_error(raw_line)
+				error_counter += 1
 				if not IGNORE_BAD_REQ:
 					assert False, f'test failed, check logs in {DATADIR.as_posix()} for more informations. Fail detected on line: `{raw_line}`'
 
 		label = line[label_idx] # endpoint
 
-		if 'pre_check' == line[label_idx] or 'SQL_validate' == line[label_idx]: # exclude pre_check from performance report
+		if 'pre_check' == label or 'SQL_validate' == label: # exclude pre_check from performance report
 			continue
 
 		thread_no = int(line[threadname_idx].split('-')[-1])
@@ -339,9 +345,9 @@ with JMETER_REPORT_OUT_FILE.open('rt', encoding='utf-8') as in_file:
 	if error_counter > 0:
 		log.error(f'Amount of invalid requests/total amount of requests: {error_counter}/{count + 1}')
 
-	log.info(f"total amount of calls: {count}")
+	log.info(f"total amount of calls: {count+1}")
 # generate pretty table
-table = PrettyTable(field_names=['Endpoint', 'Max [ms]', 'Min [ms]', 'Average [ms]', 'Median [ms]'])
+table = PrettyTable(field_names=['Endpoint', 'Max [ms]', 'Min [ms]', 'Average [ms]', 'Median [ms]', "Count [-]"])
 value_extr = lambda x: x.value
 def median_on_sorted(iter: List[jmeter_record]):
 	length = len(iter)
@@ -366,10 +372,15 @@ for endpoint, values in jmeter_output.items():
 		int(vsorted[-1].value),
 		int(vsorted[0].value),
 		int(summ(vsorted)/len(vsorted)),
-		int(median_on_sorted(vsorted))
+		int(median_on_sorted(vsorted)),
+		int(len(values))
 	])
 
 # formating
 table.align = 'c'
 table.align[table.field_names[0]] = 'l'
 log.info('\n' + f'{table}')
+
+# printing invalid lines from csv
+if len(error_lines_in_csv) > 0:
+	log.info("calls that did't succeed from input csv:\n\n" + "\n".join(f"{i[1]}\n{input_csv_lines[i[0]]}\n" for i in error_lines_in_csv))

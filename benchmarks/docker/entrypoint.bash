@@ -19,9 +19,11 @@ source $VENV && python3 "$ROOT_DIR/benchmarks/benchmark.py"  \
     --call-style "$CALL_STYLE"               \
     $@; true
 
-echo "generating JUNIT report"
-$M2U --input "$JMETER_WORKDIR/raw_jmeter_report.xml" --output "$JMETER_WORKDIR/report.junit"; true
-echo "generated output to: $JMETER_WORKDIR/report.junit"
+if [ "$SKIP_JUNIT_TEST_REPORT" = "0" ]; then
+    echo "generating JUNIT report"
+    $M2U --input "$JMETER_WORKDIR/raw_jmeter_report.xml" --output "$JMETER_WORKDIR/report.junit"; true
+    echo "generated output to: $JMETER_WORKDIR/report.junit"
+fi
 
 if [ -n "${eSERVE_PORT}" ]; then
     echo "serving output from benchmarks on http://0.0.0.0:$SERVE_PORT"
