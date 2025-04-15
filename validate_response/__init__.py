@@ -34,7 +34,8 @@ predefined_ignore_tags: dict[str, re.Pattern] = {
   '<follow blog>' : re.compile(r"root\[\d+\]\['comment'\]\['post_id'\]"), # follow_api.get_blog
   '<tags posts>' : re.compile(r"root\[\d+\]\['post_id'\]"),
   '<tags post>' : re.compile(r"root\['post_id'\]"), # tags_api.get_discussion
-  '<hafbe cache_update>' : re.compile(r"root\['votes_updated_at'\]") # witness api in haf_block_explorer
+  '<hafbe cache_update>' : re.compile(r"root\['votes_updated_at'\]"), # witness api in haf_block_explorer
+  '<notifications>' : re.compile(r"root\[\d+\]\['id'\]"),
 }
 
 def get_overlap(s1, s2):
