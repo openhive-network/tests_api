@@ -23,7 +23,7 @@ predefined_ignore_tags: dict[str, re.Pattern] = {
   '<bridge discussion>' : re.compile(r"root\[.+\]\['post_id'\]"),
   '<bridge community>' : re.compile(r"root\['id'\]"),
   '<bridge communities>' : re.compile(r"root\[\d+\]\['id'\]"),
-  '<bridge profile>' : re.compile(r"root\['id'\]"),
+  '<bridge profile>' : re.compile(r"root(\[\d+\])?\['id'\]"),
   '<condenser posts>' : re.compile(r"root\[\d+\]\['post_id'\]"),
   '<condenser content>' : re.compile(r"root\['id'\]"), # condenser_api.get_content
   '<condenser replies>' : re.compile(r"root\[\d+\]\['id'\]"), # condenser_api.get_content_replies
