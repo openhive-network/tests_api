@@ -23,7 +23,7 @@ predefined_ignore_tags: dict[str, re.Pattern] = {
   '<bridge discussion>' : re.compile(r"root\[.+\]\['post_id'\]"),
   '<bridge community>' : re.compile(r"root\['id'\]"),
   '<bridge communities>' : re.compile(r"root\[\d+\]\['id'\]"),
-  '<bridge profile>' : re.compile(r"root\['id'\]"),
+  '<bridge profile>' : re.compile(r"root(\[\d+\])?\['id'\]"),
   '<condenser posts>' : re.compile(r"root\[\d+\]\['post_id'\]"),
   '<condenser content>' : re.compile(r"root\['id'\]"), # condenser_api.get_content
   '<condenser replies>' : re.compile(r"root\[\d+\]\['id'\]"), # condenser_api.get_content_replies
@@ -230,6 +230,10 @@ def compare_rest_response_with_pattern(response, method=None, directory=None, er
   test_fname = test_fname.replace(TEST_FILE_EXT, "")
 
   response_fname = test_fname + RESPONSE_FILE_EXT
+
+  # Remove existing output file to avoid concatenating responses from multiple test runs
+  if os.path.exists(response_fname):
+    os.remove(response_fname)
 
   json_response: dict[str, Any] = response.json()
   save_json(response_fname, json_response)
