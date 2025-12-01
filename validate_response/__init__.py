@@ -231,6 +231,10 @@ def compare_rest_response_with_pattern(response, method=None, directory=None, er
 
   response_fname = test_fname + RESPONSE_FILE_EXT
 
+  # Remove existing output file to avoid concatenating responses from multiple test runs
+  if os.path.exists(response_fname):
+    os.remove(response_fname)
+
   json_response: dict[str, Any] = response.json()
   save_json(response_fname, json_response)
 
