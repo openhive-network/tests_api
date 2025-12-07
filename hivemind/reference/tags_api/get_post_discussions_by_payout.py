@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Currently unworking argument are commented.
+# Currently non-working arguments are commented.
 
 import os
 import sys

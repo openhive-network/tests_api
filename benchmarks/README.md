@@ -27,7 +27,7 @@ To list available csv inputs, use `-l` flag + `-n` with api name (by default `ac
 # output
 
 ...
-2022-08-04 15:34:26,279 - performance - INFO - Found and avaiable csv's:
+2022-08-04 15:34:26,279 - performance - INFO - Found and available csv's:
 
 perf_5M_light.csv
 cl_60M_prod_jrpc.csv

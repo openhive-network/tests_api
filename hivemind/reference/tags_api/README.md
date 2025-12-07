@@ -123,7 +123,7 @@ Method not found.
 ##### Returns a list of discussions by comments.
 `python3 get_discussions_by_comments.py https://api.steemit.com https://api.steem.house ./ steemmeupscotty black-dog-on-a-hong-kong-sunrise-animal-landscape-photography 1`
 
-Method works fine, we have comparision error in `active_votes` `json_metadata` and `post_id`.
+Method works fine, we have comparison error in `active_votes` `json_metadata` and `post_id`.
 
 Documentation isn't correct, instead `tag` argument there are `start_author` and `start_permlink`.
 
@@ -131,7 +131,7 @@ Documentation isn't correct, instead `tag` argument there are `start_author` and
 ##### Returns a list of discussions by created.
 `python3 get_discussions_by_created.py https://api.steemit.com https://api.steem.house ./ blocktrades 1`
 
-Method works fine, comparision error in `post_id` only.
+Method works fine, comparison error in `post_id` only.
 
 ####get_discussions_by_feed
 #####Returns a list of discussions by feed.
@@ -143,7 +143,7 @@ Method not found.
 ##### Returns a list of discussions by hot.
 `python3 get_discussions_by_hot.py https://api.steemit.com https://api.steem.house ./ blocktrades 1`
 
-Method works fine, comparision error in `post_id` only.
+Method works fine, comparison error in `post_id` only.
 
 #### get_discussions_by_promoted
 ##### Returns a list of discussions by promoted.
@@ -192,7 +192,7 @@ Method not found.
 ##### Returns a list of post discussions by payout.
 `python3 get_post_discussions_by_payout.py https://api.steemit.com https://api.steem.house ./ blocktrades 1`
 
-Method works fine, but there is difference in comparition:
+Method works fine, but there is difference in comparison:
 
 ```
 Differences detected in jsons: {

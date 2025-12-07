@@ -201,7 +201,7 @@ def has_valid_response(response, method=None, directory=None, error_response=Fal
   else:
     correct_response = result
 
-  # disable coparison with pattern on demand
+  # disable comparison with pattern on demand
   # and save
   if tavern_disable_comparator:
     test_id = response_json.get("id", None)
