@@ -36,6 +36,7 @@ predefined_ignore_tags: dict[str, re.Pattern] = {
   '<tags post>' : re.compile(r"root\['post_id'\]"), # tags_api.get_discussion
   '<hafbe cache_update>' : re.compile(r"root\['votes_updated_at'\]"), # witness api in haf_block_explorer
   '<notifications>' : re.compile(r"root\[\d+\]\['id'\]"),
+  '<error timestamp>': re.compile(r"root\['data'\]\['stack'\]\[\d+\]\['context'\]\['timestamp'\]"), # ignore timestamps in errors
 }
 
 def get_overlap(s1, s2):
