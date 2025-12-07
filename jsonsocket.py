@@ -6,12 +6,12 @@ import socket
 class JSONSocket(object):
   """
   Class encapsulates socket object with special handling json rpc.
-  timeout is ignored now - nonblicking socket not supported.
+  timeout is ignored now - nonblocking socket not supported.
   """
   def __init__(self, host, port, path, timeout=None):
     """
     host in form [http[s]://]<ip_address>[:port]
-    if port not in host must be spefified as argument
+    if port not in host must be specified as argument
     """
     self.__sock = None
     if host.find("http://") == 0 or host.find("https://") == 0:

@@ -128,7 +128,7 @@ class SimpleJsonTest(object):
         if json_diff:
           print("Differences detected in jsons: {}".format(self.json_pretty_string(json_diff)))
 
-        # avoid dobuble write in case of error detected and differences detected.
+        # avoid double write in case of error detected and differences detected.
         if json1_error is None:
           self.write_to_file(filename1, json1, self._test_node)
         if json2_error is None:
