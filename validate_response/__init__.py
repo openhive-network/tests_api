@@ -21,8 +21,8 @@ predefined_ignore_tags: dict[str, re.Pattern] = {
   '<bridge post>' : re.compile(r"root\['post_id'\]"),
   '<bridge posts>' : re.compile(r"root\[\d+\]\['post_id'\]"),
   '<bridge discussion>' : re.compile(r"root\[.+\]\['post_id'\]"),
-  '<bridge community>' : re.compile(r"root\['(id|created_at)'\]"),
-  '<bridge communities>' : re.compile(r"root\[\d+\]\['(id|created_at)'\]"),
+  '<bridge community>' : re.compile(r"root\['(id|created_at|num_authors|num_pending|sum_pending)'\]"),
+  '<bridge communities>' : re.compile(r"root\[\d+\]\['(id|created_at|num_authors|num_pending|sum_pending)'\]"),
   '<bridge profile>' : re.compile(r"root(\[\d+\])?\['id'\]"),
   '<condenser posts>' : re.compile(r"root\[\d+\]\['post_id'\]"),
   '<condenser content>' : re.compile(r"root\['id'\]"), # condenser_api.get_content
