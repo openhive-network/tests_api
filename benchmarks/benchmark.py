@@ -16,9 +16,29 @@ from urllib.parse import urlencode, urlparse
 
 from prettytable import PrettyTable
 from requests import post
+from requests.exceptions import ConnectionError, Timeout
 
 LOG_LEVEL = logging.DEBUG if 'DEBUG' in environ else logging.INFO
 LOG_FORMAT = "%(asctime)-15s - %(name)s - %(levelname)s - %(message)s"
+CONNECTION_RETRY_ATTEMPTS = 10
+CONNECTION_RETRY_DELAY = 5  # seconds
+
+def post_with_retry(url, max_attempts=CONNECTION_RETRY_ATTEMPTS, delay=CONNECTION_RETRY_DELAY, **kwargs):
+    """POST request with retry logic for transient connection failures."""
+    last_exception = None
+    for attempt in range(1, max_attempts + 1):
+        try:
+            return post(url, timeout=30, **kwargs)
+        except (ConnectionError, Timeout, OSError) as e:
+            last_exception = e
+            if attempt < max_attempts:
+                # Log includes attempt number and wait time
+                print(f"Connection attempt {attempt}/{max_attempts} failed: {e}", file=sys.stderr)
+                print(f"Retrying in {delay} seconds...", file=sys.stderr)
+                sleep(delay)
+            else:
+                print(f"All {max_attempts} connection attempts failed", file=sys.stderr)
+    raise last_exception
 
 def configure_logger():
 	logger = logging.getLogger('performance')
@@ -225,9 +245,9 @@ with PROPERTIES_FILES.open('wt') as ofile:
 # running HAfAH and tests
 jmeter_interrupt = False
 try:
-	# gathering version
+	# gathering version (with retry for transient connection failures)
 	if not SKIP_VERSION:
-		version : dict = post(
+		version : dict = post_with_retry(
 			url=f'http://{ADDRESS}:{PORT}/',
 			headers={'Content-Type': 'application/json'},
 			json={"jsonrpc":"2.0","id":0,"method":"hive_api.get_version","params":{}}
