@@ -1,6 +1,6 @@
-**Abstract**: This repository contains tests for API. All API tests are currently 
-  grouped for these served by hived  and these served by hivemind. The goal is to 
-  have flat list of the tests and start their subsets separatly by hived and 
+**Abstract**: This repository contains tests for API. All API tests are currently
+  grouped for these served by hived  and these served by hivemind. The goal is to
+  have flat list of the tests and start their subsets separately by hived and
   hivemind CI processes.
 
 # Usage:
@@ -12,7 +12,7 @@
 ```
 git clone https://github.com/svanoort/pyresttest.git
 cd pyresttest
-python3 setupt.py build
+python3 setup.py build
 python3 setup.py install --user
 ```
 

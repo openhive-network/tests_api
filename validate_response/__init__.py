@@ -52,6 +52,9 @@ predefined_ignore_tags: dict[str, re.Pattern] = {
     "<notification scores>": re.compile(
         r"root\[\d+\]\['score'\]"
     ),  # notification scores depend on reputation timing
+    "<error timestamp>": re.compile(
+        r"root\['data'\]\['stack'\]\[\d+\]\['context'\]\['timestamp'\]"
+    ),  # ignore timestamps in errors
 }
 
 
