@@ -1,11 +1,12 @@
-import os
 import csv
+import os
+import re
 from difflib import SequenceMatcher
-from pathlib import Path
+from pathlib import Path  # noqa: F401
 from time import perf_counter as perf
 from typing import Any
+
 import deepdiff
-import re
 
 
 class PatternDiffException(Exception):
@@ -29,29 +30,17 @@ predefined_ignore_tags: dict[str, re.Pattern] = {
     "<bridge profile>": re.compile(r"root(\[\d+\])?\['id'\]"),
     "<condenser posts>": re.compile(r"root\[\d+\]\['post_id'\]"),
     "<condenser content>": re.compile(r"root\['id'\]"),  # condenser_api.get_content
-    "<condenser replies>": re.compile(
-        r"root\[\d+\]\['id'\]"
-    ),  # condenser_api.get_content_replies
-    "<condenser blog>": re.compile(
-        r"root\[\d+\]\['comment'\]\['post_id'\]"
-    ),  # condenser_api.get_blog
-    "<condenser state>": re.compile(
-        r"root\['content'\]\[.+\]\['post_id'\]"
-    ),  # condenser_api.get_state
+    "<condenser replies>": re.compile(r"root\[\d+\]\['id'\]"),  # condenser_api.get_content_replies
+    "<condenser blog>": re.compile(r"root\[\d+\]\['comment'\]\['post_id'\]"),  # condenser_api.get_blog
+    "<condenser state>": re.compile(r"root\['content'\]\[.+\]\['post_id'\]"),  # condenser_api.get_state
     "<database posts>": re.compile(r"root\['comments'\]\[\d+\]\['id'\]"),
     "<database votes>": re.compile(r"root\['votes'\]\[\d+\]\['id'\]"),
-    "<follow blog>": re.compile(
-        r"root\[\d+\]\['comment'\]\['post_id'\]"
-    ),  # follow_api.get_blog
+    "<follow blog>": re.compile(r"root\[\d+\]\['comment'\]\['post_id'\]"),  # follow_api.get_blog
     "<tags posts>": re.compile(r"root\[\d+\]\['post_id'\]"),
     "<tags post>": re.compile(r"root\['post_id'\]"),  # tags_api.get_discussion
-    "<hafbe cache_update>": re.compile(
-        r"root\['votes_updated_at'\]"
-    ),  # witness api in haf_block_explorer
+    "<hafbe cache_update>": re.compile(r"root\['votes_updated_at'\]"),  # witness api in haf_block_explorer
     "<notifications>": re.compile(r"root\[\d+\]\['id'\]"),
-    "<notification scores>": re.compile(
-        r"root\[\d+\]\['score'\]"
-    ),  # notification scores depend on reputation timing
+    "<notification scores>": re.compile(r"root\[\d+\]\['score'\]"),  # notification scores depend on reputation timing
     "<error timestamp>": re.compile(
         r"root\['data'\]\['stack'\]\[\d+\]\['context'\]\['timestamp'\]"
     ),  # ignore timestamps in errors
@@ -94,9 +83,9 @@ def load_pattern(name):
 
     ret = None
     try:
-        with open(name, "r") as f:
+        with open(name) as f:
             ret = load(f)
-    except FileNotFoundError as ex:
+    except FileNotFoundError:
         pass
     return ret
 
@@ -106,19 +95,13 @@ def remove_tag(data, tags_to_remove):
         return data
     if isinstance(data, list):
         return [remove_tag(v, tags_to_remove) for v in data]
-    return {
-        k: remove_tag(v, tags_to_remove)
-        for k, v in data.items()
-        if k not in tags_to_remove
-    }
+    return {k: remove_tag(v, tags_to_remove) for k, v in data.items() if k not in tags_to_remove}
 
 
 def get_time(test_id):
-    from json import loads
-
     file_name = os.getenv("HIVEMIND_BENCHMARKS_IDS_FILE", None)
     if file_name is not None:
-        with open(file_name, "r") as f:
+        with open(file_name) as f:
             reader = csv.reader(f)
             for row in reader:
                 if row[0] == test_id:
@@ -168,9 +151,7 @@ def compare_response_with_pattern(
 
     exclude_regex_path = None
     if isinstance(ignore_tags, str):
-        assert (
-            ignore_tags in predefined_ignore_tags
-        ), "Unknown predefined meta-tag specified in ignore_tags"
+        assert ignore_tags in predefined_ignore_tags, "Unknown predefined meta-tag specified in ignore_tags"
         exclude_regex_path = predefined_ignore_tags[ignore_tags]
         ignore_tags = None
     if ignore_tags is not None:
@@ -197,13 +178,11 @@ def compare_response_with_pattern(
         return
 
     if error is not None and not error_response:
-        msg = "Error detected in response - see {} for details".format(response_fname)
+        msg = f"Error detected in response - see {response_fname} for details"
         save_json(response_fname, response_json)
         raise PatternDiffException(msg)
     if error is None and error_response:
-        msg = "Error expected but got result - see {} for details".format(
-            response_fname
-        )
+        msg = f"Error expected but got result - see {response_fname} for details"
         save_json(response_fname, response_json)
         raise PatternDiffException(msg)
 
@@ -225,18 +204,14 @@ def compare_response_with_pattern(
         pattern = remove_tag(pattern, ignore_tags)
         result = remove_tag(result, ignore_tags)
     if exclude_regex_path is not None:
-        pattern_resp_diff = deepdiff.DeepDiff(
-            pattern, result, exclude_regex_paths=[exclude_regex_path]
-        )
+        pattern_resp_diff = deepdiff.DeepDiff(pattern, result, exclude_regex_paths=[exclude_regex_path])
     else:
         pattern_resp_diff = deepdiff.DeepDiff(pattern, result)
     if pattern_resp_diff:
         save_json(response_fname, result)
         # Include the actual diff in the error message for easier debugging
         diff_str = (
-            pattern_resp_diff.to_json(indent=2)
-            if hasattr(pattern_resp_diff, "to_json")
-            else str(pattern_resp_diff)
+            pattern_resp_diff.to_json(indent=2) if hasattr(pattern_resp_diff, "to_json") else str(pattern_resp_diff)
         )
         msg = f"Differences detected between response and pattern.\nPattern file: {pattern_fname}\nResponse file: {response_fname}\nDiff:\n{diff_str}"
         raise PatternDiffException(msg)
@@ -308,9 +283,7 @@ def compare_rest_response_with_pattern(
     ignore_tags: str | list[str] | list[re.Pattern] | None = None,
 ):
     pytest_current_test = os.getenv("PYTEST_CURRENT_TEST")
-    assert (
-        pytest_current_test is not None
-    ), "Environment variable not set: PYTEST_CURRENT_TEST"
+    assert pytest_current_test is not None, "Environment variable not set: PYTEST_CURRENT_TEST"
     test_fname, _ = pytest_current_test.split("::")
 
     test_dir = os.getenv("TAVERN_DIR", "")
@@ -329,24 +302,18 @@ def compare_rest_response_with_pattern(
 
     if error_response:
         for required_key in ["code", "details", "hint", "message"]:
-            assert (
-                required_key in json_response
-            ), f"Response, marked as error, does not contain {required_key} key"
+            assert required_key in json_response, f"Response, marked as error, does not contain {required_key} key"
 
     if isinstance(ignore_tags, str):
         ignore_tags = [predefined_ignore_tags[ignore_tags]]
 
     pattern_fname = test_fname + PATTERN_FILE_EXT
     pattern = load_pattern(pattern_fname)
-    pattern_resp_diff = deepdiff.DeepDiff(
-        pattern, json_response, exclude_regex_paths=ignore_tags
-    )
+    pattern_resp_diff = deepdiff.DeepDiff(pattern, json_response, exclude_regex_paths=ignore_tags)
     if pattern_resp_diff:
         # Include the actual diff in the error message for easier debugging
         diff_str = (
-            pattern_resp_diff.to_json(indent=2)
-            if hasattr(pattern_resp_diff, "to_json")
-            else str(pattern_resp_diff)
+            pattern_resp_diff.to_json(indent=2) if hasattr(pattern_resp_diff, "to_json") else str(pattern_resp_diff)
         )
         msg = f"Differences detected between response and pattern.\nPattern file: {pattern_fname}\nResponse file: {response_fname}\nDiff:\n{diff_str}"
         raise PatternDiffException(msg)

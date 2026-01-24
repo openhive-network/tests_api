@@ -4,45 +4,39 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(__file__) + "/../../../")
-import json
 from testbase import SimpleJsonTest
 
 if __name__ == "__main__":
-  import argparse
-  parser = argparse.ArgumentParser()
+    import argparse
 
-  parser.add_argument("test_node", type = str, help = "IP address of test node")
-  parser.add_argument("ref_node", type = str, help = "IP address of reference node")
-  parser.add_argument("work_dir", type = str, help = "Work dir")
-  parser.add_argument("account", type = str, help = "Account name")
-  parser.add_argument("start", type = str, help = "Account to start from (default is null)")
-  parser.add_argument("type", type = str, help = "Type")
-  parser.add_argument("limit", type = str, help = "Limit up to 1000")
+    parser = argparse.ArgumentParser()
 
-  args = parser.parse_args()
-  tester = SimpleJsonTest(args.test_node, args.ref_node, args.work_dir)
+    parser.add_argument("test_node", type=str, help="IP address of test node")
+    parser.add_argument("ref_node", type=str, help="IP address of reference node")
+    parser.add_argument("work_dir", type=str, help="Work dir")
+    parser.add_argument("account", type=str, help="Account name")
+    parser.add_argument("start", type=str, help="Account to start from (default is null)")
+    parser.add_argument("type", type=str, help="Type")
+    parser.add_argument("limit", type=str, help="Limit up to 1000")
 
-  print("Test node: {}".format(args.test_node))
-  print("Ref node: {}".format(args.ref_node))
-  print("Work dir: {}".format(args.work_dir))
-  print("Account name: {}".format(args.account))
-  print("Account to start from: {}".format(args.start))
-  print("Type: {}".format(args.type))
-  print("Limit: {}".format(args.limit))
+    args = parser.parse_args()
+    tester = SimpleJsonTest(args.test_node, args.ref_node, args.work_dir)
 
-  test_args = {
-    "jsonrpc": "2.0",
-    "id": 1,
-    "method": "condenser_api.get_following",
-    "params": [
-      "{}".format(args.account),
-      "{}".format(args.start),
-      "{}".format(args.type),
-      args.limit
-    ]
-  }
+    print(f"Test node: {args.test_node}")
+    print(f"Ref node: {args.ref_node}")
+    print(f"Work dir: {args.work_dir}")
+    print(f"Account name: {args.account}")
+    print(f"Account to start from: {args.start}")
+    print(f"Type: {args.type}")
+    print(f"Limit: {args.limit}")
 
-  if tester.compare_results(test_args, True):
-    exit(0)
-  exit(1)
+    test_args = {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "condenser_api.get_following",
+        "params": [f"{args.account}", f"{args.start}", f"{args.type}", args.limit],
+    }
 
+    if tester.compare_results(test_args, True):
+        exit(0)
+    exit(1)
