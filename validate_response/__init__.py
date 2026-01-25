@@ -47,6 +47,17 @@ predefined_ignore_tags: dict[str, re.Pattern] = {
 }
 
 
+def _truncate_diff(diff_str: str, response_fname: str, max_lines: int = 20) -> str:
+    """Truncate diff output to avoid log overflow in CI."""
+    diff_lines = diff_str.split("\n")
+    if len(diff_lines) > max_lines:
+        return (
+            "\n".join(diff_lines[:max_lines])
+            + f"\n... [{len(diff_lines) - max_lines} more lines - see {response_fname}]"
+        )
+    return diff_str
+
+
 def get_overlap(s1, s2):
     s = SequenceMatcher(None, s1, s2)
     pos_a, pos_b, size = s.find_longest_match(0, len(s1), 0, len(s2))
@@ -213,6 +224,7 @@ def compare_response_with_pattern(
         diff_str = (
             pattern_resp_diff.to_json(indent=2) if hasattr(pattern_resp_diff, "to_json") else str(pattern_resp_diff)
         )
+        diff_str = _truncate_diff(diff_str, response_fname)
         msg = f"Differences detected between response and pattern.\nPattern file: {pattern_fname}\nResponse file: {response_fname}\nDiff:\n{diff_str}"
         raise PatternDiffException(msg)
 
@@ -315,5 +327,6 @@ def compare_rest_response_with_pattern(
         diff_str = (
             pattern_resp_diff.to_json(indent=2) if hasattr(pattern_resp_diff, "to_json") else str(pattern_resp_diff)
         )
+        diff_str = _truncate_diff(diff_str, response_fname)
         msg = f"Differences detected between response and pattern.\nPattern file: {pattern_fname}\nResponse file: {response_fname}\nDiff:\n{diff_str}"
         raise PatternDiffException(msg)
