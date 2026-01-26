@@ -128,6 +128,7 @@ def compare_response_with_pattern(
     error_response=False,
     benchmark_time_threshold=None,
     allow_null_response=False,
+    numeric_tolerance=None,
 ):
     """This method will compare response with pattern file"""
     test_fname, _ = os.getenv("PYTEST_CURRENT_TEST").split("::")
@@ -214,10 +215,13 @@ def compare_response_with_pattern(
     if ignore_tags is not None:
         pattern = remove_tag(pattern, ignore_tags)
         result = remove_tag(result, ignore_tags)
+    # Build DeepDiff kwargs
+    deepdiff_kwargs = {}
     if exclude_regex_path is not None:
-        pattern_resp_diff = deepdiff.DeepDiff(pattern, result, exclude_regex_paths=[exclude_regex_path])
-    else:
-        pattern_resp_diff = deepdiff.DeepDiff(pattern, result)
+        deepdiff_kwargs["exclude_regex_paths"] = [exclude_regex_path]
+    if numeric_tolerance is not None:
+        deepdiff_kwargs["math_epsilon"] = numeric_tolerance
+    pattern_resp_diff = deepdiff.DeepDiff(pattern, result, **deepdiff_kwargs)
     if pattern_resp_diff:
         save_json(response_fname, result)
         # Include the actual diff in the error message for easier debugging
