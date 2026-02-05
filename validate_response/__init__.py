@@ -41,6 +41,8 @@ predefined_ignore_tags: dict[str, re.Pattern] = {
     "<hafbe cache_update>": re.compile(r"root\['votes_updated_at'\]"),  # witness api in haf_block_explorer
     "<notifications>": re.compile(r"root\[\d+\]\['id'\]"),
     "<notification scores>": re.compile(r"root\[\d+\]\['score'\]"),  # notification scores depend on reputation timing
+    "<notification details>": re.compile(r"root\[\d+\]"),  # all notification entry content varies with reputation timing
+    "<unread count>": re.compile(r"root\['unread'\]"),  # unread count depends on notification scores
     "<error timestamp>": re.compile(
         r"root\['data'\]\['stack'\]\[\d+\]\['context'\]\['timestamp'\]"
     ),  # ignore timestamps in errors
