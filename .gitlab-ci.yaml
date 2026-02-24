@@ -1,10 +1,25 @@
+include:
+  - project: 'hive/common-ci-configuration'
+    ref: 394fc42bc7bf7deefa89792959de34f16c9e681b
+    file:
+      - '/templates/python_projects.gitlab-ci.yml'
+
 stages:
+  - static_code_analysis
   - benchmark
 
 variables:
   CI_DEBUG_SERVICES: "true"
   BENCHMARK_ADDRESS: ""
   BENCHMARK_PORT: ""
+
+verify_poetry_lock_stability:
+  stage: static_code_analysis
+  extends: .verify_poetry_lock_stability_template
+  variables:
+    PYPROJECT_DIR: "${CI_PROJECT_DIR}"
+  tags:
+    - public-runner-docker
 
 Trigger any benchmark:
   stage: benchmark
