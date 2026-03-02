@@ -1,5 +1,5 @@
 [build-system]
-requires = ["poetry-core==1.1.0"]
+requires = ["poetry-core==2.1.3"]
 build-backend = "poetry.core.masonry.api"
 
 
@@ -17,7 +17,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = ">=3.14,<4"
-prettytable = "3.8.0"
-requests = "2.32.3"
-types-requests = "2.31.0.2"
-deepdiff = "6.3.0"
+prettytable = "^3.8.0"
+requests = "^2.32.3"
+types-requests = "^2.31.0.2"
+deepdiff = "^6.3.0"
