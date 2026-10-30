@@ -1,6 +1,9 @@
 stages:
   - benchmark
 
+default:
+  tags: [public-runner-docker]
+
 variables:
   CI_DEBUG_SERVICES: "true"
   BENCHMARK_ADDRESS: ""
