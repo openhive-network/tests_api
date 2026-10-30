@@ -1,0 +1,77 @@
+# Profile for hive/tests_api, written by `aidev project scaffold` (#13561).
+#
+# Schema reference: docs/architecture/project-profile.md
+# Onboarding procedure: the `onboard-external-project` skill.
+# Guide: docs/operations/onboarding-an-external-project.md
+#
+# The generator writes a starting point, not a governed answer: every
+# binding below is the command a maintainer said this project runs, and it
+# is reviewed and edited like any other declaration.
+version: 2
+project: tests-api
+
+gitlab:
+  host: "gitlab.syncad.com"
+  path: "hive/tests_api"
+  id: 246
+
+# AIDEV integrates into its own branch (protected: Developers push/merge, no
+# force push) and hands it off to master by merge request (`aidev handoff`); master
+# fast-forwards only (merge_method ff), so the hand-off MR must be rebased onto it. AIDEV never pushes master, so `stable` is omitted.
+branches:
+  integration: "aidev/integration"
+  handoff: "master"
+
+# How this project's suites execute (#13892): one kind, stated once.
+environment:
+  kind: "container"
+  image: "registry.gitlab.syncad.com/hive/tests_api/aidev-tests@sha256:884ec69d5cfba6e793b433c4eb64d353059d7cbfdc1abb2cd456fd3332219d2b"
+  inputs: ["pyproject.toml", "poetry.lock"]
+
+issues:
+  intake_label: todo
+  taxonomy: ".aidev/labels.yaml"
+  decompose:
+    # `never` is where an external project starts: nothing marks work
+    # approved on this project's behalf until there is a track record.
+    auto_todo: never
+  # Reports about this project's work are filed against this project.
+  watcher_reports: self
+
+# Verification slots. Each binding is what this project genuinely runs for
+# that slot — never one selection repeated under seven names, which makes
+# seven gates report on the same evidence while claiming to check seven
+# different things. Every slot runs .aidev/run-checks.sh in the image above,
+# offline; see .aidev/README.md for the steps and what is not run.
+verification:
+  quick:
+    adapter: command
+    args: [".aidev/run-checks.sh", "quick", "compile", "import", "package", "cli"]
+    artifacts: ["test-results/quick/"]
+  full:
+    adapter: command
+    args: [".aidev/run-checks.sh", "full", "compile", "import", "package", "cli"]
+    artifacts: ["test-results/full/"]
+  baseline:
+    adapter: command
+    args: [".aidev/run-checks.sh", "baseline", "compile", "import"]
+    artifacts: ["test-results/baseline/"]
+  canary:
+    adapter: command
+    args: [".aidev/run-checks.sh", "canary", "compile", "import", "package", "cli"]
+    artifacts: ["test-results/canary/"]
+  static:
+    adapter: command
+    args: [".aidev/run-checks.sh", "static", "compile"]
+    artifacts: ["test-results/static/"]
+  coverage:
+    adapter: command
+    args: [".aidev/run-checks.sh", "coverage", "compile", "import"]
+    artifacts: ["test-results/coverage/"]
+  system:
+    adapter: command
+    args: [".aidev/run-checks.sh", "system", "compile", "import", "package", "cli"]
+    artifacts: ["test-results/system/"]
+
+# Capability grants for target-side code. Empty until this project needs one.
+capabilities: []
